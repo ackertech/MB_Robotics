@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.Sandbox;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-//@Disabled
+@Disabled
 @TeleOp(name = "Test:Servo Calibration", group = "Lab")
 
 public class SingleServo_Callibrate extends OpMode {

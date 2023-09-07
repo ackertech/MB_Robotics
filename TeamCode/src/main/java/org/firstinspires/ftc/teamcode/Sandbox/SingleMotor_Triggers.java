@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
-//@Disabled
+@Disabled
 @TeleOp (name = "Test:Single Motor:Triggers", group = "Lab")
 
 public class SingleMotor_Triggers extends OpMode {
