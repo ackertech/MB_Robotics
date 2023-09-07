@@ -2,11 +2,12 @@ package org.firstinspires.ftc.teamcode.Base.DigitalTwin;
 
 import android.graphics.Color;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "Digital Twin T")
 public class TeleOpDigitalTwin extends OpMode {
 

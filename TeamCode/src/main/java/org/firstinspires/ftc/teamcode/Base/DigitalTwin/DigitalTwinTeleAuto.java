@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Base.DigitalTwin;
 
 import android.graphics.Color;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Base.Controls.TeleOp.AckerBotTeleOp;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "Digital Twin TA")
 public class DigitalTwinTeleAuto extends OpMode {
 

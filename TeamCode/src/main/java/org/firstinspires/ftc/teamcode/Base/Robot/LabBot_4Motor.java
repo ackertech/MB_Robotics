@@ -12,11 +12,12 @@ import org.firstinspires.ftc.teamcode.Base.Drivetrains.LabBot_FourMotorDrive;
 public class LabBot_4Motor extends LabBot_FourMotorDrive {
 
     // Define variable here
-    public Servo flag = null;
+//    public Servo flag = null;
 
     //LED variables and stuff
-    public RevBlinkinLedDriver ledLights;
-    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
+//    public RevBlinkinLedDriver ledLights;
+//    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
+
     public HardwareMap hwBot = null;
 
 
@@ -48,32 +49,32 @@ public class LabBot_4Motor extends LabBot_FourMotorDrive {
 
 
         //initialize servo here
-        flag = hwBot.get(Servo.class, "flag");
-        flag.setDirection(Servo.Direction.FORWARD);
+//        flag = hwBot.get(Servo.class, "flag");
+//        flag.setDirection(Servo.Direction.FORWARD);
 
         //initialize LED in here
-        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
-        ledPattern = RevBlinkinLedDriver.BlinkinPattern.RED;
-        ledLights.setPattern(ledPattern);
+//        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
+//        ledPattern = RevBlinkinLedDriver.BlinkinPattern.RED;
+//        ledLights.setPattern(ledPattern);
 
 
     }
 
-    public void setLedPattern(RevBlinkinLedDriver.BlinkinPattern patternName) {
-        ledLights.setPattern(patternName);
-    }
-
-    public void raiseFlag() {
-        flag.setPosition(0.475);
-    }
-
-    public void lowerFlag() {
-        flag.setPosition(0);
-    }
-
-    public void initFlag() {
-        flag.setPosition(.8);
-    }
+//    public void setLedPattern(RevBlinkinLedDriver.BlinkinPattern patternName) {
+//        ledLights.setPattern(patternName);
+//    }
+//
+//    public void raiseFlag() {
+//        flag.setPosition(0.475);
+//    }
+//
+//    public void lowerFlag() {
+//        flag.setPosition(0);
+//    }
+//
+//    public void initFlag() {
+//        flag.setPosition(.8);
+//    }
 
 
 }
