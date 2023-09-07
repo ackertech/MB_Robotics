@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.Z_Archive.Bot_Sparx;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+@Disabled
 @TeleOp(name = "Sparx: Isabella")
 public class Sparx_TeleOp_Isabella extends OpMode {
 

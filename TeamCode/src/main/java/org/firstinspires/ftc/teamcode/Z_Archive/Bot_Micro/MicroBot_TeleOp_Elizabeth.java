@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.Z_Archive.Bot_Micro;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+@Disabled
 @TeleOp(name = "Drive Micro: Elizabeth")
 
 public class MicroBot_TeleOp_Elizabeth extends OpMode {
