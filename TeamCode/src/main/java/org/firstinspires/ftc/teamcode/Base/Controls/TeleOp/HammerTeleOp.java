@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.HammerHead;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 @Disabled
-@TeleOp(name = "Hammer Drive")
+@TeleOp(name = "HammerBot",group="iLab")
 
 public class HammerTeleOp extends OpMode {
 

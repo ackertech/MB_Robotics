@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots.CompetitionBot;
-
-@Autonomous (name = "Connor_AutoParkingNoCam")
+@Disabled
+@Autonomous (name = "BNI:Connor_AutoParkingNoCam", group="BNI")
 
 public class Connor_AutoMecParkingNoCam extends LinearOpMode {
 

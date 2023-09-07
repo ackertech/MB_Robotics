@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 // *****  Autonomous with Encoders & Rotations *********
 
 @Disabled
-@Autonomous(name = "LabBot:4M:Square:Without Enc")
+@Autonomous(name = "LabBot:4M:Square:Without Enc",group = "iLab")
 
 public class AutoLabot_4Motor_Without extends LinearOpMode {
 

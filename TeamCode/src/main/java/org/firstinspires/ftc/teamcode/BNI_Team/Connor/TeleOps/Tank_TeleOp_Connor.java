@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.TankBot_Connor;
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 //@Disabled
-@TeleOp(name = "Thomas_The_TankBot_Drive_Basic_Connor_Beethoven's_Wig")
+@TeleOp(name = "Thomas_The_TankBot_Drive_Basic_Connor_Beethoven's_Wig", group="iLab")
 public class Tank_TeleOp_Connor extends OpMode{
 
     ElapsedTime timer = new ElapsedTime();

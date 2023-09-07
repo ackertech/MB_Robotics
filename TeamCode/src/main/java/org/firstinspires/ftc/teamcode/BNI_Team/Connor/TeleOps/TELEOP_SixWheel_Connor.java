@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.TeleOps;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.SixWheelBot_Connor;
-
-@TeleOp (name = "SixWheelTeleOp_Connor")
+@Disabled
+@TeleOp (name = "SixWheelTeleOp_Connor",group="iLab")
 public class TELEOP_SixWheel_Connor extends OpMode {
 
     double leftStickYVal;

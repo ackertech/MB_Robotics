@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_2Motor;
 
 @Disabled
-@TeleOp(name = "LabBot 2Motor",group = "Bot_LabBot")
+@TeleOp(name = "LabBot 2Motor",group = "iLab")
 public class TeleOpLabBot_2Motor extends OpMode {
 
     public double speedMultiply = 0.50;

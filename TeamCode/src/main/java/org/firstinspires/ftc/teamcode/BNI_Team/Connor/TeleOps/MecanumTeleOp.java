@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.ProgramingBot;
 
 
-@TeleOp (name = "MecanumTeleOp_Connor")
+@TeleOp (name = "MecanumTeleOp_Connor",group="iLab")
 public class MecanumTeleOp extends OpMode {
 
     double leftStickYVal;

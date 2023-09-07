@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
-//@Disabled
+@Disabled
 @Autonomous(name = "TankBot ASL Hand")
 
 public class AutoTankBot_Arm extends LinearOpMode {

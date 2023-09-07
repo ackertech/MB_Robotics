@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.TankBot_Connor;
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 @Disabled
-@TeleOp(name = "CandyBoxTeleOpConnor")
+@TeleOp(name = "CandyBox",group="iLab")
 public class CandyboxTeleop extends OpMode {
 
     public double leftSidePower;

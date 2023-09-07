@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.CandyLaunchingBot_C
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 @Disabled
-@TeleOp(name = "CandyLaunchingBotJohnCena_Connor")
+@TeleOp(name = "CandyLaunchingBotJohnCena",group="iLab")
 
 public class CandyLaunchingBotTeleOp_Connor extends OpMode{
 

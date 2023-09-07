@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.LinearMobility;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 @Disabled
-@TeleOp(name = "TankBot Arm-Linear")
+@TeleOp(name = "TankBot Arm-Linear",group="iLab")
 
 public class TankTeleOpWithArmLinear extends OpMode {
 

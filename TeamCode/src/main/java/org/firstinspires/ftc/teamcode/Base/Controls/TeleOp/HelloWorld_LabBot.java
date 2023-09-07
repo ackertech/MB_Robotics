@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Disabled
-@TeleOp(name="Hello World Acker")
+@TeleOp(name="Hello World",group="iLab")
 
 public class HelloWorld_LabBot extends OpMode {
 

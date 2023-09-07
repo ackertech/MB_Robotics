@@ -5,12 +5,13 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots.RoadRunnerCompBot;
 
-
-@Autonomous (name = "ROADRUNAuto_Connor")
+@Disabled
+@Autonomous (name = "BNI:ROADRUNAuto_Connor", group="BNI")
 public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
 
 

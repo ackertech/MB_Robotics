@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
 //@Disabled
-@Autonomous(name = "MechBot Auto")
+@Autonomous(name = "MechBot Auto", group = "iLab")
 
 public class AutoMechBot extends LinearOpMode {
 

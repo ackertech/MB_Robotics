@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.Wall_E;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-
-@Autonomous (name = "Wall -E Auto_Connor")
+@Disabled
+@Autonomous (name = "Wall -E Auto_Connor", group="iLab")
 public class CONNOR_Wall_E_Auto extends LinearOpMode {
 
 

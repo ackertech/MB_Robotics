@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots.CompetitionBot;
-
-@TeleOp (name = "CompetitionTeleOp_Connor")
+@Disabled
+@TeleOp (name = "BNI:CompetitionTeleOp_Connor", group="BNI")
 
 public class Connor_CompetitionTeleop extends OpMode {
 

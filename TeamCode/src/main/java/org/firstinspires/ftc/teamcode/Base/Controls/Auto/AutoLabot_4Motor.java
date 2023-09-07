@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 
 @Disabled
-@Autonomous(name = "LabBot:4M:Square:Power")
+@Autonomous(name = "LabBot:4M:Square:Power",group = "iLab")
 
 public class AutoLabot_4Motor extends LinearOpMode {
 

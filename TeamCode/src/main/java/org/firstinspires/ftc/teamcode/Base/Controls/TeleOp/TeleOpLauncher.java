@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 import org.firstinspires.ftc.teamcode.Base.Robot.LaunchBot;
 
 //@Disabled
-@TeleOp(name = "LaunchBot")
+@TeleOp(name = "LaunchBot",group = "iLab")
 public class TeleOpLauncher extends OpMode {
 
     public double speedMultiply = 0.50;
