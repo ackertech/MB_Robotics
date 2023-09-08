@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Autonomous;
+package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Autonomous;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots.RoadRunnerCompBot;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots.RoadRunnerCompBot;
 
 @Disabled
 @Autonomous (name = "BNI:ROADRUNAuto_Connor", group="BNI")

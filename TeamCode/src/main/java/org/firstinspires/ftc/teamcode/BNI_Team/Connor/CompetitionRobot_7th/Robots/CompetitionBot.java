@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots;
+package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;

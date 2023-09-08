@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.BNI_Team.Connor.TeleOps.Tank_TeleOp_Connor
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 //@Disabled
-@TeleOp(name = "WALL-E_TeleOp",group="iLab")
+@TeleOp(name = "WALL-E_TeleOp_CWR",group="iLab")
 public class WALL_E_TeleOp extends OpMode {
 
     public double speedMultiply = 0.50;

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.TeleOp;
+package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots.CompetitionBot;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots.CompetitionBot;
 @Disabled
 @TeleOp (name = "BNI:CompetitionTeleOp_Connor", group="BNI")
 
