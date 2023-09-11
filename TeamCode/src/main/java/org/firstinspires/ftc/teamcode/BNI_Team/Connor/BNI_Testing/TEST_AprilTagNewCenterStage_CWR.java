@@ -18,7 +18,7 @@ public class TEST_AprilTagNewCenterStage_CWR extends LinearOpMode {
 
 
 
-    private static final boolean USE_WEBCAM = true;
+    public static final boolean USE_WEBCAM = true;
 
 
     public AprilTagProcessor aprilTag;
@@ -87,7 +87,7 @@ public class TEST_AprilTagNewCenterStage_CWR extends LinearOpMode {
     }
 
 
-    private void telemetryAprilTag() {
+    public void telemetryAprilTag() {
 
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
         telemetry.addData("# AprilTags Detected", currentDetections.size());
