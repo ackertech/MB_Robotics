@@ -45,6 +45,7 @@ public class TELEOP_SixWheel_Connor extends OpMode {
     public void loop() {
         speedControl();
         drivingMode();
+        telemetry();
         drive();
     }
 
@@ -165,4 +166,29 @@ public class TELEOP_SixWheel_Connor extends OpMode {
             drivingMode = DrivingMode.REVERSEONESTICK;
         }
   }
-}
+
+
+    public void telemetry(){
+
+        if (drivingMode == DrivingMode.ONESTICK) {
+            telemetry.addLine("ONE-STICK DRIVE");
+        }
+        else if (drivingMode == DrivingMode.TANK) {
+            telemetry.addLine("TANK DRIVE");
+        }
+        else if (drivingMode == DrivingMode.REVERSETANK) {
+            telemetry.addLine("REVERSE TANK DRIVE");
+        }
+        else if (drivingMode == DrivingMode.REVERSEONESTICK) {
+            telemetry.addLine("REVERSE ONE-STICK DRIVE");
+        }
+        telemetry.update();
+
+
+    }
+
+
+
+  }
+
+
