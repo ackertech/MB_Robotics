@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 @Autonomous (name = "ROADRUNAuto_CWR")
-public abstract class TEST_RoadrunAutoCenterStage_CWR extends LinearOpMode {
+public  class TEST_RoadrunAutoCenterStage_CWR extends Test_AUTOMAINCenterStage_Connor {
 
     public static double ANGLE1 = 90;
 }
