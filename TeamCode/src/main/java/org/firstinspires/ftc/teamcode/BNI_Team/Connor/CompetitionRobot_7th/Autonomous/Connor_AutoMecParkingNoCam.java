@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Autonomous;
+package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot.Robots.CompetitionBot;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots.CompetitionBot;
 @Disabled
 @Autonomous (name = "BNI:Connor_AutoParkingNoCam", group="BNI")
 
