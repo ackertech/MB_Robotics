@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots;
+package org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
@@ -69,6 +69,13 @@ public class ProgramingBot extends MecanumDrive_Connor {
         imu.initialize(parametersimu);
 
 
+    }
+
+    public void stopMotors(){
+        frontLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        rearLeftMotor.setPower(0);
+        rearRightMotor.setPower(0);
     }
 
     public void gyroCorrection (double speed, double angle) {
