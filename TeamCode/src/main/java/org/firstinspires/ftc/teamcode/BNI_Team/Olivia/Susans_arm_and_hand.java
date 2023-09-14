@@ -78,7 +78,7 @@ public class Susans_arm_and_hand {
         wrist.setPosition(1);}
 
     public void halfWrist() {
-        wrist.setPosition(5);
+        wrist.setPosition(0.5);
     }
 
 
@@ -129,8 +129,8 @@ public class Susans_arm_and_hand {
 
     public void rockon() {
         thumb.setPosition(0);
-        indexF.setPosition(0);
-        middleF.setPosition(1);
+        indexF.setPosition(1);
+        middleF.setPosition(0);
         ringF.setPosition(0);
         pinkyF.setPosition(1);
     }

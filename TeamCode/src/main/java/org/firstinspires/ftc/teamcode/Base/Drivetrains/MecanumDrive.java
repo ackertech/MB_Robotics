@@ -61,7 +61,7 @@ public class MecanumDrive {
     }
 
 
-    // Reusuable Method to Set the Motor Behavior or Run Modes from the Robot Class
+    // Reusable Method to Set the Motor Behavior or Run Modes from the Robot Class
     public void setMotorRunModes(DcMotor.RunMode mode) {
 
         frontLeftMotor.setMode(mode);
@@ -130,7 +130,7 @@ public class MecanumDrive {
         rearRightMotor.setPower(Math.abs(speed));
     }
 
-    // Consolidated Method (in Beta Testing) for combinining all mecanum movements
+    // Consolidated Method (in Beta Testing) for combining all mecanum movements
     public void driveDirection(double speed, double rotations, String direction) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
@@ -240,7 +240,7 @@ public class MecanumDrive {
             integralSum =  integralSum + (error * timer.seconds());
 
             //Increasing Kp makes robot approach target faster and lead to overshooting target
-            //Incrasing kd makes the approach approach the target slower
+            //Increasing kd makes the approach approach the target slower
             powerPID = ( Kp * error) + (Ki * integralSum) + (Kd * derivative) ;
             powerNormPID =  normalizePower(powerPID, targetPosition);
 
@@ -291,7 +291,7 @@ public class MecanumDrive {
             integralSum =  integralSum + (error * timer.seconds());
 
             //Increasing Kp makes robot approach target faster and lead to overshooting target
-            //Incrasing kd makes the approach approach the target slower
+            //Increasing kd makes the approach approach the target slower
             powerPID = ( Kp * error) + (Ki * integralSum) + (Kd * derivative) ;
             powerNormPID =  normalizePower(powerPID, targetPosition);
 
