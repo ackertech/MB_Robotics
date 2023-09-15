@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp (name = "CONNOR IS THE BEST_MecanumTeleopTindall")
+@TeleOp (name = "MecanumTeleOp")
 public class MecanumTeleOp_Olivia extends OpMode {
 
     double leftStickYVal;
