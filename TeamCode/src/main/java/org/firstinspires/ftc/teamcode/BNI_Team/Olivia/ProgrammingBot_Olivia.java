@@ -27,10 +27,10 @@ public class ProgrammingBot_Olivia extends MecanumDrive_Olivia{
     public ProgrammingBot_Olivia(){}
     public void initRobot (HardwareMap hwMap){
         hwBot = hwMap;
-        frontLeftMotor = hwBot.dcMotor.get("frontLeftMotor");
-        frontRightMotor = hwBot.dcMotor.get("frontRightMotor");
-        rearLeftMotor = hwBot.dcMotor.get("rearLeftMotor");
-        rearRightMotor = hwBot.dcMotor.get("rearRightMotor");
+        frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor");
+        rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
+        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
 
         frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
         rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);

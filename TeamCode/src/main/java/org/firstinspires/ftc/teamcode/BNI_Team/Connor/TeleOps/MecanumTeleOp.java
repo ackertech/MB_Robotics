@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots.ProgramingBot;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.ProgramingBot;
 
 
 @TeleOp (name = "MecanumTeleOp_Connor",group="iLab")
