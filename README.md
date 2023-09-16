@@ -1,9 +1,9 @@
 ## NOTICE
 
-This repository contains the public code for Mt. Bethel Christian Academy FTC Robotics Class.  The repository used FTC SDK for the CENTERSTAGE (2023-2024) competition season.
+This repository contains the public code for Mt. Bethel Christian Academy FTC Robotics Class.  The repository uses FIRST Tech Challenge SDK for the CENTERSTAGE (2023-2024) competition season.
 
 ## Welcome!
-This GitHub repository contains the source code that is used to build an Android app to control FIRST Tech Challenge robots in an educational class.  
+This GitHub repository contains the source code that is used to build an Android app to control FIRST Tech Challenge robots in an educational class using FTC style robots.  
 
 ## Requirements
 To use this Android Studio project, you will need Android Studio 2021.2 (codename Chipmunk) or later.
