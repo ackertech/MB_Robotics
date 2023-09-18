@@ -24,7 +24,7 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
         RoadRunnerCompBot drive = new RoadRunnerCompBot(hardwareMap);
 
         Trajectory traj1 = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .forward(30)
                 .build();
 
         Trajectory traj2 = drive.trajectoryBuilder(new Pose2d())
@@ -40,7 +40,7 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
                                 .build();
 
         Trajectory traj5 = drive.trajectoryBuilder(new Pose2d())
-                        .back(20)
+                        .back(8)
                                 .build();
 
 
@@ -80,5 +80,5 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
         idle();
 
     }
-
+//driving back is +22 inches
 }
