@@ -24,7 +24,7 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
         RoadRunnerCompBot drive = new RoadRunnerCompBot(hardwareMap);
 
         Trajectory traj1 = drive.trajectoryBuilder(new Pose2d())
-                .forward(30)
+                .forward(60)
                 .build();
 
         Trajectory traj2 = drive.trajectoryBuilder(new Pose2d())
