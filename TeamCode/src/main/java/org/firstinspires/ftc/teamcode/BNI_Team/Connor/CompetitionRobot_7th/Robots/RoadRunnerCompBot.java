@@ -59,9 +59,9 @@ public class RoadRunnerCompBot extends MecanumDrive {
     public static double VY_WEIGHT = 1;
     public static double OMEGA_WEIGHT = 1;
 
-    public DcMotor linearSlide;
-    public DcMotor lazy_Susan;
-    public Servo claw = null;
+//    public DcMotor linearSlide;
+//    public DcMotor lazy_Susan;
+//    public Servo claw = null;
 
     private TrajectorySequenceRunner trajectorySequenceRunner;
 
@@ -145,22 +145,22 @@ public class RoadRunnerCompBot extends MecanumDrive {
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        linearSlide = hardwareMap.dcMotor.get("linearSlide");
-        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        lazy_Susan = hardwareMap.dcMotor.get("lazySusan");
-        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
-        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        claw = hardwareMap.get(Servo.class, "claw");
-        claw.setDirection(Servo.Direction.FORWARD);
+//        linearSlide = hardwareMap.dcMotor.get("linearSlide");
+//        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+//        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        lazy_Susan = hardwareMap.dcMotor.get("lazySusan");
+//        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+//        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        claw = hardwareMap.get(Servo.class, "claw");
+//        claw.setDirection(Servo.Direction.FORWARD);
 
 
         // TODO: if desired, use setLocalizer() to change the localization method
