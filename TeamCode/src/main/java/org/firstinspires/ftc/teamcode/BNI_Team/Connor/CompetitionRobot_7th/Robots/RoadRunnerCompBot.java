@@ -334,29 +334,29 @@ public class RoadRunnerCompBot extends MecanumDrive {
         return new ProfileAccelerationConstraint(maxAccel);
     }
 
-    public void lazySusanLeft (double power) {
-        lazy_Susan.setPower(Math.abs(power));
-    }
-
-    public void lazySusanRight (double power) {
-        lazy_Susan.setPower(-Math.abs(power));
-    }
-    public void lazySusanStop(){
-        lazy_Susan.setPower(0);
-    }
-    public void linearSlideUp (double power) {
-        linearSlide.setPower(-Math.abs(power));
-    }
-
-    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
-    }
-    public void linearSlideStop() {
-        linearSlide.setPower(0);
-    }
-
-    public void clawOpen () {claw.setPosition(0);}
-
-    public void clawClose () {claw.setPosition(.25);}
+//    public void lazySusanLeft (double power) {
+//        lazy_Susan.setPower(Math.abs(power));
+//    }
+//
+//    public void lazySusanRight (double power) {
+//        lazy_Susan.setPower(-Math.abs(power));
+//    }
+//    public void lazySusanStop(){
+//        lazy_Susan.setPower(0);
+//    }
+//    public void linearSlideUp (double power) {
+//        linearSlide.setPower(-Math.abs(power));
+//    }
+//
+//    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
+//    }
+//    public void linearSlideStop() {
+//        linearSlide.setPower(0);
+//    }
+//
+//    public void clawOpen () {claw.setPosition(0);}
+//
+//    public void clawClose () {claw.setPosition(.25);}
 
 
 }
