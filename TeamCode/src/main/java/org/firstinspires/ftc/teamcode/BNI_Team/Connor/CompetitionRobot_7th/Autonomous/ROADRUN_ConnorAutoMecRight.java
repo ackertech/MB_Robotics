@@ -62,13 +62,14 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
                 while (opModeIsActive()) {
                     drive.followTrajectory(traj1);
                    sleep(2000);
-                    drive.followTrajectory(traj5);
-                    sleep(2000);
+//                    drive.followTrajectory(traj5);
+//                    sleep(2000);
 //                    drive.followTrajectory(traj2);
 //                    sleep(500);
-//                    drive.followTrajectory(traj4);
-//                    sleep(500);
-//                    drive.followTrajectory(traj3);
+                    drive.followTrajectory(traj4);
+                    sleep(500);
+                    drive.followTrajectory(traj3);
+                    sleep(500);
 //                drive.followTrajectory(traj1);
 //                drive.turn(Math.toRadians(ANGLE2));
 //                 drive.followTrajectory(traj2);
