@@ -40,7 +40,7 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
                                 .build();
 
         Trajectory traj5 = drive.trajectoryBuilder(new Pose2d())
-                        .back(60)
+                        .back(30)
                                 .build();
 
 
