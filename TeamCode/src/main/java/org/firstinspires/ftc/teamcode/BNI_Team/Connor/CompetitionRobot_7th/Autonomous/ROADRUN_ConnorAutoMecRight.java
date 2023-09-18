@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.CompetitionRobot_7th.Robots.RoadRunnerCompBot;
 
-@Disabled
+//@Disabled
 @Autonomous (name = "BNI:ROADRUNAuto_Connor", group="BNI")
 public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
 
