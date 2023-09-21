@@ -161,4 +161,28 @@ public class SixWheelTeleOp_Connor extends OpMode {
             drivingMode = DrivingMode.REVERSEONESTICK;
         }
     }
+
+    public void telemetry(){
+        telemetry.addLine("LONG LIVE TACO");
+        telemetry.addData("FL pwr", frontLeftSpeed);
+        telemetry.addData("FR pwr", frontRightSpeed);
+        telemetry.addData("RL pwr", rearLeftSpeed);
+        telemetry.addData("RR pwr", rearRightSpeed);
+
+        if (drivingMode == DrivingMode.ONESTICK) {
+            telemetry.addLine("ONESTICK DRIVE");
+        }
+
+        else if (drivingMode == DrivingMode.TANK) {
+            telemetry.addLine("TANK DRIVE");
+        }
+
+        else if (drivingMode == DrivingMode.REVERSETANK) {
+            telemetry.addLine("REVERSE TANK DRIVE");
+        }
+
+        else if (drivingMode == DrivingMode.REVERSEONESTICK) {
+            telemetry.addLine("REVERSE ONESTICK DRIVE");
+        }
+    }
 }
