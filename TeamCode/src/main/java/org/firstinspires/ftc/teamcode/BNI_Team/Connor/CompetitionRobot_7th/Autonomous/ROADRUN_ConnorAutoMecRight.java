@@ -35,9 +35,9 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
                 .strafeRight(40)
                 .build();
 
-        Trajectory traj3 = drive.trajectoryBuilder(new Pose2d())
-                        .splineToSplineHeading(new Pose2d(40,80, Math.toRadians(90)), Math.toRadians(0))
-                                .build();
+//        Trajectory traj3 = drive.trajectoryBuilder(new Pose2d())
+//                        .splineToSplineHeading(new Pose2d(40,80, Math.toRadians(90)), Math.toRadians(0))
+//                                .build();
 
         Trajectory traj5 = drive.trajectoryBuilder(new Pose2d())
                         .back(8)
@@ -60,8 +60,8 @@ public class ROADRUN_ConnorAutoMecRight extends LinearOpMode {
 
 
                 while (opModeIsActive()) {
-                    drive.followTrajectory(traj1);
-                   sleep(2000);
+//                    drive.followTrajectory(traj1);
+//                   sleep(2000);
 //                    drive.followTrajectory(traj5);
 //                    sleep(2000);
 //                    drive.followTrajectory(traj2);
