@@ -64,22 +64,22 @@ public class CompetitionBot extends MecanumDrive_Connor {
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        linearSlide = hwBot.dcMotor.get("linearSlide");
-        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        lazy_Susan = hwBot.dcMotor.get("lazySusan");
-        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
-        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        claw = hwBot.get(Servo.class, "claw");
-        claw.setDirection(Servo.Direction.FORWARD);
+//        linearSlide = hwBot.dcMotor.get("linearSlide");
+//        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+//        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        lazy_Susan = hwBot.dcMotor.get("lazySusan");
+//        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+//        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        claw = hwBot.get(Servo.class, "claw");
+//        claw.setDirection(Servo.Direction.FORWARD);
 
         //45 degrees
 
@@ -134,59 +134,59 @@ public class CompetitionBot extends MecanumDrive_Connor {
     }
 
 
-    public void lazySusanLeft (double power) {
-        lazy_Susan.setPower(Math.abs(power));
-    }
+//    public void lazySusanLeft (double power) {
+//        lazy_Susan.setPower(Math.abs(power));
+//    }
+//
+//    public void lazySusanRight (double power) {
+//        lazy_Susan.setPower(-Math.abs(power));
+//    }
+//
+//    public void autoSusanLeft (double power, double rotations) {lazy_Susan.setPower(Math.abs(power));}
+//
+//    public void autoSusanRight (double power, double rotations) {lazy_Susan.setPower(-Math.abs(power));}
+//
+//    public void lazySusanStop(){
+//        lazy_Susan.setPower(0);
+//    }
+//
+//    public void linearSlideUp (double power) {
+//        linearSlide.setPower(-Math.abs(power));
+//    }
+//
+//    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
+//    }
 
-    public void lazySusanRight (double power) {
-        lazy_Susan.setPower(-Math.abs(power));
-    }
-
-    public void autoSusanLeft (double power, double rotations) {lazy_Susan.setPower(Math.abs(power));}
-
-    public void autoSusanRight (double power, double rotations) {lazy_Susan.setPower(-Math.abs(power));}
-
-    public void lazySusanStop(){
-        lazy_Susan.setPower(0);
-    }
-
-    public void linearSlideUp (double power) {
-        linearSlide.setPower(-Math.abs(power));
-    }
-
-    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
-    }
 
 
-
-    public void linearSlideUp (double power, double rotations)  {
-        double ticks = rotations * (1) * TICKS_PER_ROTATION;
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (Math.abs(linearSlide.getCurrentPosition()) < ticks && LinearOp.opModeIsActive()) {
-            linearSlideUp(power);
-        }
-        linearSlideStop();
-    }
-
-    public void linearSlideDown (double power, double rotations) {
-        double ticks = rotations * TICKS_PER_ROTATION;
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (Math.abs(linearSlide.getCurrentPosition())< ticks && LinearOp.opModeIsActive()) {
-            linearSlideDown(power);
-        }
-        linearSlideStop();
-    }
-//hi
-
-    public void linearSlideStop() {
-        linearSlide.setPower(0);
-    }
-
-    public void clawOpen () {claw.setPosition(0);}
-
-    public void clawClose () {claw.setPosition(.25);}
+//    public void linearSlideUp (double power, double rotations)  {
+//        double ticks = rotations * (1) * TICKS_PER_ROTATION;
+//        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        while (Math.abs(linearSlide.getCurrentPosition()) < ticks && LinearOp.opModeIsActive()) {
+//            linearSlideUp(power);
+//        }
+//        linearSlideStop();
+//    }
+//
+//    public void linearSlideDown (double power, double rotations) {
+//        double ticks = rotations * TICKS_PER_ROTATION;
+//        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        while (Math.abs(linearSlide.getCurrentPosition())< ticks && LinearOp.opModeIsActive()) {
+//            linearSlideDown(power);
+//        }
+//        linearSlideStop();
+//    }
+////hi
+//
+//    public void linearSlideStop() {
+//        linearSlide.setPower(0);
+//    }
+//
+//    public void clawOpen () {claw.setPosition(0);}
+//
+//    public void clawClose () {claw.setPosition(.25);}
 
 
 }
