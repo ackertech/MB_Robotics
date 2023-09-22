@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp (name = "MecanumTeleOp")
+@TeleOp (name = "MecanumTeleOp_Olivia")
 public class MecanumTeleOp_Olivia extends OpMode {
 
     double leftStickYVal;
@@ -23,9 +23,15 @@ public class MecanumTeleOp_Olivia extends OpMode {
     public ProgrammingBot_Olivia PBot = new ProgrammingBot_Olivia();
 
     public void init (){PBot.initRobot(hardwareMap);}
-    public void init_loop (){}
+    public void init_loop () { }
+
     public void start (){}
-    public void loop (){}
+
+    public void loop (){
+        speedControls();
+        drive();
+        telemetry();
+    }
 
 
 
@@ -33,20 +39,20 @@ public class MecanumTeleOp_Olivia extends OpMode {
 
 
         leftStickYVal = gamepad1.left_stick_y;
-        leftStickYVal = com.qualcomm.robotcore.util.Range.clip(leftStickYVal, -1, 1);
+        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
         leftStickXVal = -gamepad1.left_stick_x;
-        leftStickXVal = com.qualcomm.robotcore.util.Range.clip(leftStickXVal, -1, 1);
+        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
         rightStickXVal = -gamepad1.right_stick_x;
-        rightStickXVal = com.qualcomm.robotcore.util.Range.clip(rightStickXVal, -1, 1);
+        rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
         frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
-        frontLeftSpeed = com.qualcomm.robotcore.util.Range.clip(frontLeftSpeed, -1, 1);
+        frontLeftSpeed = Range.clip(frontLeftSpeed, -1, 1);
 
         frontRightSpeed = leftStickYVal - leftStickXVal - rightStickXVal;
-        frontRightSpeed = com.qualcomm.robotcore.util.Range.clip(frontRightSpeed, -1, 1);
+        frontRightSpeed = Range.clip(frontRightSpeed, -1, 1);
 
         rearLeftSpeed = leftStickYVal - leftStickXVal + rightStickXVal;
-        rearLeftSpeed = com.qualcomm.robotcore.util.Range.clip(rearLeftSpeed, -1, 1);
+        rearLeftSpeed = Range.clip(rearLeftSpeed, -1, 1);
 
         rearRightSpeed = leftStickYVal + leftStickXVal - rightStickXVal;
         rearRightSpeed = Range.clip(rearRightSpeed, -1, 1);
@@ -81,7 +87,7 @@ public class MecanumTeleOp_Olivia extends OpMode {
     }
 
     public void telemetry() {
-        telemetry.addLine("Sensei Reddington said to type this.");
+        telemetry.addLine("Stats");
         telemetry.addData("Power - ","Front Left Motor: " + frontLeftSpeed);
         telemetry.addData("Power - ", "Front Right Motor" + frontRightSpeed);
         telemetry.addData("Power - ", "Right Left Motor: " + rearLeftSpeed);
@@ -91,10 +97,18 @@ public class MecanumTeleOp_Olivia extends OpMode {
     }
 
     public void speedControls() {
-        if (gamepad1.dpad_up) {
+        if (gamepad1.dpad_left) {
             speedMultiply = 0.5;
         }
         else if (gamepad1.dpad_down) {
+            speedMultiply = 0.25;
+        }
+
+        else if (gamepad1.dpad_up) {
+            speedMultiply = 0.65;
+        }
+
+        else if (gamepad1.dpad_right) {
             speedMultiply = 1;
         }
     }
