@@ -46,7 +46,6 @@ public class AutoMechBot_Olivia extends LinearOpMode {
             sleep(1000);
             Bot.stopMotors();
 
-           sleep(1000);
 
 
             requestOpModeStop();
