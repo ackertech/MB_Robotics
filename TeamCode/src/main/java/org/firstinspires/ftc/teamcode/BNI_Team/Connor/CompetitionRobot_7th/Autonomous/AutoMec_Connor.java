@@ -52,8 +52,8 @@ public class AutoMec_Connor extends LinearOpMode {
             FixitsBot.rotateRight(.7,2.5);
             sleep(1000);
 
-            telemetryUpdate("Linear Slide Up");
-            FixitsBot.linearSlideUp(.7,1);
+//            telemetryUpdate("Linear Slide Up");
+//            FixitsBot.linearSlideUp(.7,1);
 
 
             requestOpModeStop();
