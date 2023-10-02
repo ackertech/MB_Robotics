@@ -10,7 +10,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public void initRobot(HardwareMap hwMap) {
         hwBot = hwMap;
 
-
+                                                            //MAYBE.....:
         frontLeftMotor = hwBot.dcMotor.get("frontLeftMotor"); //Port 0
         frontRightMotor = hwBot.dcMotor.get("frontRightMotor");// Port 2
         rearLeftMotor = hwBot.dcMotor.get("rearLeftMotor");// Port 1
@@ -26,6 +26,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
 
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
