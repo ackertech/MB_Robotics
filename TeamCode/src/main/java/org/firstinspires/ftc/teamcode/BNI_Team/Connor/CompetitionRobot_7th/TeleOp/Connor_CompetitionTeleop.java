@@ -64,8 +64,8 @@ public class Connor_CompetitionTeleop extends OpMode {
 
     public void loop(){
         clawControl();
-        mannualLinearSlideControl();
-        lazySusanControl();
+//        mannualLinearSlideControl();
+//        lazySusanControl();
         drive();
         speedControl();
         telemetryOutput();
@@ -145,41 +145,41 @@ public class Connor_CompetitionTeleop extends OpMode {
 
 
 
-    public void  mannualLinearSlideControl () {
-        leftStickYVal = gamepad2.left_stick_y;
-        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-
-        if (leftStickYVal > 0.1) {
-            CompBot.linearSlideUp(linearSlidePower);
-        }
-
-        else if (leftStickYVal < -0.1) {
-            CompBot.linearSlideDown(linearSlidePower);
-        }
-
-        else {
-            CompBot.linearSlideStop();
-        }
-    }
-
-
-
-public void lazySusanControl(){
+//    public void  mannualLinearSlideControl () {
+//        leftStickYVal = gamepad2.left_stick_y;
+//        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+//
+//        if (leftStickYVal > 0.1) {
+//            CompBot.linearSlideUp(linearSlidePower);
+//        }
+//
+//        else if (leftStickYVal < -0.1) {
+//            CompBot.linearSlideDown(linearSlidePower);
+//        }
+//
+//        else {
+//            CompBot.linearSlideStop();
+//        }
+//    }
 
 
 
-    if (gamepad2.right_stick_x > 0.1) {
-        CompBot.lazySusanLeft(lazySusanPower);
-    }
-
-    else if (gamepad2.right_stick_x < -0.1) {
-        CompBot.lazySusanRight(lazySusanPower);
-    }
-
-    else{
-        CompBot.lazySusanStop();
-    }
-}
+//public void lazySusanControl(){
+//
+//
+//
+//    if (gamepad2.right_stick_x > 0.1) {
+//        CompBot.lazySusanLeft(lazySusanPower);
+//    }
+//
+//    else if (gamepad2.right_stick_x < -0.1) {
+//        CompBot.lazySusanRight(lazySusanPower);
+//    }
+//
+//    else{
+//        CompBot.lazySusanStop();
+//    }
+//}
 
 
 
