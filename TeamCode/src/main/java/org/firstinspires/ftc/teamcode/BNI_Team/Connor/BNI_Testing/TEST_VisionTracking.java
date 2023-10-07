@@ -29,7 +29,7 @@ public class TEST_VisionTracking extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        huskyLens = hardwareMap.get(HuskyLens.class,"huskylens");
+        huskyLens = hardwareMap.get(HuskyLens.class,"huskyLens");
 
         Deadline rateLimit = new Deadline(READ_PERIOD, TimeUnit.SECONDS);
 
