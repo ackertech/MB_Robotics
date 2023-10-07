@@ -45,6 +45,8 @@ public class TEST_VisionTracking extends LinearOpMode {
 
         huskyLens.selectAlgorithm(HuskyLens.Algorithm.OBJECT_RECOGNITION);
 
+        waitForStart();
+
         while (opModeIsActive()) {
             if (!rateLimit.hasExpired()) {
                 continue;
@@ -55,12 +57,16 @@ public class TEST_VisionTracking extends LinearOpMode {
 
 
 
+
+
             HuskyLens.Block[] blocks = huskyLens.blocks();
             telemetry.addData("Block count", blocks.length);
             for (int i = 0; i < blocks.length; i++) {
                 telemetry.addData("Block", blocks[i].toString());
             }
             telemetry.update();
+
+
         }
     }
 

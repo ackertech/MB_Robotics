@@ -78,38 +78,38 @@ public class ProgramingBot extends MecanumDrive_Connor {
         rearRightMotor.setPower(0);
     }
 
-    public void gyroCorrection (double speed, double angle) {
-
-        angles = imu.getAngularOrientation(
-                AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-        if (angles.firstAngle >= angle + TOLERANCE && LinearOp.opModeIsActive()) {
-            while (angles.firstAngle >=  angle + TOLERANCE && LinearOp.opModeIsActive()) {
-                rotateRight(speed);
-                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-                LinearOp.telemetry.addData("Current Angle Est: ", angles.firstAngle);
-            }
-        }
-        else if (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
-            while (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
-                rotateLeft(speed);
-                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-                LinearOp.telemetry.addData("Current Angle Est:" , angles.firstAngle);
-            }
-        }
-        stopMotors();
-
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-    }
-
-
-    public void gyroReset () {
-        BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
-        imu.initialize(parametersimu);
-    }
-
+//    public void gyroCorrection (double speed, double angle) {
+//
+//        angles = imu.getAngularOrientation(
+//                AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+//
+//        if (angles.firstAngle >= angle + TOLERANCE && LinearOp.opModeIsActive()) {
+//            while (angles.firstAngle >=  angle + TOLERANCE && LinearOp.opModeIsActive()) {
+//                rotateRight(speed);
+//                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+//
+//                LinearOp.telemetry.addData("Current Angle Est: ", angles.firstAngle);
+//            }
+//        }
+//        else if (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
+//            while (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
+//                rotateLeft(speed);
+//                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+//
+//                LinearOp.telemetry.addData("Current Angle Est:" , angles.firstAngle);
+//            }
+//        }
+//        stopMotors();
+//
+//        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+//    }
+//
+//
+//    public void gyroReset () {
+//        BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
+//        imu.initialize(parametersimu);
+//    }
+//
 
 
 

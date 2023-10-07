@@ -60,7 +60,7 @@ import java.util.concurrent.TimeUnit;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 @TeleOp(name = "Sensor: HuskyLens", group = "Sensor")
-@Disabled
+//@Disabled
 public class SensorHuskyLens extends LinearOpMode {
 
     private final int READ_PERIOD = 1;
@@ -70,7 +70,7 @@ public class SensorHuskyLens extends LinearOpMode {
     @Override
     public void runOpMode()
     {
-        huskyLens = hardwareMap.get(HuskyLens.class, "huskylens");
+        huskyLens = hardwareMap.get(HuskyLens.class, "huskyLens");
 
         /*
          * This sample rate limits the reads solely to allow a user time to observe
