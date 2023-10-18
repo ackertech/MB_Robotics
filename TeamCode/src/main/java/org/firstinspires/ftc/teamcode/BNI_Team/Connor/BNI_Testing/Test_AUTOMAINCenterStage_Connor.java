@@ -6,15 +6,17 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDir
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Drivetrains.MecanumDrive_Connor;
 import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-import org.openftc.apriltag.AprilTagDetection;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Test_AUTOMAINCenterStage_Connor extends LinearOpMode {
-int ID_TAG_LIST [] = {0,1,2,3,4,5,6,7};
-public AprilTagDetection tagOfInterest = null;
+
+    public enum TagPosition {BLUE_LEFT, BLUE_MIDDLE, BLUE_RIGHT, RED_LEFT, RED_MIDDLE, RED_RIGHT, NONE}
+    public TagPosition tagPosition = TagPosition.NONE;
+    public AprilTagDetection tagOfInterest = null;
 
     public static final boolean USE_WEBCAM = true;
 
@@ -70,6 +72,28 @@ public AprilTagDetection tagOfInterest = null;
         telemetry.addLine("PRY = Pitch, Roll & Yaw (XYZ Rotation)");
         telemetry.addLine("RBE = Range, Bearing & Elevation");
         telemetry.addLine("LONG LIVE TACO");
+        if (tagPosition == TagPosition.BLUE_LEFT) {
+            telemetry.addLine("Tag Position = BLUE_LEFT");
+        }
+        else if (tagPosition == TagPosition.BLUE_MIDDLE) {
+            telemetry.addLine("Tag Position = BLUE_MIDDLE");
+        }
+        else if (tagPosition == TagPosition.BLUE_RIGHT) {
+            telemetry.addLine("Tag Position = BLUE_RIGHT");
+        }
+        else if (tagPosition == TagPosition.RED_LEFT) {
+            telemetry.addLine("Tag Position = RED_LEFT");
+        }
+        else if (tagPosition == TagPosition.RED_MIDDLE){
+            telemetry.addLine("Tag Position = RED_MIDDLE ");
+        }
+        else if (tagPosition == TagPosition.RED_RIGHT) {
+            telemetry.addLine("Tag Position = RED_RIGHT");
+        }
+        else if (tagPosition == TagPosition.NONE) {
+            telemetry.addLine("Tag Position = NONE");
+        }
+
 
     }
 
@@ -80,6 +104,28 @@ public AprilTagDetection tagOfInterest = null;
 
         telemetry.addData("# AprilTags Detected", currentDetections.size());
 
+
+        if (tagOfInterest.id ==  1 ){
+            tagPosition = TagPosition.BLUE_LEFT;
+        }
+        else if (tagOfInterest.id == 2) {
+            tagPosition = TagPosition.BLUE_MIDDLE;
+        }
+        else if (tagOfInterest.id == 3) {
+            tagPosition = TagPosition.BLUE_RIGHT;
+        }
+        else if (tagOfInterest.id == 4) {
+            tagPosition = TagPosition.RED_LEFT;
+        }
+        else if (tagOfInterest.id == 5) {
+            tagPosition = TagPosition.RED_MIDDLE;
+        }
+        else if (tagOfInterest.id == 6) {
+            tagPosition = TagPosition.RED_RIGHT;
+        }
+        else {
+            tagPosition = TagPosition.NONE;
+        }
 
     }
 
