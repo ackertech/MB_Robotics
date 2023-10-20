@@ -74,9 +74,9 @@ public class BNIVision extends LinearOpMode {
         static final Scalar RED = new Scalar(255, 0, 0);
 
         // Constants for the Points to draw a box
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(50, 550);
-        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(400, 450);
-        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(750, 550);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(50, 450);
+        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(390, 400);
+        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(690, 450);
         static final int REGION_WIDTH = 100;
         static final int REGION_HEIGHT = 100;
 
