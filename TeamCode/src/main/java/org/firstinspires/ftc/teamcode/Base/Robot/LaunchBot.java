@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Base.Drivetrains.LabBot_FourMotorDrive;
 import org.firstinspires.ftc.teamcode.Base.Drivetrains.LaunchBot_FourMotorDrive;
 
 public class LaunchBot extends LaunchBot_FourMotorDrive {
