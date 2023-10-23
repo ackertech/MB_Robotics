@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-@Disabled
-@TeleOp(name = "Test:Servo Calibration", group = "Lab")
+//@Disabled
+@TeleOp(name = "Test:Servo Calibration")
 
 public class SingleServo_Callibrate extends OpMode {
 

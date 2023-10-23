@@ -11,10 +11,10 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         hwBot = hwMap;
 
                                                             //MAYBE.....:
-        frontLeftMotor = hwBot.dcMotor.get("frontLeftMotor"); //Port 0
-        frontRightMotor = hwBot.dcMotor.get("frontRightMotor");// Port 2
-        rearLeftMotor = hwBot.dcMotor.get("rearLeftMotor");// Port 1
-        rearRightMotor = hwBot.dcMotor.get("rearRightMotor");// Port 3
+        frontLeftMotor = hwBot.dcMotor.get("front_left_motor"); //Port 0
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor");// Port 2
+        rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");// Port 1
+        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
 
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);

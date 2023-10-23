@@ -64,6 +64,7 @@ public class CompetitionBot extends MecanumDrive_Connor {
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
+
 //        linearSlide = hwBot.dcMotor.get("linearSlide");
 //        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
 //        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
