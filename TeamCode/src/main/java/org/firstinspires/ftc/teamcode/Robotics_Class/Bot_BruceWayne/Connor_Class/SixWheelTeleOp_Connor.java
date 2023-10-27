@@ -39,6 +39,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
 
     public void loop() {
+        telemetry();
         speedControl();
         drivingMode();
         drive();
@@ -184,5 +185,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
         else if (drivingMode == DrivingMode.REVERSEONESTICK) {
             telemetry.addLine("REVERSE ONESTICK DRIVE");
         }
+
+        telemetry.update();
     }
 }
