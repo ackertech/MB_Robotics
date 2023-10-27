@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Olivia;
+package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.DriveTrains.Tank_4Motor_Olivia;
 
 public class TankBot_Olivia  extends Tank_4Motor_Olivia {
 

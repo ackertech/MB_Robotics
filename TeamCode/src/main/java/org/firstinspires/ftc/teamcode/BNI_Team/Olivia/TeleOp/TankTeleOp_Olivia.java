@@ -1,10 +1,13 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Olivia;
+package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.TeleOp;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots.Susans_arm_and_hand;
+import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots.TankBot_Olivia;
 
 @Disabled
 @TeleOp(name = "TankBot_Olivia")

@@ -1,10 +1,9 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Olivia;
+package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.DriveTrains;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class MecanumDrive2_Olivia {
-
+public class MecanumDrive_Olivia {
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
     public DcMotor rearLeftMotor;
@@ -15,7 +14,7 @@ public class MecanumDrive2_Olivia {
 
     public static final double TICKS_PER_ROTATION = 386.3;
 
-    public MecanumDrive2_Olivia() {
+    public MecanumDrive_Olivia() {
 
     }
 
@@ -37,67 +36,67 @@ public class MecanumDrive2_Olivia {
     }
 
     public void driveForward(double speed) {
+        frontLeftMotor.setPower(-speed);
+        frontRightMotor.setPower(-speed);
+        rearLeftMotor.setPower(-speed);
+        rearRightMotor.setPower(-speed);
+    }
+
+    public void driveBack(double speed) {
         frontLeftMotor.setPower(speed);
         frontRightMotor.setPower(speed);
         rearLeftMotor.setPower(speed);
         rearRightMotor.setPower(speed);
     }
 
-   public void driveBack(double speed) {
-        frontLeftMotor.setPower(-speed);
-        frontRightMotor.setPower(-speed);
-        rearLeftMotor.setPower(-speed);
-        rearRightMotor.setPower(-speed);
-   }
-
     public void rotateLeft(double speed) {
-        frontLeftMotor.setPower(-speed);
-        frontRightMotor.setPower(speed);
-        rearLeftMotor.setPower(-speed);
-        rearRightMotor.setPower(speed);
+        frontLeftMotor.setPower(speed);
+        frontRightMotor.setPower(-speed);
+        rearLeftMotor.setPower(speed);
+        rearRightMotor.setPower(-speed);
 
     }
 
     public void rotateRight(double speed) {
-        frontLeftMotor.setPower(speed);
-        frontRightMotor.setPower(-speed);
-        rearLeftMotor.setPower(speed);
-        rearRightMotor.setPower(-speed);
+        frontLeftMotor.setPower(-speed);
+        frontRightMotor.setPower(speed);
+        rearLeftMotor.setPower(-speed);
+        rearRightMotor.setPower(speed);
 
     }
 
     public void strafeLeft(double speed) {
-        frontLeftMotor.setPower(-speed);
-        frontRightMotor.setPower(speed);
-        rearLeftMotor.setPower(speed);
-        rearRightMotor.setPower(-speed);
+        frontLeftMotor.setPower(speed);
+        frontRightMotor.setPower(-speed);
+        rearLeftMotor.setPower(-speed);
+        rearRightMotor.setPower(speed);
 
     }
 
     public void strafeRight(double speed) {
-        frontLeftMotor.setPower(speed);
-        frontRightMotor.setPower(-speed);
-        rearLeftMotor.setPower(-speed);
-        rearRightMotor.setPower(speed);
-    }
-
-    public void diagonalLeftForward(double speed) {
+        frontLeftMotor.setPower(-speed);
         frontRightMotor.setPower(speed);
         rearLeftMotor.setPower(speed);
-    }
-
-    public void diagonalRightForward(double speed) {
-        frontLeftMotor.setPower(speed);
-        rearRightMotor.setPower(speed);
-    }
-    public void diagonalLeftBack(double speed) {
-        frontLeftMotor.setPower(-speed);
         rearRightMotor.setPower(-speed);
     }
 
-    public void diagonalRightBack(double speed) {
+    public void diagonalLeftForward(double speed) {
         frontRightMotor.setPower(-speed);
         rearLeftMotor.setPower(-speed);
+    }
+
+    public void diagonalRightForward(double speed) {
+        frontLeftMotor.setPower(-speed);
+        rearRightMotor.setPower(-speed);
+    }
+    public void diagonalLeftBack(double speed) {
+        frontLeftMotor.setPower(speed);
+        rearRightMotor.setPower(speed);
+    }
+
+    public void diagonalRightBack(double speed) {
+        frontRightMotor.setPower(speed);
+        rearLeftMotor.setPower(speed);
     }
 
 
@@ -225,4 +224,3 @@ public class MecanumDrive2_Olivia {
     }
 
 }
-

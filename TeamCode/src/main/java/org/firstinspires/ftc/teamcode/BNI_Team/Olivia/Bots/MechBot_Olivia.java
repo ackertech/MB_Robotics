@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Olivia;
+package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.teamcode.Base.Drivetrains.MecanumDrive;
+import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.DriveTrains.MecanumDrive2_Olivia;
 
 
 public class MechBot_Olivia extends MecanumDrive2_Olivia {

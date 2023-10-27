@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Olivia;
+package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
+import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots.MechBot_Olivia;
 
 //@Disabled
 @Autonomous(name = "Olivia Auto", group = "iLab")

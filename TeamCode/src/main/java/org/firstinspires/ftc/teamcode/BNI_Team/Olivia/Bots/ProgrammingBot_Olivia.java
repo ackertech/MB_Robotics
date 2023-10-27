@@ -1,6 +1,4 @@
-package org.firstinspires.ftc.teamcode.BNI_Team.Olivia;
-
-import android.graphics.drawable.GradientDrawable;
+package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,9 +6,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.tensorflow.lite.task.core.vision.ImageProcessingOptions;
+import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.DriveTrains.MecanumDrive_Olivia;
 
-public class ProgrammingBot_Olivia extends MecanumDrive_Olivia{
+public class ProgrammingBot_Olivia extends MecanumDrive_Olivia {
 
     public HardwareMap hwBot = null;
 

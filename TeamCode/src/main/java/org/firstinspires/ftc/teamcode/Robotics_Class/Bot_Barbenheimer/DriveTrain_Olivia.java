@@ -69,9 +69,10 @@ public class DriveTrain_Olivia {
 
     //Just required as a part of FIRST SDK
     public void setLinearOp (LinearOpMode linearOpModeOp) {
+
         this.linearOp = linearOp;
     }
 
-    }
+}
 
 

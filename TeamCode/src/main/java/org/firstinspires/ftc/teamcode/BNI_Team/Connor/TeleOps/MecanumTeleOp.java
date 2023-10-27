@@ -25,7 +25,7 @@ public class MecanumTeleOp extends OpMode {
 
 
 
-    public ProgramingBot MecanumBot = new ProgramingBot();
+    public ProgramhaingBot MecanumBot = new ProgramingBot();
 
     public void init () {
         MecanumBot.initRobot(hardwareMap);

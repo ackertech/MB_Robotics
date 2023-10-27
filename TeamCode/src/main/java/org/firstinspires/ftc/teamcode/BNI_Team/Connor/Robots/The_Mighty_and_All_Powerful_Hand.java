@@ -31,7 +31,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     public HardwareMap hwBot = null;
     public The_Mighty_and_All_Powerful_Hand() {}
 
-    //Allows us to leverage telementry and sleep
+    //Allows us to leverage telemetry and sleep
     public LinearOpMode linearOp = null;
     public void setLinearOp (LinearOpMode linearOpModeOp) {
 
@@ -42,27 +42,27 @@ public class The_Mighty_and_All_Powerful_Hand {
 
         hwBot = hwMap;
 
-        //Expantion Hub Port 0
+        //Expansion Hub Port 0
         pinkyFinger = hwBot.get(Servo.class, "pinkyFinger");
         pinkyFinger.setDirection(Servo.Direction.FORWARD);
 
-        //Expantion Hub Port 1
+        //Expansion Hub Port 1
         ringFinger = hwBot.get(Servo.class, "ringFinger");
         ringFinger.setDirection(Servo.Direction.FORWARD);
 
-        //Expantion Hub Port 2
+        //Expansion Hub Port 2
         middleFinger = hwBot.get(Servo.class, "middleFinger");
         middleFinger.setDirection(Servo.Direction.FORWARD);
 
-        //Expantion Hub Port 3
+        //Expansion Hub Port 3
         indexFinger = hwBot.get(Servo.class, "indexFinger");
         indexFinger.setDirection(Servo.Direction.FORWARD);
 
-        //Expantion hub Port 4
+        //Expansion hub Port 4
         thumb = hwBot.get(Servo.class, "thumb");
         thumb.setDirection(Servo.Direction.REVERSE);
 
-        //Expantion hub Port 5
+        //Expansion hub Port 5
         wrist = hwBot.get(Servo.class, "wrist");
         wrist.setDirection(Servo.Direction.REVERSE);
 
