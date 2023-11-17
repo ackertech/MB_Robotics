@@ -20,10 +20,15 @@ public class SixWheelTeleOp_Connor extends OpMode {
     double powerThreshold = 0;
     double speedMultiply = 1;
 
+    public double lazySusanTicks = 5000;
+    public double lazySusanPower = 0.90;
+
     public double leftSidePower;
     public double rightSidePower;
     public enum DrivingMode {ONESTICK, TANK, REVERSEONESTICK, REVERSETANK}
     public DrivingMode drivingMode = DrivingMode.ONESTICK;
+
+    boolean isLauncherOn = false;
 
 
     public SixWheelBot_Connor sixWheelBot = new SixWheelBot_Connor();
@@ -42,6 +47,8 @@ public class SixWheelTeleOp_Connor extends OpMode {
         telemetry();
         speedControl();
         drivingMode();
+        candyLauncher();
+        lazySusan();
         drive();
     }
 
@@ -143,6 +150,42 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
         }
     }
+
+
+
+     public void lazySusan(){
+         if (gamepad2.right_stick_x > 0.1) {
+             sixWheelBot.lazySusanLeft(lazySusanPower);
+         }
+
+         else if (gamepad2.right_stick_x < -0.1) {
+             sixWheelBot.lazySusanRight(lazySusanPower);
+         }
+
+         else{
+             sixWheelBot.lazySusanStop();
+         }
+     }
+
+     public void candyLauncher(){
+        if (gamepad1.a) {
+            if (isLauncherOn == false) {
+                isLauncherOn = true;
+            }
+
+            else {
+                isLauncherOn = false;
+            }
+        }
+        if (isLauncherOn == false ){
+            sixWheelBot.launcherOff();
+        }
+        else if (isLauncherOn == true) {
+            sixWheelBot.launcherOn();
+        }
+
+     }
+
 
     public void drivingMode() {
 
