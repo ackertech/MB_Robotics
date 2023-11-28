@@ -83,7 +83,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
                 leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
 
-                if (gamepad1.left_bumper) {
+
                     if (leftStickYVal < -0.1) {
                         sixWheelBot.driveForward(speedMultiply * leftStickYVal);
                     } else if (leftStickYVal > 0.1) {
@@ -96,7 +96,6 @@ public class SixWheelTeleOp_Connor extends OpMode {
                         sixWheelBot.stopMotors();
                     }
 
-                }
 
 
 
@@ -113,40 +112,6 @@ public class SixWheelTeleOp_Connor extends OpMode {
                 rightSidePower = speedMultiply * rightStickYVal * (-1);
                 sixWheelBot.tankDrive(leftSidePower, rightSidePower);
                 break;
-
-            case REVERSEONESTICK:
-                leftStickYVal = gamepad1.left_stick_y;
-                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-
-                leftStickXVal = gamepad1.left_stick_x;
-                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
-
-
-                if (gamepad1.left_bumper) {
-                    if (leftStickYVal < 0.1) {
-                        sixWheelBot.driveForward(speedMultiply * leftStickYVal);
-                    } else if (leftStickYVal > -0.1) {
-                        sixWheelBot.driveBack(speedMultiply * leftStickYVal);
-                    } else if (leftStickXVal > -0.1) {
-                        sixWheelBot.rotateRight(speedMultiply * leftStickXVal);
-                    } else if (leftStickXVal < 0.1) {
-                        sixWheelBot.rotateLeft(speedMultiply * leftStickXVal);
-                    } else {
-                        sixWheelBot.stopMotors();
-                    }
-
-                }
-                break;
-            case REVERSETANK:
-                leftStickYVal = gamepad1.left_stick_y;
-                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-
-                rightStickYVal = gamepad1.right_stick_y;
-                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
-
-                leftSidePower = speedMultiply * leftStickYVal * (1);
-                rightSidePower = speedMultiply * rightStickYVal * (1);
-                sixWheelBot.tankDrive(leftSidePower, rightSidePower);
 
         }
     }
