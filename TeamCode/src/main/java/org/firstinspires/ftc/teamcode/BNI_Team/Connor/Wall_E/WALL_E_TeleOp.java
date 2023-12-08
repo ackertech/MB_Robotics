@@ -315,9 +315,14 @@ public class WALL_E_TeleOp extends OpMode {
 //            if (gamepad1.back) {
 //                personControl = Person.FIRST;
 //            }
-//            if (gamepad1.start) {
-//                personControl = Person.THIRD;
-//            }
+            if (gamepad1.start) {
+                if (personControl == Person.THIRD) {
+                personControl = Person.FIRST;
+                }
+            else if (personControl == Person.FIRST) {
+                personControl = Person.THIRD;
+            }
+            }
 
         }
 
