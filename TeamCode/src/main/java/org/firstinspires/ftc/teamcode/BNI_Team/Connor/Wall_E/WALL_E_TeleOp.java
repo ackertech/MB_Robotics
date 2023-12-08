@@ -19,9 +19,13 @@ public class WALL_E_TeleOp extends OpMode {
 
     public enum Person {FIRST, THIRD}
 
+    public enum NumberOfGamepads {ONE, TWO}
+
     public enum StickControl {FIRSTSTICK, THIRDSTICK}
 
     public StickControl stickControl = StickControl.THIRDSTICK;
+
+    public NumberOfGamepads numGamepads = NumberOfGamepads.TWO;
 
     public Person personControl = Person.THIRD;
 
@@ -34,6 +38,8 @@ public class WALL_E_TeleOp extends OpMode {
 
     public enum LazySusanControl {AUTO, MANUAL}
 
+    boolean clawOpen = false;
+
     public Tank_TeleOp_Connor.LazySusanControl lazySusanControl = Tank_TeleOp_Connor.LazySusanControl.MANUAL;
 
     public enum LazySusanEncoder {FORWARD, REVERSE, OFF}
@@ -44,6 +50,7 @@ public class WALL_E_TeleOp extends OpMode {
 
 
     public enum ControlOfUpAndDownLinearMotor {FORWARD, REVERSE}
+
     public The_Mighty_and_All_Powerful_Hand Hand = new The_Mighty_and_All_Powerful_Hand();
     public Tank_TeleOp_Connor.ControlOfUpAndDownLinearMotor controlOfUpAndDownLinearMotor = Tank_TeleOp_Connor.ControlOfUpAndDownLinearMotor.FORWARD;
     public Tank_TeleOp_Connor.ControlOfSidewaysLinearMotor controlOfSidewaysLinearMotor = Tank_TeleOp_Connor.ControlOfSidewaysLinearMotor.FORWARD;
@@ -66,6 +73,7 @@ public class WALL_E_TeleOp extends OpMode {
         dpadControl();
         drivingStyle();
         personChanger();
+        controllerChanger();
         stickControls();
         clawControl();
         telementryOutput();
@@ -78,14 +86,14 @@ public class WALL_E_TeleOp extends OpMode {
         switch (personControl) {
             case THIRD:
                 if (gamepad1.dpad_right == true) {
-            speedMultiply = 0.50;
-        } else if (gamepad1.dpad_down == true) {
-            speedMultiply = 0.75;
-        } else if (gamepad1.dpad_left == true) {
-            speedMultiply = 1.00;
-        } else if (gamepad1.dpad_up == true) {
-            speedMultiply = 0.25;
-        }
+                    speedMultiply = 0.50;
+                } else if (gamepad1.dpad_down == true) {
+                    speedMultiply = 0.75;
+                } else if (gamepad1.dpad_left == true) {
+                    speedMultiply = 1.00;
+                } else if (gamepad1.dpad_up == true) {
+                    speedMultiply = 0.25;
+                }
                 break;
 
             case FIRST:
@@ -104,12 +112,9 @@ public class WALL_E_TeleOp extends OpMode {
 
     }
 
-    public void stickControls (){
+    public void stickControls() {
         switch (stickControl) {
             case THIRDSTICK:
-
-
-
 
 
                 switch (driverStyle) {
@@ -192,7 +197,8 @@ public class WALL_E_TeleOp extends OpMode {
                 } else if (gamepad1.left_stick_y > 0.1) {
                     WALL_E.leftLinearActuatorBack(linearMotorPower);
                 } else {
-                    WALL_E.leftLinearActuatorStop(); }
+                    WALL_E.leftLinearActuatorStop();
+                }
 
 
                 if (gamepad1.right_stick_x < -0.1) {
@@ -204,85 +210,126 @@ public class WALL_E_TeleOp extends OpMode {
                 }
 
 
-
-
-
         }
 
     }
 
 
+    public void clawControl() {
+        switch (numGamepads) {
+            case TWO:
+
+                switch (personControl) {
+                    case THIRD:
+                        if (gamepad2.left_trigger > 0.1) {
+                            WALL_E.leftClawOpen();
+                        } else if (gamepad2.left_bumper) {
+                            WALL_E.leftClawClose();
+                        } else if (gamepad2.right_trigger > 0.1) {
+                            WALL_E.rightClawOpen();
+                        } else if (gamepad2.right_bumper) {
+                            WALL_E.rightClawClose();
+                        }
+                        break;
+                    case FIRST:
+
+                        if (gamepad1.left_trigger > 0.1) {
+                            WALL_E.leftClawOpen();
+                        } else if (gamepad1.left_bumper) {
+                            WALL_E.leftClawClose();
+                        } else if (gamepad1.right_trigger > 0.1) {
+                            WALL_E.rightClawOpen();
+                        } else if (gamepad1.right_bumper) {
+                            WALL_E.rightClawClose();
+                        }
 
 
+                }
 
-    public void clawControl()  {
-
-        switch (personControl) {
-            case THIRD:
-                if (gamepad2.left_trigger > 0.1) {
-                    WALL_E.leftClawOpen();
-                }
-                else if (gamepad2.left_bumper) {
-                    WALL_E.leftClawClose();
-                }
-                else if (gamepad2.right_trigger > 0.1) {
-                    WALL_E.rightClawOpen();
-                }
-                else if (gamepad2.right_bumper) {
-                    WALL_E.rightClawClose();
-                }
                 break;
-            case FIRST:
 
-                if (gamepad1.left_trigger > 0.1) {
-                    WALL_E.leftClawOpen();
+            case ONE:
+
+
+                if (gamepad1.right_trigger > 0.2) {
+                    WALL_E.rightLinearActuatorForward(linearMotorPower);
                 }
-                else if (gamepad1.left_bumper) {
-                    WALL_E.leftClawClose();
-                }
-                else if (gamepad1.right_trigger > 0.1) {
-                    WALL_E.rightClawOpen();
-                }
-                else if (gamepad1.right_bumper) {
-                    WALL_E.rightClawClose();
+                if (gamepad1.right_bumper) {
+                    WALL_E.rightLinearActuatorBack(linearMotorPower);
+
+
+                    if (gamepad1.left_trigger > 0.2) {
+                        WALL_E.leftLinearActuatorForward(linearMotorPower);
+                    } else if (gamepad1.left_bumper) {
+                        WALL_E.leftLinearActuatorBack(linearMotorPower);
+                    } else {
+                        WALL_E.leftLinearActuatorStop();
+
+                        WALL_E.rightLinearActuatorStop();
+
+                    }
+
+                    if (gamepad2.y) {
+                        clawOpen = true;
+
+                    } else {
+                        clawOpen = false;
+                    }
+                    if (clawOpen == true) {
+                        WALL_E.leftClawOpen();
+                    } else if (clawOpen == false) {
+                        WALL_E.leftClawClose();
+                    }
                 }
 
+                break;
 
         }
     }
 
 
 
-    public void drivingStyle() {
 
-        if (gamepad1.a) {
-            driverStyle = WALL_E_TeleOp.Style.ONESTICK;
+
+
+        public void drivingStyle () {
+
+            if (gamepad1.a) {
+                driverStyle = WALL_E_TeleOp.Style.ONESTICK;
+
+            }
+            if (gamepad1.x) {
+                driverStyle = WALL_E_TeleOp.Style.TWOSTICK;
+            }
+            if (gamepad1.b) {
+                driverStyle = WALL_E_TeleOp.Style.TANK;
+
+            }
+
 
         }
-        if (gamepad1.x) {
-            driverStyle = WALL_E_TeleOp.Style.TWOSTICK;
-        }
-        if (gamepad1.b) {
-            driverStyle = WALL_E_TeleOp.Style.TANK;
+
+        public void personChanger () {
+
+//            if (gamepad1.back) {
+//                personControl = Person.FIRST;
+//            }
+//            if (gamepad1.start) {
+//                personControl = Person.THIRD;
+//            }
 
         }
 
-
-    }
-
-    public void personChanger(){
-
+        public void controllerChanger() {
         if (gamepad1.back) {
-            personControl = Person.FIRST;
+            if (numGamepads == NumberOfGamepads.ONE) {
+               numGamepads = NumberOfGamepads.TWO;
+            }
+            else if (numGamepads == NumberOfGamepads.TWO){
+                numGamepads = NumberOfGamepads.ONE
+            }
         }
-        if (gamepad1.start) {
-            personControl = Person.THIRD;
-        }
-
     }
-
-
-
 
 
         public void telementryOutput () {
@@ -304,15 +351,13 @@ public class WALL_E_TeleOp extends OpMode {
 
             if (personControl == Person.FIRST) {
                 telemetry.addLine("Person - FIRST");
-            }
-            else if (personControl == Person.THIRD) {
+            } else if (personControl == Person.THIRD) {
                 telemetry.addLine("Person - THIRD");
             }
 
             if (stickControl == StickControl.FIRSTSTICK) {
                 telemetry.addLine("Stick Control - FIRST PERSON");
-            }
-            else if (stickControl == StickControl.THIRDSTICK) {
+            } else if (stickControl == StickControl.THIRDSTICK) {
                 telemetry.addLine(" Stick Control - THIRD PERSON (DRIVE CONTROL)");
             }
         }
@@ -320,7 +365,8 @@ public class WALL_E_TeleOp extends OpMode {
         //Long Live Taco
 
 //C REDD
-    //hi
+        //hi
 
-}
+    }
+
 
