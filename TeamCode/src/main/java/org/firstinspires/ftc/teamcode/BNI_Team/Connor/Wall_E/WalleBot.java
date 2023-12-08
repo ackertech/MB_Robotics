@@ -12,8 +12,8 @@ import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Drivetrains.Tank_FourMotor
 public class WalleBot extends Tank_FourMotorDrive_Connor {
     //define Mechinism Varibles
     //Set Lazy Susan movement values
-    public DcMotor sidewaysLinearMotor;
-    public DcMotor upAndDownLinearMotor;
+    public DcMotor rightLinearActuator;
+    public DcMotor leftLinearActuator;
     public DcMotor lazy_Susan;
     public Servo leftClaw = null;
     public Servo rightClaw = null;
@@ -68,19 +68,19 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
 
         /** Linear Actuatiors*********    **/
 
-        sidewaysLinearMotor = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
-        upAndDownLinearMotor = hwBot.dcMotor.get("upAndDownLinearMotor"); //Expantion Hub Port 1
+        rightLinearActuator = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+        leftLinearActuator = hwBot.dcMotor.get("upAndDownLinearMotor"); //Expantion Hub Port 1
 
-        sidewaysLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        upAndDownLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightLinearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftLinearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        sidewaysLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        upAndDownLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightLinearActuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightLinearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftLinearActuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftLinearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //Control Hub Port 0
         leftClaw = hwBot.get(Servo.class,"leftClaw");
@@ -127,72 +127,72 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
         stopMotors();
     }
 
-    public void sidewaysLinearMotorForward (double power) {
-        sidewaysLinearMotor.setPower(-Math.abs(power));
+    public void rightLinearActuatorForward(double power) {
+        rightLinearActuator.setPower(-Math.abs(power));
     }
 
-    public void sidewaysLinearMotorBack (double power) {
-        sidewaysLinearMotor.setPower(Math.abs(power));
+    public void rightLinearActuatorBack(double power) {
+        rightLinearActuator.setPower(Math.abs(power));
     }
 
-    public void sidewaysLinearMotorStop(){
-        sidewaysLinearMotor.setPower(0);
+    public void rightLinearActuatorStop(){
+        rightLinearActuator.setPower(0);
     }
 
-    public void sidewaysLinearMotorForward (double power, double rotations) {
+    public void rightLinearActuatorForward(double power, double rotations) {
         double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((-Math.abs(sidewaysLinearMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
-            sidewaysLinearMotorForward(power);
+        while ((-Math.abs(rightLinearActuator.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            rightLinearActuatorForward(power);
         }
         stopMotors();
     }
 
-    public void sidewaysLinearMotorBack(double power, double rotations) {
+    public void rightLinearActuatorBack(double power, double rotations) {
         double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
-            sidewaysLinearMotorBack(power);
+            rightLinearActuatorBack(power);
         }
         stopMotors();
     }
 
-    public void upAndDownLinearMotorForward(double power, double rotations) {
+    public void leftLinearActuatorForward(double power, double rotations) {
         double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((-Math.abs(upAndDownLinearMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
-            upAndDownLinearMotorForward(power);
+        while ((-Math.abs(leftLinearActuator.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            leftLinearActuatorForward(power);
         }
         stopMotors();
     }
 
-    public void upAndDownLinearMotorBack(double power, double rotations) {
+    public void leftLinearActuatorBack(double power, double rotations) {
         double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((Math.abs(upAndDownLinearMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
-            upAndDownLinearMotorBack(power);
+        while ((Math.abs(leftLinearActuator.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            leftLinearActuatorBack(power);
         }
         stopMotors();
     }
 
-    public void upAndDownLinearMotorForward(double power){
-        upAndDownLinearMotor.setPower(-Math.abs(power));
+    public void leftLinearActuatorForward(double power){
+        leftLinearActuator.setPower(-Math.abs(power));
     }
 
-    public void upAndDownLinearMotorBack(double power) {
-        upAndDownLinearMotor.setPower(Math.abs(power));
+    public void leftLinearActuatorBack(double power) {
+        leftLinearActuator.setPower(Math.abs(power));
     }
 
-    public void upAndDownLinearMotorStop (){
-        upAndDownLinearMotor.setPower(0);
+    public void leftLinearActuatorStop(){
+        leftLinearActuator.setPower(0);
     }
 
     public void leftClawOpen() {leftClaw.setPosition(1);}

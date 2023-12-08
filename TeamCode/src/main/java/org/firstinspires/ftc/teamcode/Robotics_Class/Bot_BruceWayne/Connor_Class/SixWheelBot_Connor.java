@@ -8,8 +8,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public HardwareMap hwBot = null;
     public DcMotor lazySusan;
-    public DcMotor candyLauncherLeft;
-    public DcMotor candyLauncherRight;
+//    public DcMotor candyLauncherLeft;
+//    public DcMotor candyLauncherRight;
 
     public void initRobot(HardwareMap hwMap) {
         hwBot = hwMap;
@@ -22,8 +22,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
         lazySusan = hwBot.dcMotor.get("lazy_susan");
 
-        candyLauncherLeft = hwBot.dcMotor.get("candy_launcher_left"); //REVERSE
-        candyLauncherRight = hwBot.dcMotor.get("candy_launcher_right"); //FORWARD
+//        candyLauncherLeft = hwBot.dcMotor.get("candy_launcher_left"); //REVERSE
+//        candyLauncherRight = hwBot.dcMotor.get("candy_launcher_right"); //FORWARD
 
 
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -33,8 +33,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
         lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        candyLauncherLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        candyLauncherRight.setDirection(DcMotorSimple.Direction.FORWARD);
+//        candyLauncherLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+//        candyLauncherRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
 
@@ -52,8 +52,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
         lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
 
     }
@@ -71,13 +71,13 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         lazySusan.setPower(0);
     }
 
-    public void launcherOn(){
-        candyLauncherRight.setPower(1);
-        candyLauncherLeft.setPower(1);
-    }
-
-    public void launcherOff(){
-        candyLauncherLeft.setPower(0);
-        candyLauncherRight.setPower(0);
-    }
+//    public void launcherOn(){
+//        candyLauncherRight.setPower(1);
+//        candyLauncherLeft.setPower(1);
+//    }
+//
+//    public void launcherOff(){
+//        candyLauncherLeft.setPower(0);
+//        candyLauncherRight.setPower(0);
+//    }
 }

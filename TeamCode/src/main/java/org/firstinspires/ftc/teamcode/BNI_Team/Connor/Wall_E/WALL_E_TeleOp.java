@@ -179,20 +179,20 @@ public class WALL_E_TeleOp extends OpMode {
             case FIRSTSTICK:
 
                 if (gamepad1.right_stick_y < -0.1) {
-                    WALL_E.sidewaysLinearMotorForward(linearMotorPower);
+                    WALL_E.rightLinearActuatorForward(linearMotorPower);
                 } else if (gamepad1.right_stick_y > 0.1) {
-                    WALL_E.sidewaysLinearMotorBack(linearMotorPower);
+                    WALL_E.rightLinearActuatorBack(linearMotorPower);
                 } else {
-                    WALL_E.sidewaysLinearMotorStop();
+                    WALL_E.rightLinearActuatorStop();
 
                 }
 
                 if (gamepad1.left_stick_y < -0.1) {
-                    WALL_E.upAndDownLinearMotorForward(linearMotorPower);
+                    WALL_E.leftLinearActuatorForward(linearMotorPower);
                 } else if (gamepad1.left_stick_y > 0.1) {
-                    WALL_E.upAndDownLinearMotorBack(linearMotorPower);
+                    WALL_E.leftLinearActuatorBack(linearMotorPower);
                 } else {
-                    WALL_E.upAndDownLinearMotorStop(); }
+                    WALL_E.leftLinearActuatorStop(); }
 
 
                 if (gamepad1.right_stick_x < -0.1) {

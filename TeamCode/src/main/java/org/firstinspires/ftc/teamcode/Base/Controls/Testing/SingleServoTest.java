@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-@Disabled
+//@Disabled
 @TeleOp(name = "Test - Servo", group = "Lab")
 public class SingleServoTest extends OpMode {
 
@@ -20,7 +20,7 @@ public class SingleServoTest extends OpMode {
 
     @Override
     public void init() {
-        testServo = hardwareMap.servo.get("claw_grabber");
+        testServo = hardwareMap.servo.get("rackgear_servo");
         testServo.setPosition(servoPos);
     }
 
@@ -44,7 +44,7 @@ public class SingleServoTest extends OpMode {
             telemetry.addLine("Set Servo to 1!");
         }
         if (gamepad1.y) {
-            servoPos = 1;
+            servoPos = 0;
             telemetry.addLine("Set Servo to 0!");
 
         }

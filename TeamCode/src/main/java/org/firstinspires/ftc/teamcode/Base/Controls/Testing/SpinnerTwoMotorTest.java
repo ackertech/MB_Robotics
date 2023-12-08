@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Disabled
+//@Disabled
 @TeleOp(name = "Test - Spinner Motor", group = "Lab")
 
 public class SpinnerTwoMotorTest extends OpMode {
@@ -14,8 +14,8 @@ public class SpinnerTwoMotorTest extends OpMode {
     DcMotor spinnerIntakeR;
     @Override
     public void init() {
-        spinnerIntakeL = hardwareMap.dcMotor.get("spinner_intake_l");
-        spinnerIntakeR = hardwareMap.dcMotor.get("spinner_intake_r");
+        spinnerIntakeL = hardwareMap.dcMotor.get("candy_launcher_left");
+        spinnerIntakeR = hardwareMap.dcMotor.get("candy_launcher_right");
         spinnerIntakeL.setDirection(DcMotorSimple.Direction.FORWARD);
         spinnerIntakeR.setDirection(DcMotorSimple.Direction.REVERSE);
         spinnerIntakeL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
