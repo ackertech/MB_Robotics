@@ -256,36 +256,37 @@ public class WALL_E_TeleOp extends OpMode {
                 }
                 if (gamepad1.right_bumper) {
                     WALL_E.rightLinearActuatorBack(linearMotorPower);
-
-
-                    if (gamepad1.left_trigger > 0.2) {
-                        WALL_E.leftLinearActuatorForward(linearMotorPower);
-                    } else if (gamepad1.left_bumper) {
-                        WALL_E.leftLinearActuatorBack(linearMotorPower);
-                    } else {
-                        WALL_E.leftLinearActuatorStop();
-
-                        WALL_E.rightLinearActuatorStop();
-
-                    }
-
-                    if (gamepad2.y) {
-                        clawOpen = true;
-
-                    } else {
-                        clawOpen = false;
-                    }
-                    if (clawOpen == true) {
-                        WALL_E.leftClawOpen();
-                    } else if (clawOpen == false) {
-                        WALL_E.leftClawClose();
-                    }
+                } else {
+                    WALL_E.rightLinearActuatorStop();
                 }
+
+
+                if (gamepad1.left_trigger > 0.2) {
+                    WALL_E.leftLinearActuatorForward(linearMotorPower);
+                } else if (gamepad1.left_bumper) {
+                    WALL_E.leftLinearActuatorBack(linearMotorPower);
+                } else {
+                    WALL_E.leftLinearActuatorStop();
+                }
+
+                if (gamepad2.y) {
+                    clawOpen = true;
+
+                } else {
+                    clawOpen = false;
+                }
+                if (clawOpen == true) {
+                    WALL_E.leftClawOpen();
+                } else if (clawOpen == false) {
+                    WALL_E.leftClawClose();
+                }
+
 
                 break;
 
         }
     }
+
 
 
 
