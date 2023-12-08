@@ -326,7 +326,7 @@ public class WALL_E_TeleOp extends OpMode {
                numGamepads = NumberOfGamepads.TWO;
             }
             else if (numGamepads == NumberOfGamepads.TWO){
-                numGamepads = NumberOfGamepads.ONE
+                numGamepads = NumberOfGamepads.ONE;
             }
         }
     }
