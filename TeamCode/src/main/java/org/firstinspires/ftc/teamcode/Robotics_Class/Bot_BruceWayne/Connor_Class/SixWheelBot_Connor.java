@@ -3,11 +3,13 @@ package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_BruceWayne.Connor_Clas
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public HardwareMap hwBot = null;
     public DcMotor lazySusan;
+    public Servo rackgear = null;
 //    public DcMotor candyLauncherLeft;
 //    public DcMotor candyLauncherRight;
 
@@ -51,6 +53,10 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
+        rackgear = hwBot.get(Servo.class,"rackgear_servo");
+        rackgear.setDirection(Servo.Direction.FORWARD);
 
 //        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 //        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
