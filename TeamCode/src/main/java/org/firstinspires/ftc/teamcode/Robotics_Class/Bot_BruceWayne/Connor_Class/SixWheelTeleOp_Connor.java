@@ -51,6 +51,8 @@ public class SixWheelTeleOp_Connor extends OpMode {
         spinnerIntakeL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         spinnerIntakeR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
+        sixWheelBot.rackgear.setPosition(0.0);
+
 
     }
 
@@ -205,6 +207,13 @@ public class SixWheelTeleOp_Connor extends OpMode {
              spinnerIntakeL.setPower(0);
              spinnerIntakeR.setPower(0);
          }
+
+         if (gamepad1.left_bumper) {
+             sixWheelBot.rackgear.setPosition(1.0);
+         }
+         else if (gamepad2.right_bumper) {
+             sixWheelBot.rackgear.setPosition(0.0);
+         }//left is 1
 
      }
 
