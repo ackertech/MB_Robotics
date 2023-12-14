@@ -60,7 +60,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
     public void loop() {
         telemetry();
         speedControl();
-        drivingMode();
+     //   drivingMode();
         candyLauncher();
         lazySusan();
         drive();
