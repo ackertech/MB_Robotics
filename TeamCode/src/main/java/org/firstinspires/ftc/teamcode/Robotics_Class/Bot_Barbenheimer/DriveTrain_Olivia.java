@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_Barbenheimer;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class DriveTrain_Olivia {
 
@@ -11,6 +12,11 @@ public class DriveTrain_Olivia {
     public DcMotor frontRightMotor;
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
+
+    public DcMotor penguinSlide;
+    public DcMotor iglooTurn;
+
+    public Servo bearLift;
 
     //Required as part of First SDK
     //Null: empty/not defined
