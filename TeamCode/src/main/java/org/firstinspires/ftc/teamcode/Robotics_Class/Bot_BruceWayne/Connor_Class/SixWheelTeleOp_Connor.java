@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp (name = "SixWheelTeleOp_CONNOR")
+@TeleOp (name = "SixWheelTeleOp_CONNOR", group = "iLab")
 public class SixWheelTeleOp_Connor extends OpMode {
     double leftStickYVal;
     double leftStickXVal;

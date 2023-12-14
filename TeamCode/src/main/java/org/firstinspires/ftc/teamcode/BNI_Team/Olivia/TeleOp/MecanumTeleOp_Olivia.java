@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Olivia.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Olivia.Bots.ProgrammingBot_Olivia;
 
+@Disabled
 @TeleOp (name = "MecanumTeleOp_Olivia")
 public class MecanumTeleOp_Olivia extends OpMode {
 

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import kotlin.math.UMathKt;
 
-@TeleOp(name = "TeleOp_Olivia")
+@TeleOp(name = "TeleOp_Olivia", group = "iLab")
 public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
     //variable to throttle speed

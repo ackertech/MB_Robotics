@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 //Class is used for testing a single motor, using trigger for variable power.
 @Disabled
-@TeleOp(name = "Test:Two Motors:No Encoders", group="Lab")
+@TeleOp(name = "Test:Two Motors:No Encoders", group = "Sandbox")
 
 public class TwoMotor_ButtonToggle extends OpMode {
     private DcMotor motor_left = null;

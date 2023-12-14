@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  *      Use the DPAD to change the selected sound, and the Right Bumper to play it.
  */
 @Disabled
-@TeleOp(name="Test - Sounds", group="Lab")
+@TeleOp(name="Test - Sounds", group = "Sandbox")
 //@Disabled
 public class SoundsTester extends LinearOpMode {
 

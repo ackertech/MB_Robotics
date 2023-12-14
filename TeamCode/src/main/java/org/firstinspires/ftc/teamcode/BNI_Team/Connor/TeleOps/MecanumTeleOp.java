@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.TeleOps;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.ProgramingBot;
 
-
+@Disabled
 @TeleOp (name = "MecanumTeleOp_Connor",group="iLab")
 public class MecanumTeleOp extends OpMode {
 
