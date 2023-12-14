@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
 
-@Disabled
+//@Disabled
 @TeleOp (name = "Christmas Barbenheimer")
 public class ChristmasTeleOpBarbenheimer extends OpMode {
     double leftStickYVal;
@@ -28,7 +28,7 @@ public class ChristmasTeleOpBarbenheimer extends OpMode {
         bot.initDrive(hardwareMap);
         bot.initWormGear(hardwareMap);
         bot.initLinearMotor(hardwareMap);
-       // bot.initServos(hardwareMap);
+        bot.initServos(hardwareMap);
     }
 
 
@@ -96,7 +96,7 @@ public class ChristmasTeleOpBarbenheimer extends OpMode {
          }
 
          else if (gamepad1.right_bumper) {
-             bot.extendLinear(.90);
+             bot.retractLinear(.90);
          }
          else
          {
@@ -109,8 +109,11 @@ public class ChristmasTeleOpBarbenheimer extends OpMode {
         if (gamepad1.y) {
             bot.extendFully();
         }
+        if (gamepad1.b) {
+            bot.extendPartially();
+        }
 
-        if (gamepad1.x) {
+        if (gamepad1.a) {
             bot.retractFully();
         }
 
