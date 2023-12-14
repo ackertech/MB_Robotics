@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.BNI_Testing;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
+@Disabled
 @TeleOp(name = "TestAprilTag_CWR")
 public class TEST_AprilTagNewCenterStage_CWR extends LinearOpMode {
 

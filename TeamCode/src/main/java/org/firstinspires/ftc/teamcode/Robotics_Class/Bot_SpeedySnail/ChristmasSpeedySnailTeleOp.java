@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
 
-@TeleOp (name = "Speed Snail Christmas Bot", group = "iLab")
+@TeleOp (name = "Christmas: Speedy Snail", group = "iLab")
 public class ChristmasSpeedySnailTeleOp extends OpMode {
     double leftStickYVal;
     double rightStickYVal;
@@ -25,7 +25,7 @@ public class ChristmasSpeedySnailTeleOp extends OpMode {
     public void init () {
         bot.initDrive(hardwareMap);
         bot.initWormGear(hardwareMap);
-        bot.initLinearMotor(hardwareMap);
+        //bot.initLinearMotor(hardwareMap);
         bot.initServos(hardwareMap);
     }
 
@@ -33,7 +33,7 @@ public class ChristmasSpeedySnailTeleOp extends OpMode {
     public void loop() {
         speedControl();
         rotateWormGear();
-        moveLinearMotor();
+    //    moveLinearMotor();
         moveRackGear();
         moveServos();
         drive();
@@ -104,11 +104,11 @@ public class ChristmasSpeedySnailTeleOp extends OpMode {
      }
 
     public void moveRackGear() {
-        if (gamepad1.y) {
+        if (gamepad1.left_bumper) {
             bot.extendFully();
         }
 
-        if (gamepad1.x) {
+        if (gamepad1.right_bumper) {
             bot.retractFully();
         }
 
@@ -120,7 +120,14 @@ public class ChristmasSpeedySnailTeleOp extends OpMode {
         }
 
         if (gamepad1.b) {
+            bot.rotateRightOne();
+        }
+        if (gamepad1.x) {
             bot.rotateLeftTwo();
+        }
+
+        if (gamepad1.y) {
+            bot.rotateRightTwo();
         }
 
     }

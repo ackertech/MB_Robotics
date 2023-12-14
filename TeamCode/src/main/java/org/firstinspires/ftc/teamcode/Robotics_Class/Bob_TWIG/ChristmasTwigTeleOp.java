@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
 
-@TeleOp (name = "TWIG Christmas Bot", group = "iLab")
+@TeleOp (name = "Christmas: TWIG", group = "iLab")
 public class ChristmasTwigTeleOp extends OpMode {
     double leftStickYVal;
     double rightStickYVal;
@@ -64,8 +64,8 @@ public class ChristmasTwigTeleOp extends OpMode {
         rightStickYVal = gamepad1.right_stick_y;
         rightStickYVal = Range.clip(rightStickYVal, -1, 1);
 
-        leftSidePower = speedMultiply * leftStickYVal * (1);
-        rightSidePower = speedMultiply * rightStickYVal * (1);
+        leftSidePower = speedMultiply * leftStickYVal * (-1);
+        rightSidePower = speedMultiply * rightStickYVal * (-1);
         bot.tankDrive(leftSidePower, rightSidePower);
 
     }
@@ -114,14 +114,15 @@ public class ChristmasTwigTeleOp extends OpMode {
     }
 
     public void moveServos() {
+       // Open Box
         if (gamepad1.a) {
-            bot.rotateLeftOne();
-            bot.rotateRightTwo();
-        }
+            bot.servoOne.setPosition(.3);
 
+        }
+        // Close Box
         if (gamepad1.b) {
-            bot.rotateRightOne();
-            bot.rotateLeftTwo();
+            bot.servoOne.setPosition(.1);
+
         }
 
     }

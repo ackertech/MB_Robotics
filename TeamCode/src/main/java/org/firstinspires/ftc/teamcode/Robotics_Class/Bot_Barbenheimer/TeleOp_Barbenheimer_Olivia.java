@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_Barbenheimer;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import kotlin.math.UMathKt;
-
-@TeleOp(name = "TeleOp_Olivia", group = "iLab")
+@Disabled
+@TeleOp(name = "Christmas: Barbieheimer", group = "iLab")
 public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
     //variable to throttle speed

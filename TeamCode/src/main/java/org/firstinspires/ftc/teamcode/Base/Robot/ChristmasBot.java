@@ -122,7 +122,7 @@ public class ChristmasBot extends Christmas_Drive {
     // **** Movement Methods for Normal Servo One ****
 
     public void rotateRightOne() {
-        servoOne.setPosition(0.9);
+        servoOne.setPosition(0.8);
     }
 
     public void rotateLeftOne() {
@@ -130,18 +130,18 @@ public class ChristmasBot extends Christmas_Drive {
     }
 
     public void rotateMidOne() {
-        servoOne.setPosition(0.5);
+        servoOne.setPosition(0.2);
     }
 
 
     // **** Movement Methods for Normal Servo Two ****
 
     public void rotateRightTwo() {
-        servoOne.setPosition(0.9);
+        servoOne.setPosition(0.8);
     }
 
     public void rotateLeftTwo() {
-        servoOne.setPosition(0.1);
+        servoOne.setPosition(0.2);
     }
 
     public void rotateMidTwo() {
@@ -152,7 +152,7 @@ public class ChristmasBot extends Christmas_Drive {
     // **** Movement Methods for Rack Gear Servo ****
 
     public void extendFully() {
-        rackGear.setPosition(0.9);
+        rackGear.setPosition(0.8);
     }
 
     public void extendPartially() {
@@ -160,7 +160,7 @@ public class ChristmasBot extends Christmas_Drive {
     }
 
     public void retractFully() {
-        rackGear.setPosition(0.1);
+        rackGear.setPosition(0.2);
     }
 
 

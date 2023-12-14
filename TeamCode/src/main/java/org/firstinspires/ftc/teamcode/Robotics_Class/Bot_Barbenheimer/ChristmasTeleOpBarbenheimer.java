@@ -1,14 +1,16 @@
-package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_GOAT;
+package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_Barbenheimer;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
 
-@TeleOp (name = "Christmas: GOAT", group = "iLab")
-public class ChristmasGOATTeleOp extends OpMode {
+@Disabled
+@TeleOp (name = "Christmas Barbenheimer")
+public class ChristmasTeleOpBarbenheimer extends OpMode {
     double leftStickYVal;
     double rightStickYVal;
     double speedMultiply = 1.0;
@@ -17,23 +19,25 @@ public class ChristmasGOATTeleOp extends OpMode {
 
     public double wormGearPower = 0.90;
 
+
     public ChristmasBot bot = new ChristmasBot();
+
 
     @Override
     public void init () {
         bot.initDrive(hardwareMap);
-        //bot.initWormGear(hardwareMap);
-        //bot.initLinearMotor(hardwareMap);
-        bot.initServos(hardwareMap);
+        bot.initWormGear(hardwareMap);
+        bot.initLinearMotor(hardwareMap);
+       // bot.initServos(hardwareMap);
     }
 
 
     public void loop() {
         speedControl();
-   //     rotateWormGear();
-    //    moveLinearMotor();
+        rotateWormGear();
+        moveLinearMotor();
         moveRackGear();
-        moveServos();
+        //moveServos();
         drive();
     }
 
@@ -118,15 +122,7 @@ public class ChristmasGOATTeleOp extends OpMode {
         }
 
         if (gamepad1.b) {
-            bot.rotateRightTwo();
-        }
-
-        if (gamepad1.x) {
             bot.rotateLeftTwo();
-        }
-
-        if (gamepad1.y) {
-            bot.rotateRightTwo();
         }
 
     }

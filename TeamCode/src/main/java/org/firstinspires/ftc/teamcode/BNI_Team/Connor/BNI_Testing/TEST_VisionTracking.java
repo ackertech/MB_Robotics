@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.BNI_Testing;
 
 import com.qualcomm.hardware.dfrobot.HuskyLens;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 
 
-
+@Disabled
 @TeleOp (name = "TEST_HuskyLens_Vision Tracking Center Stage")
 public class TEST_VisionTracking extends LinearOpMode {
 

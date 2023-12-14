@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.The_Mighty_and_All_
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Wall_E.WalleBot;
 
 //@Disabled
-@TeleOp(name = "WALL-E Basic",group="iLab")
+@TeleOp(name = "Christmas: WALL-E",group="iLab")
 public class WALL_E_TeleOp_Basic extends OpMode {
 
     public double speedMultiply = 0.50;

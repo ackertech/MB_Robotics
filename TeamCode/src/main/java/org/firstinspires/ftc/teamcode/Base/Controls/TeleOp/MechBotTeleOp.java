@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
 
 //@Disabled
-@TeleOp(name = "MechBot",group="iLab")
+@TeleOp(name = "Christmas: MechBot",group="iLab")
 
 public class MechBotTeleOp extends OpMode {
 
