@@ -27,6 +27,8 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
     public void loop () {
         drive();
         speedControl();
+        bearControl();
+        penguinControl();
     }
 
     //define method to drive robot with gamepad and left stick
@@ -45,19 +47,46 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
         }
     }
 
+    public void bearControl(){
+        if(gamepad1.dpad_up){
+            Barb.bearUp(1);
+        }
+        else if(gamepad1.dpad_down){
+            Barb.bearDown(.5);
+        }
+    }
+
+    public void penguinControl(){
+        if(gamepad1.left_bumper){
+            Barb.penguinOut(1);
+        }
+        else if(gamepad1.right_bumper){
+            Barb.penguinIn(1);
+        }
+        else{
+            Barb.stopPenguin();
+        }
+    }
+
+    public void iglooControl(){
+        if(gamepad1.dpad_left){
+            Barb.iglooLeft(1);
+        }
+        else if(gamepad1.dpad_right){
+            Barb.iglooRight(1);
+        }
+        else {
+            Barb.stopIgloo();
+        }
+    }
+
     //define method to control speed
     public void speedControl() {
-        if (gamepad1.dpad_right){
-            speedMultiply = 0.25;
+        if (gamepad1.x){
+            speedMultiply = 1;
         }
-        else if (gamepad1.dpad_down){
-            speedMultiply = 0.50;
-        }
-        else if (gamepad1.dpad_left){
-            speedMultiply = 0.75;
-        }
-        else if (gamepad1.dpad_up){
-            speedMultiply = 1.00;
+        else if (gamepad1.a){
+            speedMultiply = 0.5;
         }
     }
 
