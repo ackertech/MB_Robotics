@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -9,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.RoboticHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
 
 
-//@Disabled
+@Disabled
 @TeleOp(name = "AckerBot", group="iLab")
 
 public class AckerBotTeleOp extends OpMode {

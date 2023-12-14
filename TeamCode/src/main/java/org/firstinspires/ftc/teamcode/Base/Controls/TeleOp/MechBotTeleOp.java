@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
 
-@Disabled
+//@Disabled
 @TeleOp(name = "MechBot",group="iLab")
 
 public class MechBotTeleOp extends OpMode {

@@ -21,6 +21,8 @@ public class BNIVision extends LinearOpMode {
 
     OpenCvCamera webcam;
     TeamPropPositionPipeline pipeline;
+    public int camWidth = 1280;
+    public int camHeight = 720;
 
     @Override
     public void runOpMode()
@@ -40,7 +42,7 @@ public class BNIVision extends LinearOpMode {
             {
                 // Supported Resolution
                 // https://ftc-docs.firstinspires.org/en/latest/apriltag/vision_portal/visionportal_webcams/visionportal-webcams.html
-                webcam.startStreaming(960, 720, OpenCvCameraRotation.UPRIGHT);
+                webcam.startStreaming(camWidth, camHeight, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
