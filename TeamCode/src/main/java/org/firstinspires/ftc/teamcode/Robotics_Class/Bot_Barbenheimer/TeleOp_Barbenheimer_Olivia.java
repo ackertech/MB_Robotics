@@ -29,6 +29,7 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
         speedControl();
         bearControl();
         penguinControl();
+        iglooControl();
     }
 
     //define method to drive robot with gamepad and left stick
