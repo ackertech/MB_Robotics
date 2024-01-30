@@ -1,8 +1,13 @@
 package org.firstinspires.ftc.teamcode.Base.Drivetrains;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 public class MecanumDrive {
 
@@ -14,10 +19,22 @@ public class MecanumDrive {
 
     // These are motor variables from running with encoders (not power)
     public static final double TICKS_PER_ROTATION = 537.7;  //
+
+    public IMU imu = null;
+    public double headingTolerance = 2;
+    public double currentHeading = 0;
+
+
     double gearRatio = 0.5;
     double wheelRadius = 1.9685;  // inches
     double powerPID;
     double powerNormPID;
+
+    static final double COUNTS_PER_MOTOR_REV = 537.7 ;
+    static final double DRIVE_GEAR_REDUCTION = 1.0 ;
+    static final double WHEEL_DIAMETER_INCHES = 4.0 ;
+    static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
 
     // This is just required as part of the FIRST SDK.  Memorize it!!!
     public LinearOpMode linearOp = null;
@@ -129,6 +146,44 @@ public class MecanumDrive {
         rearLeftMotor.setPower(-Math.abs(speed));
         rearRightMotor.setPower(Math.abs(speed));
     }
+
+
+    // ****** Overloaded methods for driving distance with gyro *****
+
+    public void gyroCorrection(double speed, double targetAngle) {
+        imu.resetYaw();
+        currentHeading = getHeading();
+        if (currentHeading >= targetAngle + headingTolerance && linearOp.opModeIsActive()) {
+            while (currentHeading >= targetAngle + headingTolerance && linearOp.opModeIsActive()) {
+                rotateRight(speed);
+
+                currentHeading = getHeading();
+                linearOp.telemetry.addData("Current Angle: ", currentHeading);
+                linearOp.telemetry.addData("Target Angle: ", targetAngle);
+                linearOp.telemetry.update();
+            }
+        } else if (currentHeading <= targetAngle - headingTolerance && linearOp.opModeIsActive()) ;
+        {
+            while (currentHeading <= targetAngle - headingTolerance && linearOp.opModeIsActive()) {
+                rotateLeft(speed);
+
+                currentHeading = getHeading();
+                linearOp.telemetry.addData("Current Angle: ", currentHeading);
+                linearOp.telemetry.addData("Target Angle: ", targetAngle);
+                linearOp.telemetry.update();
+            }
+        }
+
+        stopMotors();
+        currentHeading = getHeading();
+    }
+
+
+    public double getHeading() {
+        YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+        return orientation.getYaw(AngleUnit.DEGREES);
+    }
+
 
     // Consolidated Method (in Beta Testing) for combining all mecanum movements
     public void driveDirection(double speed, double rotations, String direction) {

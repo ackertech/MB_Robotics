@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
-@Disabled
+//@Disabled
 @Autonomous(name = "MechBot Acceleration")
 
 public class AutoMechBotACCTester extends LinearOpMode {

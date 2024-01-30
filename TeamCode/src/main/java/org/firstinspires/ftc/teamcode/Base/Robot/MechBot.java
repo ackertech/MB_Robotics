@@ -2,10 +2,12 @@ package org.firstinspires.ftc.teamcode.Base.Robot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -26,11 +28,10 @@ public class MechBot extends MecanumDrive {
     double waitTime = 2.0;
 
     // Declaration of Gyro Variables
-    public BNO055IMU imu;
-    public Orientation angles;
-    public Acceleration gravity;
-    public final double SPEED = .3;
-    public final double TOLERANCE = .4;
+    RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
+    RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.UP;
+    RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
+
 
     //MechBot Constructor
     public MechBot() {}
@@ -63,6 +64,11 @@ public class MechBot extends MecanumDrive {
 
         //Timer Reset
         currentTime.reset();
+
+        // Gyro Initiatlization
+        imu = hwBot.get(IMU.class, "imu");
+        imu.initialize(new IMU.Parameters(orientationOnRobot));
+
 
     }
 
