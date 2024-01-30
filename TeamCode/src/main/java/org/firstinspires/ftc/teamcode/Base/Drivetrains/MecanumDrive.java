@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
@@ -183,6 +184,73 @@ public class MecanumDrive {
         YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
         return orientation.getYaw(AngleUnit.DEGREES);
     }
+
+
+    public void driveGyroStraight (int encoders, double power, String direction) throws InterruptedException {
+        imu.resetYaw();
+        currentHeading = getHeading();
+
+        double target = getHeading();
+        double currentPos = 0;
+        double leftSideSpeed;
+        double rightSideSpeed;
+
+        double startPosition = frontLeftMotor.getCurrentPosition();
+        linearOp.sleep(100);
+        while (currentPos < encoders + startPosition && linearOp.opModeIsActive()) {
+            currentHeading = getHeading();
+            currentPos = Math.abs(frontLeftMotor.getCurrentPosition());
+
+            switch (direction) {
+                case "FORWARD":
+                    leftSideSpeed = power + (currentHeading - target) / 100;            // they need to be different
+                    rightSideSpeed = power - (currentHeading - target) / 100;
+
+                    leftSideSpeed = Range.clip(leftSideSpeed, -1, 1);        // helps prevent out of bounds error
+                    rightSideSpeed = Range.clip(rightSideSpeed, -1, 1);
+
+                    frontLeftMotor.setPower(leftSideSpeed);
+                    rearLeftMotor.setPower(leftSideSpeed);
+
+                    frontRightMotor.setPower(rightSideSpeed);
+                    rearRightMotor.setPower(rightSideSpeed);
+                    break;
+                case "BACK":
+                    leftSideSpeed = power - (currentHeading - target) / 100;            // they need to be different
+                    rightSideSpeed = power + (currentHeading - target) / 100;
+
+                    leftSideSpeed = Range.clip(leftSideSpeed, -1, 1);        // helps prevent out of bounds error
+                    rightSideSpeed = Range.clip(rightSideSpeed, -1, 1);
+
+                    frontLeftMotor.setPower(-leftSideSpeed);
+                    rearLeftMotor.setPower(-leftSideSpeed);
+
+                    frontRightMotor.setPower(-rightSideSpeed);
+                    rearRightMotor.setPower(-rightSideSpeed);
+                    break;
+            }
+
+            linearOp.telemetry.addData("Left Speed", frontLeftMotor.getPower());
+            linearOp.telemetry.addData("Right Speed", frontRightMotor.getPower());
+            linearOp.telemetry.addData("Distance till destination ", encoders + startPosition - frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("Current Position", currentPos);
+            linearOp.telemetry.addData("Target Position", target);
+            linearOp.telemetry.addData("Current Headig: ", currentHeading);
+            linearOp.telemetry.update();
+
+            linearOp.idle();
+        }
+
+        frontLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        rearLeftMotor.setPower(0);
+        rearRightMotor.setPower(0);
+
+        linearOp.idle();
+
+                }
+
+
 
 
     // Consolidated Method (in Beta Testing) for combining all mecanum movements
