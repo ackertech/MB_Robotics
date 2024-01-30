@@ -22,7 +22,7 @@ public class MecanumDrive {
     public static final double TICKS_PER_ROTATION = 537.7;  //
 
     public IMU imu = null;
-    public double headingTolerance = 2;
+    public double headingTolerance = 1;
     public double currentHeading = 0;
 
 
@@ -260,32 +260,32 @@ public class MecanumDrive {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        if (direction.equals("FWD")) {
+        if (direction.equals("FORWARD")) {
             while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
                 driveForward(speed);
             }
             stopMotors();
-        } else if (direction.equals("RWD")) {
+        } else if (direction.equals("BACKWARD")) {
             while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
                 driveBackward(speed);
             }
             stopMotors();
-        } else if (direction.equals("STR")) {
+        } else if (direction.equals("STRAFE_RIGHT")) {
             while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
                 strafeRight(speed);
             }
             stopMotors();
-        } else if (direction.equals("STL")) {
+        } else if (direction.equals("STRAFE_LEFT")) {
             while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
                 strafeLeft(speed);
             }
             stopMotors();
-        } else if (direction.equals("RR")) {
+        } else if (direction.equals("ROTATE_RIGHT")) {
             while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
                 rotateRight(speed);
             }
             stopMotors();
-        } else if (direction.equals("RL")) {
+        } else if (direction.equals("ROTATE_LEFT")) {
             while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
                 rotateLeft(speed);
             }

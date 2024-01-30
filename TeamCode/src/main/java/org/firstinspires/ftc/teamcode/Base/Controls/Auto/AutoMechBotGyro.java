@@ -25,35 +25,12 @@ public class AutoMechBotGyro extends LinearOpMode {
 
         while (opModeIsActive()){
 
-           // Bot.driveForwardPID(4,0.8,0,0);
+            // Drive forward and then correct the angle at the end
+           Bot.driveDirection(0.5,2.0,"FORWARD");
+           Bot.gyroCorrection(.3,0);
 
-//            updateTelemetry("Drive Forwards");
-//            Bot.driveDirection(1, 2,"FWD");
-//            sleep(1000);
-//
-//            updateTelemetry("Drive Backwards");
-//            Bot.driveDirection(1, 2,"RWD");
-//            sleep(1000);
-//
-//            updateTelemetry("Strafe Right");
-//            Bot.driveDirection(1, 2,"STR");
-//            sleep(1000);
-//
-//            updateTelemetry("Strafe Left");
-//            Bot.driveDirection(1, 2,"STL");
-//            sleep(1000);
-//
-//            updateTelemetry("Rotate Left");
-//            Bot.driveDirection(1, 1,"RL");
-//            sleep(1000);
-//
-//            updateTelemetry("Rotate Right");
-//            Bot.driveDirection(1, 1,"RR");
-//            sleep(1000);
-//
-//            updateTelemetry("Drive Backwards");
-//            Bot.driveDirection(1, 2,"RWD");
-//            sleep(5000);
+           // Drive by rotations and keep straight... kick me
+           //Bot.driveGyroStraight(4.0,0.5,);
 
 
             requestOpModeStop();
