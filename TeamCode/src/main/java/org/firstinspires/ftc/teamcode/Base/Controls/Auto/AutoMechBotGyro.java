@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
 //@Disabled
-@Autonomous(name = "MechBot Acceleration")
+@Autonomous(name = "MechBot Gyro", group = "iLab")
 
-public class AutoMechBotACCTester extends LinearOpMode {
+public class AutoMechBotGyro extends LinearOpMode {
 
     MechBot Bot = new MechBot();
 
@@ -26,12 +25,13 @@ public class AutoMechBotACCTester extends LinearOpMode {
 
         while (opModeIsActive()){
 
-            updateTelemetry("Driving Forward with Acceleration");
-            sleep(1000);
-            Bot.accelerate(.1, 1, 5);
-            Bot.driveDirection(1.0, 5, "FWD");
-            //updateTelemetry("Finished");
-            sleep(3000);
+            // Drive forward and then correct the angle at the end
+           Bot.driveDirection(0.5,2.0,"FORWARD");
+           Bot.gyroCorrection(.3,0);
+
+           // Drive by rotations and keep straight... kick me
+           //Bot.driveGyroStraight(4.0,0.5,);
+
 
             requestOpModeStop();
 

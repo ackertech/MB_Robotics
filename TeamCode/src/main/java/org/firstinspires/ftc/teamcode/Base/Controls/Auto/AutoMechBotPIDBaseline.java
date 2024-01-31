@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
-@Disabled
-@Autonomous(name = "MechBot PID Auto")
+//@Disabled
+@Autonomous(name = "MechBot PID Baseline")
 
 public class AutoMechBotPIDBaseline extends LinearOpMode {
 
