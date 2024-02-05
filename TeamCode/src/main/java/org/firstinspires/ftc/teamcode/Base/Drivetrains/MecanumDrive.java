@@ -22,7 +22,7 @@ public class MecanumDrive {
     public static final double TICKS_PER_ROTATION = 537.7;  //
 
     public IMU imu = null;
-    public double headingTolerance = 1;
+    public double headingTolerance = 0.5;
     public double currentHeading = 0;
 
 
@@ -381,6 +381,34 @@ public class MecanumDrive {
 
         }
         stopMotors();
+    }
+
+    public void rotateByGyro(double speed, double targetAngle) {
+        imu.resetYaw();
+        currentHeading = getHeading();
+        if (currentHeading >= targetAngle + headingTolerance && linearOp.opModeIsActive()) {
+            while (currentHeading >= targetAngle + headingTolerance && linearOp.opModeIsActive()) {
+                rotateRight(speed);
+
+                currentHeading = getHeading();
+                linearOp.telemetry.addData("Current Angle: ", currentHeading);
+                linearOp.telemetry.addData("Target Angle: ", targetAngle);
+                linearOp.telemetry.update();
+            }
+        } else if (currentHeading <= targetAngle - headingTolerance && linearOp.opModeIsActive()) ;
+        {
+            while (currentHeading <= targetAngle - headingTolerance && linearOp.opModeIsActive()) {
+                rotateLeft(speed);
+
+                currentHeading = getHeading();
+                linearOp.telemetry.addData("Current Angle: ", currentHeading);
+                linearOp.telemetry.addData("Target Angle: ", targetAngle);
+                linearOp.telemetry.update();
+            }
+        }
+
+        stopMotors();
+        currentHeading = getHeading();
     }
 
     public void driveForwardDistancePID(double inches, double Kp, double Ki, double Kd) {

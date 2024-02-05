@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
 //@Disabled
-@Autonomous(name = "MechBot Gyro Correct", group = "iLab")
+@Autonomous(name = "MechBot Gyro Drive Straight", group = "iLab")
 
-public class AutoMechBotGyro extends LinearOpMode {
+public class AutoMechBotGyroDriveStraight extends LinearOpMode {
 
     MechBot Bot = new MechBot();
 
@@ -26,11 +26,16 @@ public class AutoMechBotGyro extends LinearOpMode {
         while (opModeIsActive()){
 
             // Drive forward and then correct the angle at the end
-           Bot.driveDirection(0.5,12.0,"FORWARD");
-           Bot.gyroCorrection(.3,90);
 
            // Drive by rotations and keep straight... kick me
-           //Bot.driveGyroStraight(4.0,0.5,);
+           Bot.driveGyroStraight(4000,.7, "FORWARD");
+           Bot.rotateByGyro(.5, -90);
+           Bot.driveGyroStraight(4000, .7, "FORWARD");
+           Bot.rotateByGyro(.5, -90);
+           Bot.driveGyroStraight(4000, .7, "FORWARD");
+           Bot.rotateByGyro(.5, -90);
+           Bot.driveGyroStraight(4000, .7, "FORWARD");
+           Bot.rotateByGyro(.5, -90);
 
 
             requestOpModeStop();
