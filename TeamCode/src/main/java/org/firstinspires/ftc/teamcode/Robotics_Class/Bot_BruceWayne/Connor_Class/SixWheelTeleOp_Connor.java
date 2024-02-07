@@ -63,6 +63,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
      //   drivingMode();
         candyLauncher();
         lazySusan();
+        linearActuator();
         drive();
     }
 
@@ -215,6 +216,18 @@ public class SixWheelTeleOp_Connor extends OpMode {
              sixWheelBot.rackgear.setPosition(0.1);
          }//left is 1
 
+     }
+
+     public void linearActuator(){
+        if (gamepad2.left_trigger >0.2) {
+            sixWheelBot.sidewaysLinearMotorExtend();
+        }
+        else if (gamepad2.right_trigger> 0.2) {
+            sixWheelBot.sidewaysLinearMotorRetract();
+        }
+        else {
+            sixWheelBot.stopSidewaysLinearMotor();
+        }
      }
 
 

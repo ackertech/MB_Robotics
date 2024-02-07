@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Drivetrains.SixWheelDrive_Connor;
@@ -12,6 +13,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     }
 
     public HardwareMap hwBot = null;
+
+
 
     public void initRobot(HardwareMap hwMap) {
         hwBot = hwMap;
@@ -40,5 +43,11 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
 
+
+
+
     }
+
+
+
 }

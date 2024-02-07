@@ -58,25 +58,67 @@ public class MeepMeepTesting {
 //                                            .lineToLinearHeading(new Pose2d(54,13,Math.toRadians(45)))
 
 //                                            Red Backstage
-                            drive.trajectorySequenceBuilder(new Pose2d(13, -58, -4.7))
-                                    .forward(23)
-                                    .turn(Math.toRadians(45))
-                                    .lineToLinearHeading(new Pose2d(13,-57,Math.toRadians(1)))
+//                            drive.trajectorySequenceBuilder(new Pose2d(13, -58, -4.7))//-4.7
+//                                    .forward(23)
+//                                    .turn(Math.toRadians(45))
+//                                    .lineToLinearHeading(new Pose2d(13,-57,Math.toRadians(1))) //1
 //                                    .forward(35)
 //                                    .strafeRight(Math.toRadians(800))
-                                    .splineToSplineHeading(new Pose2d(45,-31,Math.toRadians(0)),Math.toRadians(90))
-                                    .splineToSplineHeading(new Pose2d(13,-12,Math.toRadians(180)),Math.toRadians(190))
-                                            .lineTo(new Vector2d(-55,-12) )
-                                            .lineToLinearHeading(new Pose2d(-32,-10,219.9))
-                                            .lineTo(new Vector2d(45,-12))
-                                            .strafeRight(25)
-                                            .strafeLeft(Math.toRadians(600))
-                                            .splineToSplineHeading(new Pose2d(13,-12,Math.toRadians(180)),Math.toRadians(190))
-                                            .lineTo(new Vector2d(-55,-12))
-                                            .lineToLinearHeading(new Pose2d(-32,-10,219.9))
-                                            .lineTo(new Vector2d(45,-13))
-                                    .strafeRight(25)
-                                    .strafeRight(17)
+//                                    .splineToSplineHeading(new Pose2d(45,-31,Math.toRadians(0)),Math.toRadians(90))
+//                                    .splineToSplineHeading(new Pose2d(13,-12,Math.toRadians(180)),Math.toRadians(190))
+//                                            .lineTo(new Vector2d(-55,-12) )
+//                                            .lineToLinearHeading(new Pose2d(-32,-10,219.9))
+//                                            .lineTo(new Vector2d(45,-12))
+//                                            .strafeRight(25)
+//                                            .strafeLeft(Math.toRadians(600))
+//                                            .splineToSplineHeading(new Pose2d(13,-12,Math.toRadians(180)),Math.toRadians(190))
+//                                            .lineTo(new Vector2d(-55,-12))
+//                                            .lineToLinearHeading(new Pose2d(-32,-10,219.9))
+//                                            .lineTo(new Vector2d(45,-13))
+//                                    .strafeRight(25)
+//                                    .strafeRight(17)
+
+
+//                               //     Red Backstage NEW
+                            drive.trajectorySequenceBuilder(new Pose2d(13, -58, -4.7))//-4.7
+                                    .lineToLinearHeading(new Pose2d(13,-31,Math.toRadians(182)))
+                                             .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+                                             .lineToLinearHeading(new Pose2d(13,-59,Math.toRadians(182)))
+                                    .lineTo(new Vector2d(-52,-59))
+                                    .lineTo(new Vector2d(-52,-36))
+                                    .lineTo(new Vector2d(-52,-59))
+                                    .lineTo(new Vector2d(13,-59))
+                                    .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+                                    .lineTo(new Vector2d(45,-59))
+                                   .forward(5)
+//
+
+                                    //red audience new
+//                                    drive.trajectorySequenceBuilder(new Pose2d(-36, -58, -4.7))
+//                                            .lineToLinearHeading(new Pose2d(-36,-31,Math.toRadians(182)))
+//                                            .lineTo(new Vector2d(-36,-20))
+//                                            .splineToConstantHeading(new Vector2d(-52,-11),Math.toRadians(-180))
+//                                            .lineTo(new Vector2d(37,-11))
+//                                            .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+//                                            .lineToLinearHeading(new Pose2d(37,-11,Math.toRadians(180 )))
+//                                            .lineTo(new Vector2d(-52,-11))
+//                                            .lineTo(new Vector2d(37,-11))
+//                                            .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+//                                            .lineToLinearHeading(new Pose2d(45,-10,Math.toRadians(-45)))
+//                                            .forward(5)
+
+
+
+
+
+
+//                            //RED BACKSTAGE SIMPLE (For Acker)
+//                                    drive.trajectorySequenceBuilder(new Pose2d(13, -58, -4.7))
+//                                            .lineToLinearHeading(new Pose2d(13,-31,Math.toRadians(182)))
+//                                             .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+//                                            .lineToLinearHeading(new Pose2d(45,-10,Math.toRadians(-45)))
+//                                            .forward(5)
+
 
 
                                             //Red Audience
@@ -105,8 +147,8 @@ public class MeepMeepTesting {
 
 
 
+                                    .build()
 
-                                            .build()
                     );
 
             meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)

@@ -10,6 +10,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public HardwareMap hwBot = null;
     public DcMotor lazySusan;
     public Servo rackgear = null;
+
+    public DcMotor sidewaysLinearMotor;
 //    public DcMotor candyLauncherLeft;
 //    public DcMotor candyLauncherRight;
 
@@ -58,6 +60,12 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rackgear = hwBot.get(Servo.class,"rackgear_servo");
         rackgear.setDirection(Servo.Direction.FORWARD);
 
+        sidewaysLinearMotor = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+        sidewaysLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        sidewaysLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 //        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 //        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
@@ -85,5 +93,17 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //    public void launcherOff(){
 //        candyLauncherLeft.setPower(0);
 //        candyLauncherRight.setPower(0);
+
+
+    public void sidewaysLinearMotorRetract(){
+        sidewaysLinearMotor.setPower(-100);
+    }
+
+    public void sidewaysLinearMotorExtend() {
+        sidewaysLinearMotor.setPower(100);
+    }
+    public void stopSidewaysLinearMotor(){
+        sidewaysLinearMotor.setPower(0);
+    }
 //    }
 }
