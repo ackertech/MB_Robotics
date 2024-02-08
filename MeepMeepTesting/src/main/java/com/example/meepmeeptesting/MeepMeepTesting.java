@@ -80,18 +80,18 @@ public class MeepMeepTesting {
 
 
 //                               //     Red Backstage NEW
-                            drive.trajectorySequenceBuilder(new Pose2d(13, -58, -4.7))//-4.7
-                                    .lineToLinearHeading(new Pose2d(13,-31,Math.toRadians(182)))
-                                             .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
-                                             .lineToLinearHeading(new Pose2d(13,-59,Math.toRadians(182)))
-                                    .lineTo(new Vector2d(-52,-59))
-                                    .lineTo(new Vector2d(-52,-36))
-                                    .lineTo(new Vector2d(-52,-59))
-                                    .lineTo(new Vector2d(13,-59))
-                                    .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
-                                    .lineTo(new Vector2d(45,-59))
-                                   .forward(5)
-//
+//                            drive.trajectorySequenceBuilder(new Pose2d(13, -58, -4.7))//-4.7
+//                                    .lineToLinearHeading(new Pose2d(13,-31,Math.toRadians(182)))
+//                                             .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+//                                             .lineToLinearHeading(new Pose2d(13,-59,Math.toRadians(182)))
+//                                    .lineTo(new Vector2d(-52,-59))
+//                                    .lineTo(new Vector2d(-52,-36))
+//                                    .lineTo(new Vector2d(-52,-59))
+//                                    .lineTo(new Vector2d(13,-59))
+//                                    .lineToLinearHeading(new Pose2d(45,-31,Math.toRadians(1)))
+//                                    .lineTo(new Vector2d(45,-59))
+//                                   .forward(5)
+////
 
                                     //red audience new
 //                                    drive.trajectorySequenceBuilder(new Pose2d(-36, -58, -4.7))
@@ -108,6 +108,35 @@ public class MeepMeepTesting {
 //                                            .forward(5)
 
 
+
+                                    //blue backstage new
+//                            drive.trajectorySequenceBuilder(new Pose2d(13, 58, 4.7))
+//                                    .lineToLinearHeading(new Pose2d(13,31,Math.toRadians(182)))
+//                                    .lineToLinearHeading(new Pose2d(45,31,Math.toRadians(1)))
+//                                    .lineToLinearHeading(new Pose2d(13,59,Math.toRadians(182)))
+//                                    .lineTo(new Vector2d(-52,59))
+//                                    .lineTo(new Vector2d(-52,36))
+//                                    .lineTo(new Vector2d(-52,59))
+//                                    .lineTo(new Vector2d(13,59))
+//                                    .lineToLinearHeading(new Pose2d(45,31,Math.toRadians(1)))
+//                                    .lineTo(new Vector2d(45,59))
+//                                   .forward(5)
+
+
+                                    //blue audience new
+                            drive.trajectorySequenceBuilder(new Pose2d(-35, 58, 4.7))
+                                    .lineToLinearHeading(new Pose2d(-36,31,Math.toRadians(182)))
+                                    .lineTo(new Vector2d(-36,20))
+                                    .splineToConstantHeading(new Vector2d(-52,11),Math.toRadians(-180))
+                                    .lineTo(new Vector2d(37,11))
+                                    .lineToLinearHeading(new Pose2d(45,31,Math.toRadians(1)))
+                                    .lineToLinearHeading(new Pose2d(37,11,Math.toRadians(180 )))
+                                    .lineTo(new Vector2d(-52,11))
+                                    .lineTo(new Vector2d(37,11))
+                                    .lineToLinearHeading(new Pose2d(45,31,Math.toRadians(1)))
+                                    .lineToLinearHeading(new Pose2d(45,5,Math.toRadians(45)))
+                                    .forward(5)
+//
 
 
 
