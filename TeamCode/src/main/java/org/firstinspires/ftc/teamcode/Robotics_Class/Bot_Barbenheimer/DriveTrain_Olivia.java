@@ -79,6 +79,14 @@ public class DriveTrain_Olivia {
         this.linearOp = linearOp;
     }
 
+    public void  tankDrive (double leftPower, double rightPower) {
+        frontLeftMotor.setPower(leftPower);
+        rearLeftMotor.setPower(leftPower);
+
+        frontRightMotor.setPower(rightPower);
+        rearRightMotor.setPower(rightPower);
+    }
+
 }
 
 

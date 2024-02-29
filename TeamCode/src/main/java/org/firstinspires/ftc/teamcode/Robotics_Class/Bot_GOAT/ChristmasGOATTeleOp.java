@@ -24,7 +24,7 @@ public class ChristmasGOATTeleOp extends OpMode {
         bot.initDrive(hardwareMap);
         //bot.initWormGear(hardwareMap);
         //bot.initLinearMotor(hardwareMap);
-        bot.initServos(hardwareMap);
+        bot.initBear(hardwareMap);
     }
 
 

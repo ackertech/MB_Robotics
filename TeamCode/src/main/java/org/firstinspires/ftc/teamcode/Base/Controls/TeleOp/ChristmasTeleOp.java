@@ -4,12 +4,10 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
-import org.firstinspires.ftc.teamcode.Robotics_Class.Bot_BruceWayne.Connor_Class.SixWheelBot_Connor;
+
 @Disabled
 @TeleOp (name = "Christmas Bot")
 public class ChristmasTeleOp extends OpMode {
@@ -28,9 +26,9 @@ public class ChristmasTeleOp extends OpMode {
     @Override
     public void init () {
         bot.initDrive(hardwareMap);
-        bot.initWormGear(hardwareMap);
-        bot.initLinearMotor(hardwareMap);
-        bot.initServos(hardwareMap);
+        bot.initIgloo(hardwareMap);
+        bot.initPenguin(hardwareMap);
+        bot.initBear(hardwareMap);
     }
 
 

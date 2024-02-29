@@ -49,7 +49,7 @@ public class ChristmasBot extends Christmas_Drive {
     }
 
     // **** Initialize Worm Gear Mechanism ****
-    public void initWormGear(HardwareMap hwMap) {
+    public void initIgloo(HardwareMap hwMap) {
 
         hwBot = hwMap;
         wormGear = hwBot.dcMotor.get("worm_gear");
@@ -59,7 +59,7 @@ public class ChristmasBot extends Christmas_Drive {
     }
 
     // **** Initialize Linear Actuator  ****
-    public void initLinearMotor(HardwareMap hwMap) {
+    public void initPenguin(HardwareMap hwMap) {
 
         hwBot = hwMap;
 
@@ -71,7 +71,7 @@ public class ChristmasBot extends Christmas_Drive {
     }
 
     // **** Initialize Servos ****
-    public void initServos(HardwareMap hwMap) {
+    public void initBear(HardwareMap hwMap) {
 
         hwBot = hwMap;
 

@@ -3,92 +3,131 @@ package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_Barbenheimer;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.util.Range;
 
-import kotlin.math.UMathKt;
-@Disabled
-@TeleOp(name = "Christmas: Barbieheimer", group = "iLab")
+import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
+
+
+@TeleOp(name = "Christmas: Barbenheimer", group = "iLab")
 public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
-    //variable to throttle speed
-    public double speedMultiply = 0.50;
+    double leftStickYVal;
+    double rightStickYVal;
+    double speedMultiply = 1.0;
+    public double leftSidePower;
+    public double rightSidePower;
 
-    //calling constructor
-    public Barbenheimer_Olivia Barb = new Barbenheimer_Olivia();
+    public double iglooPower = 0.90;
 
-    //ignore parent's init method and replace
+
+    public ChristmasBot bot = new ChristmasBot();
+
+
     @Override
-    public void init() {
-        Barb.initRobot(hardwareMap);
+    public void init () {
+        bot.initDrive(hardwareMap);
+        bot.initIgloo(hardwareMap);
+        bot.initPenguin(hardwareMap);
+        bot.initBear(hardwareMap);
     }
 
-    //ignore parents loop method and replace
-    @Override
-    public void loop () {
-        drive();
+
+    public void loop() {
         speedControl();
-        bearControl();
-        penguinControl();
-        iglooControl();
+        rotateIgloo();
+        movePenguin();
+        moveBear();
+        //moveServos();
+        drive();
     }
 
-    //define method to drive robot with gamepad and left stick
-    //for each direction of the y stick, we will call our drivetrain methods
-    public void drive(){
-        if (gamepad1.left_stick_y< -0.1) {
-            Barb.driveForward(speedMultiply * Math.abs(gamepad1.left_stick_y));
-        }else if (gamepad1.left_stick_y > 0.1) {
-            Barb.driveBackward(speedMultiply * Math.abs(gamepad1.left_stick_y));
-        }else if (gamepad1.left_stick_x > 0.1) {
-            Barb.rotateRight(speedMultiply * Math.abs(gamepad1.left_stick_x));
-        }else if (gamepad1.left_stick_x < -0.1) {
-            Barb.rotateLeft(speedMultiply * Math.abs(gamepad1.left_stick_x));
-        }else {
-            Barb.stopMotors();
+
+    public void speedControl ()
+    {
+        if (gamepad1.dpad_up) {
+            speedMultiply = 1.0;
+        }
+        else if (gamepad1.dpad_right) {
+            speedMultiply = 0.75;
+        }
+        else if (gamepad1.dpad_down) {
+            speedMultiply = 0.50;
+        }
+        else if (gamepad1.dpad_left){
+            speedMultiply = .25;
+        }
+
+    }
+
+    public void drive() {
+
+        leftStickYVal = gamepad1.left_stick_y;
+        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+        rightStickYVal = gamepad1.right_stick_y;
+        rightStickYVal = Range.clip(rightStickYVal, -1, 1);
+
+        leftSidePower = speedMultiply * leftStickYVal * (1);
+        rightSidePower = speedMultiply * rightStickYVal * (1);
+        bot.tankDrive(leftSidePower, rightSidePower);
+
+    }
+
+
+    public void rotateIgloo()
+    {
+        if (gamepad1.left_trigger > 0.1) {
+            bot.wormGearRotateForward(iglooPower);
+        }
+
+        else if (gamepad1.right_trigger > 0.1) {
+            bot.wormGearRotateReverse(iglooPower);
+        }
+
+        else
+        {
+            bot.wormGearStop();
         }
     }
 
-    public void bearControl(){
-        if(gamepad1.dpad_up){
-            Barb.bearUp(1);
+    public void movePenguin() {
+        if (gamepad1.left_bumper) {
+            bot.extendLinear(.90);
         }
-        else if(gamepad1.dpad_down){
-            Barb.bearDown(.5);
+
+        else if (gamepad1.right_bumper) {
+            bot.retractLinear(.90);
         }
+        else
+        {
+            bot.stopLinear();
+        }
+
     }
 
-    public void penguinControl(){
-        if(gamepad1.left_bumper){
-            Barb.penguinOut(1);
+    public void moveBear() {
+        if (gamepad1.y) {
+            bot.extendFully();
         }
-        else if(gamepad1.right_bumper){
-            Barb.penguinIn(1);
+        if (gamepad1.b) {
+            bot.extendPartially();
         }
-        else{
-            Barb.stopPenguin();
+
+        if (gamepad1.a) {
+            bot.retractFully();
         }
+
     }
 
-    public void iglooControl(){
-        if(gamepad1.dpad_left){
-            Barb.iglooLeft(1);
+    public void moveServos() {
+        if (gamepad1.a) {
+            bot.rotateLeftOne();
         }
-        else if(gamepad1.dpad_right){
-            Barb.iglooRight(1);
-        }
-        else {
-            Barb.stopIgloo();
-        }
-    }
 
-    //define method to control speed
-    public void speedControl() {
-        if (gamepad1.x){
-            speedMultiply = 1;
+        if (gamepad1.b) {
+            bot.rotateLeftTwo();
         }
-        else if (gamepad1.a){
-            speedMultiply = 0.5;
-        }
+
     }
 
 }
