@@ -54,7 +54,8 @@ public class MechBotTeleOp extends OpMode {
     public void loop() {
         drive();
         driveMode();
-        //telemetryOutput();
+        telemetryOutput();
+        encoderTelemetryOutput();
     }
 
     // Code to run ONCE after the driver presses STOP
@@ -141,20 +142,23 @@ public class MechBotTeleOp extends OpMode {
         else if (gamepad1.dpad_left) {
             currentProfile = PROFILE_2;
         }
-
-
     }
 
-    public void telemetryOutput() {
-        telemetry.addData("LED", "TeleOp Time: " + Bot.currentTime);
-        telemetry.addData("Gamepad", "LeftY: " + leftStickYVal);
-        telemetry.addData("Gamepad", "LeftX: " + leftStickXVal);
-        telemetry.addData("PWR", "FL: " + frontLeftSpeed);
-        telemetry.addData("PWR", "FR: " + frontRightSpeed);
-        telemetry.addData("PWR", "RL: " + rearLeftSpeed);
-        telemetry.addData("PWR", "RR: " + rearRightSpeed);
-        telemetry.update();
+        public void telemetryOutput() {
 
+            telemetry.addData("pwr", "FL mtr: " + frontLeftSpeed);
+            telemetry.addData("pwr", "FR mtr: " + frontRightSpeed);
+            telemetry.addData("pwr", "RL mtr: " + rearLeftSpeed);
+            telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
+            telemetry.update();
+    }
+
+    public void encoderTelemetryOutput(){
+        telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts RL: ", Bot.rearLeftMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts RR: ", Bot.rearRightMotor.getCurrentPosition());
+        telemetry.update();
     }
 
 }

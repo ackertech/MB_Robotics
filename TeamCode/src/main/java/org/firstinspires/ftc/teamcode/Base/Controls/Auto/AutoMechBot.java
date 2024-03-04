@@ -31,6 +31,15 @@ public class AutoMechBot extends LinearOpMode {
 //            updateTelemetry("Drive Forwards");
 //            Bot.driveDirection(1, 2,"FWD");
 //            sleep(1000);
+            updateTelemetry("Driving Forward");
+            Bot.driveForward(.5);
+            sleep(4000);
+            Bot.stopMotors();
+            telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
+            telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
+            telemetry.addData("Encoder Counts BL: ", Bot.rearLeftMotor.getCurrentPosition());
+            telemetry.addData("Encoder Counts BR: ", Bot.rearRightMotor.getCurrentPosition());
+            telemetry.update();
 //
 //            updateTelemetry("Drive Backwards");
 //            Bot.driveDirection(1, 2,"RWD");
