@@ -4,19 +4,43 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public HardwareMap hwBot = null;
     public DcMotor lazySusan;
+
+    boolean isLauncherOn = false;
+
+    public int pullTimer = 350;
+    public int rapidPushTimer = 150; //milliseconds
+    public int rapidPullTimer = 175;
+
+    public DcMotor intake;
+
+    public VoltageSensor voltageSensor = null;
+
+    double flywheelVelocityPerVolt = 42900 / voltageSensor.getVoltage();
+
+    public double launchCoefficient;
     public Servo rackgear = null;
 
-    public DcMotor sidewaysLinearMotor;
+    public ElapsedTime launcherServoTimer;
+
+
+
+    public DcMotor platformLift;
 //    public DcMotor candyLauncherLeft;
 //    public DcMotor candyLauncherRight;
 
     public void initRobot(HardwareMap hwMap) {
         hwBot = hwMap;
+
+
+        voltageSensor = hwBot.voltageSensor.iterator().next();
+        launchCoefficient = 12 / voltageSensor.getVoltage();
 
                                                             //MAYBE.....:
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor"); //Port 0
@@ -25,6 +49,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
 
         lazySusan = hwBot.dcMotor.get("lazy_susan");
+
+        intake = hwBot.dcMotor.get("intake");
 
 //        candyLauncherLeft = hwBot.dcMotor.get("candy_launcher_left"); //REVERSE
 //        candyLauncherRight = hwBot.dcMotor.get("candy_launcher_right"); //FORWARD
@@ -36,6 +62,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
 //        candyLauncherLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 //        candyLauncherRight.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -56,15 +84,17 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
         lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         rackgear = hwBot.get(Servo.class,"rackgear_servo");
         rackgear.setDirection(Servo.Direction.FORWARD);
 
-        sidewaysLinearMotor = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
-        sidewaysLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        sidewaysLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        platformLift = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+        platformLift.setDirection(DcMotorSimple.Direction.FORWARD);
+        platformLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        platformLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        platformLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 //        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 //        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -95,15 +125,75 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //        candyLauncherRight.setPower(0);
 
 
-    public void sidewaysLinearMotorRetract(){
-        sidewaysLinearMotor.setPower(-100);
+    public void platformLiftDown(){
+        platformLift.setPower(-100);
     }
 
-    public void sidewaysLinearMotorExtend() {
-        sidewaysLinearMotor.setPower(100);
+    public void platformLiftUp() {
+        platformLift.setPower(100);
     }
-    public void stopSidewaysLinearMotor(){
-        sidewaysLinearMotor.setPower(0);
+    public void platformLiftStop(){
+        platformLift.setPower(0);
     }
 //    }
+public void platformLiftUp(double power, double ticks) {
+
+    if (Math.abs(platformLift.getCurrentPosition()) < ticks ){
+        platformLiftUp();
+    }
+    else {
+        platformLiftStop();
+    }
+
+}
+
+public void platformLiftDown (double power, double ticks) {
+    if (Math.abs(platformLift.getCurrentPosition()) > ticks ){
+        platformLiftDown();
+    }
+    else {
+        platformLiftStop();
+    }
+
+}
+
+
+public void fireLauncher(){
+
+        if (isLauncherOn==true) {
+            rackgear.setPosition(1);
+            launcherServoTimer.reset();
+
+        }
+    if (launcherServoTimer.milliseconds() > pullTimer && isLauncherOn == true) {
+        rackgear.setPosition(0.1);
+
+    }
+}
+
+
+
+
+
+
+    public void intakeFullSpeed(){
+        intake.setPower(1);
+    }
+    public void intakeHalfPower(){
+        intake.setPower(0.5);
+    }
+    public void intakeSlow(){
+        intake.setPower(0.3);
+    }
+    public void outtakeHalfPower(){
+        intake.setPower(-0.5);
+    }
+
+    public void outtakeFullSpeed(){
+        intake.setPower(-1);
+    }
+
+    public void intakeStop(){
+        intake.setPower(0);
+    }
 }

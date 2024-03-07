@@ -41,6 +41,7 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
@@ -237,6 +238,11 @@ public final class TankDrive {
         }for (DcMotorEx m : rearLeftMotor) {
             m.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
+
+        frontleftMotor.get(0).setDirection(DcMotorSimple.Direction.REVERSE);
+        frontrightMotor.get(0).setDirection(DcMotorSimple.Direction.FORWARD);
+        rearLeftMotor.get(0).setDirection(DcMotorSimple.Direction.REVERSE);
+        rearRightMotor.get(0).setDirection(DcMotorSimple.Direction.FORWARD);
 
         // TODO: reverse motor directions if needed
         //   leftMotors.get(0).setDirection(DcMotorSimple.Direction.REVERSE);
