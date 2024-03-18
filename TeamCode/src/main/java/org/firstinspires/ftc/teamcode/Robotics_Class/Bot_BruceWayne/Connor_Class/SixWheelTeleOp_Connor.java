@@ -252,13 +252,13 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
      public void linearActuator(){
         if (gamepad2.dpad_left) {
-            sixWheelBot.platformLiftUp();
+            sixWheelBot.linearActuatorUp();
         }
         else if (gamepad2.dpad_right) {
-            sixWheelBot.platformLiftDown();
+            sixWheelBot.linearActuatorDown();
         }
         else {
-            sixWheelBot.platformLiftStop();
+            sixWheelBot.linearActuatorStop();
         }
      }
 
@@ -275,13 +275,14 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
         if (  sixWheelBot.isLauncherOn == true) {
             flywheel.setPower(1);
-            sixWheelBot.platformLiftUp(0.85,200);
+           // sixWheelBot.linearActuatorUp(0.85,200);
             //  flywheel.setVelocity(2800);
+            sixWheelBot.linearSlideUp(0.95,1950);
         }
 
         else if  (sixWheelBot.isLauncherOn == false) {
             flywheel.setPower(0);
-            sixWheelBot.platformLiftDown(0.8,1);
+            sixWheelBot.linearSlideDown(0.8,1);
             gamepad1.rumble(1500);
         }
 
@@ -344,7 +345,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
             telemetry.addLine("REVERSE ONESTICK DRIVE");
         }
 
-        telemetry.addData("Platform Lift Encoder",sixWheelBot.platformLift.getCurrentPosition());
+        telemetry.addData("Platform Lift Encoder",sixWheelBot.linearActuator.getCurrentPosition());
         telemetry.addData("Flywheel Velo",flywheel.getVelocity());
         telemetry.addLine(String.format("Voltage: %.1f", sixWheelBot.voltageSensor.getVoltage()));
 

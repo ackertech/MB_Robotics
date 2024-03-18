@@ -12,6 +12,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public HardwareMap hwBot = null;
     public DcMotor lazySusan;
 
+    public DcMotor linearSlide;
+
     boolean isLauncherOn = false;
 
     public int pullTimer = 350;
@@ -31,7 +33,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
 
 
-    public DcMotor platformLift;
+    public DcMotor linearActuator;
 //    public DcMotor candyLauncherLeft;
 //    public DcMotor candyLauncherRight;
 
@@ -90,11 +92,20 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rackgear = hwBot.get(Servo.class,"rackgear_servo");
         rackgear.setDirection(Servo.Direction.FORWARD);
 
-        platformLift = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
-        platformLift.setDirection(DcMotorSimple.Direction.FORWARD);
-        platformLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        platformLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        platformLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        linearActuator = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+        linearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
+        linearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        linearActuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
+        linearSlide = hwBot.dcMotor.get("linearSlide");
+        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
 
 //        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 //        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -125,34 +136,68 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //        candyLauncherRight.setPower(0);
 
 
-    public void platformLiftDown(){
-        platformLift.setPower(-100);
+
+    public void linearSlideUp(){
+        linearSlide.setPower(100);
+    }
+    public void linearSlideDown(){
+        linearSlide.setPower(.85);
+    }
+    public void linearSlideStop(){
+        linearSlide.setPower(0);
     }
 
-    public void platformLiftUp() {
-        platformLift.setPower(100);
+    public void linearActuatorDown(){
+        linearActuator.setPower(-100);
     }
-    public void platformLiftStop(){
-        platformLift.setPower(0);
+
+    public void linearActuatorUp() {
+        linearActuator.setPower(100);
     }
+    public void linearActuatorStop(){
+        linearActuator.setPower(0);
+    }
+
+    public void linearSlideUp(double power, double ticks) {
+
+        if (Math.abs(linearSlide.getCurrentPosition()) < ticks ){
+            linearSlideUp();
+        }
+        else {
+            linearSlideStop();
+        }
+
+    }
+
+    public void linearSlideDown(double power, double ticks) {
+        if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
+            linearSlideDown();
+        }
+        else {
+            linearSlideStop();
+        }
+
+    }
+
+
 //    }
-public void platformLiftUp(double power, double ticks) {
+public void linearActuatorUp(double power, double ticks) {
 
-    if (Math.abs(platformLift.getCurrentPosition()) < ticks ){
-        platformLiftUp();
+    if (Math.abs(linearActuator.getCurrentPosition()) < ticks ){
+        linearActuatorUp();
     }
     else {
-        platformLiftStop();
+        linearActuatorStop();
     }
 
 }
 
-public void platformLiftDown (double power, double ticks) {
-    if (Math.abs(platformLift.getCurrentPosition()) > ticks ){
-        platformLiftDown();
+public void linearActuatorDown(double power, double ticks) {
+    if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
+        linearActuatorDown();
     }
     else {
-        platformLiftStop();
+        linearActuatorStop();
     }
 
 }
