@@ -348,7 +348,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
         telemetry.addData("Platform Lift Encoder",sixWheelBot.linearActuator.getCurrentPosition());
         telemetry.addData("Flywheel Velo",flywheel.getVelocity());
-        telemetry.addLine(String.format("Voltage: %.1f", sixWheelBot.voltageSensor.getVoltage()));
+      //  telemetry.addLine(String.format("Voltage: %.1f", sixWheelBot.voltageSensor.getVoltage()));
 
 
         telemetry.update();

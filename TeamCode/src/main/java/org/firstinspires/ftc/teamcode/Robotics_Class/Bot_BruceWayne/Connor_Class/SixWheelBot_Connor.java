@@ -22,9 +22,9 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public DcMotor intake;
 
-    public VoltageSensor voltageSensor = null;
-
-    double flywheelVelocityPerVolt = 42900 / voltageSensor.getVoltage();
+//    public VoltageSensor voltageSensor = null;
+//
+//    double flywheelVelocityPerVolt = 42900 / voltageSensor.getVoltage();
 
     public double launchCoefficient;
     public Servo rackgear = null;
@@ -41,8 +41,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         hwBot = hwMap;
 
 
-        voltageSensor = hwBot.voltageSensor.iterator().next();
-        launchCoefficient = 12 / voltageSensor.getVoltage();
+//        voltageSensor = hwBot.voltageSensor.iterator().next();
+//        launchCoefficient = 12 / voltageSensor.getVoltage();
 
                                                             //MAYBE.....:
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor"); //Port 0
