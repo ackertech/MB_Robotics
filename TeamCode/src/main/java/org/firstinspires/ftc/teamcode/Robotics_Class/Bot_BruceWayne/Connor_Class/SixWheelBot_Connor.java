@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public HardwareMap hwBot = null;
-    public DcMotor lazySusan;
+ //  public DcMotor lazySusan;
 
     public DcMotor linearSlide;
 
@@ -50,7 +50,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");// Port 1
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
 
-        lazySusan = hwBot.dcMotor.get("lazy_susan");
+       // lazySusan = hwBot.dcMotor.get("lazy_susan");
 
         intake = hwBot.dcMotor.get("intake");
 
@@ -63,7 +63,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
+       // lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
 
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -84,7 +84,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+   //     lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -114,17 +114,17 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     }
 
 
-    public void lazySusanLeft (double power) {
-        lazySusan.setPower(Math.abs(power));
-    }
-
-    public void lazySusanRight (double power) {
-        lazySusan.setPower(-Math.abs(power));
-    }
-
-    public void lazySusanStop(){
-        lazySusan.setPower(0);
-    }
+//    public void lazySusanLeft (double power) {
+//        lazySusan.setPower(Math.abs(power));
+//    }c
+//
+//    public void lazySusanRight (double power) {
+//        lazySusan.setPower(-Math.abs(power));
+//    }
+//
+//    public void lazySusanStop(){
+//        lazySusan.setPower(0);
+//    }
 
 //    public void launcherOn(){
 //        candyLauncherRight.setPower(1);
