@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_BruceWayne.Connor_Class;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -31,9 +32,11 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public ElapsedTime launcherServoTimer;
 
+    DcMotorEx flywheel;
 
 
-    public DcMotor linearActuator;
+
+  //  public DcMotor linearActuator;
 //    public DcMotor candyLauncherLeft;
 //    public DcMotor candyLauncherRight;
 
@@ -49,6 +52,15 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");// Port 2
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");// Port 1
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
+
+
+        flywheel = hwMap.get(DcMotorEx.class,"candy_launcher_left");
+//
+        flywheel.setDirection(DcMotorSimple.Direction.FORWARD);
+//
+        flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        flywheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        flywheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
        // lazySusan = hwBot.dcMotor.get("lazy_susan");
 
@@ -91,12 +103,12 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
         rackgear = hwBot.get(Servo.class,"rackgear_servo");
         rackgear.setDirection(Servo.Direction.FORWARD);
-
-        linearActuator = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
-        linearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
-        linearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        linearActuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        linearActuator = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+//        linearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
+//        linearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        linearActuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         linearSlide = hwBot.dcMotor.get("linearSlide");
@@ -147,16 +159,16 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         linearSlide.setPower(0);
     }
 
-    public void linearActuatorDown(){
-        linearActuator.setPower(-100);
-    }
-
-    public void linearActuatorUp() {
-        linearActuator.setPower(100);
-    }
-    public void linearActuatorStop(){
-        linearActuator.setPower(0);
-    }
+//    public void linearActuatorDown(){
+//        linearActuator.setPower(-100);
+//    }
+//
+//    public void linearActuatorUp() {
+//        linearActuator.setPower(100);
+//    }
+//    public void linearActuatorStop(){
+//        linearActuator.setPower(0);
+//    }
 
     public void linearSlideUp(double power, double ticks) {
 
@@ -169,38 +181,38 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     }
 
-    public void linearSlideDown(double power, double ticks) {
-        if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
-            linearSlideDown();
-        }
-        else {
-            linearSlideStop();
-        }
-
-    }
-
-
+//    public void linearSlideDown(double power, double ticks) {
+//        if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
+//            linearSlideDown();
+//        }
+//        else {
+//            linearSlideStop();
+//        }
+//
 //    }
-public void linearActuatorUp(double power, double ticks) {
+//
+//
+////    }
+//public void linearActuatorUp(double power, double ticks) {
+//
+//    if (Math.abs(linearActuator.getCurrentPosition()) < ticks ){
+//        linearActuatorUp();
+//    }
+//    else {
+//        linearActuatorStop();
+//    }
+//
+//}
+//
+//public void linearActuatorDown(double power, double ticks) {
+//    if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
+//        linearActuatorDown();
+//    }
+//    else {
+//        linearActuatorStop();
+//    }
 
-    if (Math.abs(linearActuator.getCurrentPosition()) < ticks ){
-        linearActuatorUp();
-    }
-    else {
-        linearActuatorStop();
-    }
-
-}
-
-public void linearActuatorDown(double power, double ticks) {
-    if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
-        linearActuatorDown();
-    }
-    else {
-        linearActuatorStop();
-    }
-
-}
+//}
 
 
 public void fireLauncher(){
