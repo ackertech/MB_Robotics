@@ -58,6 +58,8 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
        sixWheelBot. isLauncherOn = false;
 
+       sixWheelBot.flywheel.setVelocityPIDFCoefficients(0,0,0,0);
+
 
 //
 //
