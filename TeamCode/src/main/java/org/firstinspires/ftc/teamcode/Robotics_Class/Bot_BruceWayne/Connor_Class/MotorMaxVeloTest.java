@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+
 @TeleOp(name = "Max Velocity Test - Flywheel")
 public class MotorMaxVeloTest extends LinearOpMode {
     DcMotorEx motor;
@@ -25,12 +27,18 @@ public class MotorMaxVeloTest extends LinearOpMode {
            motor.setPower(1);
             currentVelocity = motor.getVelocity();
 
+           motor.getCurrent(CurrentUnit.MILLIAMPS);
+//           if (motor.getCurrent(CurrentUnit.MILLIAMPS) > 6000) {
+//               motor.setPower(0);
+//           }
+
             if (currentVelocity > maxVelocity) {
                 maxVelocity = currentVelocity;
             }
 
             telemetry.addData("current velocity", currentVelocity);
             telemetry.addData("maximum velocity", maxVelocity);
+            telemetry.addData("Motor Power Milliamps",motor.getCurrent(CurrentUnit.MILLIAMPS));
             telemetry.update();
         }
     }
