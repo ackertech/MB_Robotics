@@ -16,10 +16,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 @TeleOp(name = "Max Velocity Test - Flywheel")
 public class MotorMaxVeloTest extends LinearOpMode {
     DcMotorEx motor;
-    private PIDController  controller;
 
-    public static double p = 0, i = 0, d = 0;
-    public static double f = 0;
+    public static double p = 0, i = 0, d = 0, f = 0;
+
     double currentVelocity;
     double maxVelocity = 0.0;
 
@@ -40,7 +39,7 @@ public class MotorMaxVeloTest extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-        //  motor.setVelocityPIDFCoefficients(0,0,0,0);
+        //  motor.setVelocityPIDFCoefficients(p,i,d,f);
 
 
             motor.setPower(1);
