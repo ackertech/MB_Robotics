@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_BruceWayne.Connor_Clas
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @TeleOp(name = "Max Velocity Test - Flywheel")
@@ -14,6 +15,8 @@ public class MotorMaxVeloTest extends LinearOpMode {
     @Override
     public void runOpMode() {
         motor = hardwareMap.get(DcMotorEx.class, "candy_launcher_left");
+        motor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        motor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         waitForStart();
 
 
