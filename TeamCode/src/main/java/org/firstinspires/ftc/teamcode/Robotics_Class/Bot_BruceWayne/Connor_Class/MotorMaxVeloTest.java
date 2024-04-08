@@ -56,7 +56,7 @@ public class MotorMaxVeloTest extends LinearOpMode {
 
             telemetry.addData("current velocity", currentVelocity);
             telemetry.addData("maximum velocity", maxVelocity);
-            telemetry.addData("Motor Power Milliamps",motor.getCurrent(CurrentUnit.MILLIAMPS));
+            telemetry.addData("Motor Current Milliamps",motor.getCurrent(CurrentUnit.MILLIAMPS));
             telemetry.update();
         }
     }
