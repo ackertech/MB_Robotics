@@ -34,6 +34,8 @@ public class MotorMaxVeloTest extends LinearOpMode {
         motor = hardwareMap.get(DcMotorEx.class, "candy_launcher_left");
        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         waitForStart();
 
