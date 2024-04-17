@@ -39,7 +39,7 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
 
         public enum driveDirections {
             STOP,
-            DRIVE_FORWARD, DRIVE_BACK, STRAFE_LEFT, STRAFE_RIGHT
+            DRIVE_FORWARD, DRIVE_BACK, STRAFE_LEFT, STRAFE_RIGHT, DIAGONAL_LEFT_FORWARD, DIAGONAL_RIGHT_FORWARD,DIAGONAL_LEFT_BACK,DIAGONAL_RIGHT_BACK
         }
         driveDirections driveDirection = driveDirections.STOP;
 
@@ -79,7 +79,7 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
 
         // Method that corrects the robots original heading.
         // Method assumes the heading to correct to has been set outside of this method
-        public void gyroCorrection(double speed, double targetAngle) {
+        public void gyroTurn(double speed, double targetAngle) {
             currentHeading = getHeading();
             if (currentHeading >= targetAngle + headingTolerance && LinearOp.opModeIsActive()) {
                 while (currentHeading >= targetAngle + headingTolerance && LinearOp.opModeIsActive()) {
@@ -104,35 +104,9 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
             stopMotors();
             currentHeading = getHeading();
         }
-
-        public void gyroPath (double speed, double targetAngle) {
-            currentHeading = getHeading();
-            if (currentHeading >= targetAngle + headingTolerance && LinearOp.opModeIsActive()) {
-                while (currentHeading >= targetAngle + headingTolerance && LinearOp.opModeIsActive()) {
-                    rotateRight(speed);
-
-                    currentHeading = getHeading();
-                    LinearOp.telemetry.addData("Current Angle: ", currentHeading);
-                    LinearOp.telemetry.addData("Target Angle: ", targetAngle);
-                    LinearOp.telemetry.update();
-                }
-            } else if (currentHeading <= targetAngle - headingTolerance && LinearOp.opModeIsActive()) ;
-            {
-                while (currentHeading <= targetAngle - headingTolerance && LinearOp.opModeIsActive()) {
-                    rotateLeft(speed);
-
-                    currentHeading = getHeading();
-                    LinearOp.telemetry.addData("Current Angle: ", currentHeading);
-                    LinearOp.telemetry.addData("Target Angle: ", targetAngle);
-                    LinearOp.telemetry.update();
-                }
-            }
-            stopMotors();
-            currentHeading = getHeading();
-        }
-
         // Method allows robot to rotate using the IMU Yaw Heading
         // Method resets the heading so there is a full rotation based on targetAngle
+    /* COMBINED GYRO PATH AND CORRECTION FROM OLD VERSION INTO GYRO TURN - They were literally the same thing*/
         public void rotateByGyro(double speed, double targetAngle) {
             resetHeading();
             currentHeading = getHeading();
@@ -159,6 +133,9 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
             stopMotors();
             currentHeading = getHeading();
         }
+
+        //pretty useless, would not recommend using - outdated
+    //resets encoder value (heading) every time, results in less acurate localization
 
         // ************** Basic Drive Method ***********************
 
@@ -367,9 +344,13 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
                 minPowerStart = 0.2;
                 minPowerStop = 0.2;
             }
-            else {
+            else if (driveDirection == driveDirections.STRAFE_LEFT || driveDirection == driveDirections.STRAFE_RIGHT ){
                 minPowerStart = 0.4;
                 minPowerStop = 0.4;
+            }
+            else {
+                minPowerStart = 0.65;
+                minPowerStop = 0.65;
             }
 
             double power;
@@ -430,6 +411,22 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
                         rearLeftMotor.setPower(power);
                         rearRightMotor.setPower(-power);
                         break;
+                    case DIAGONAL_LEFT_BACK:
+                        frontLeftMotor.setPower(power);
+                        rearRightMotor.setPower(power);
+                        break;
+                    case DIAGONAL_RIGHT_BACK:
+                        frontRightMotor.setPower(power);
+                        rearLeftMotor.setPower(power);
+                        break;
+                    case DIAGONAL_LEFT_FORWARD:
+                        frontRightMotor.setPower(-power);
+                        rearLeftMotor.setPower(-power);
+                        break;
+                    case DIAGONAL_RIGHT_FORWARD:
+                        frontLeftMotor.setPower(-power);
+                        rearRightMotor.setPower(-power);
+                        break;
                     default:
                         stopMotors();
                         break;
@@ -446,8 +443,11 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
                 if (driveDirection == driveDirections.DRIVE_FORWARD || driveDirection == driveDirections.DRIVE_BACK) {
                     currentDistance = getEncoderAvgDistanceX();
                 }
-                else {
+                else if  (driveDirection == driveDirections.STRAFE_LEFT || driveDirection == driveDirections.STRAFE_RIGHT ){
                     currentDistance = getEncoderAvgDistanceY();
+                }
+                else {
+                    currentDistance = getEncoderAvgDistanceX() + getEncoderAvgDistanceY();
                 }
 //            currentDistance = getEncoderAvgDistanceX();
             }
@@ -456,92 +456,7 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
 
         }
 
-        public void speedAccelerationStrafe (double rotations, double maxPower, driveDirections driveDirection) {
-            double targetDistance = rotations * ODO_TICKS_PER_ROTATION;
 
-            resetEncoders();
-            double accelerationDistance = targetDistance * 0.2;
-            double decelerationDistance = targetDistance * 0.7;
-            double minPowerStart = .2;
-            double minPowerStop = 0.2;
-            double power;
-            double currentDistance = getEncoderAvgDistanceY();
-
-            while(getEncoderAvgDistanceY() < targetDistance && LinearOp.opModeIsActive()){
-
-
-                // Acceleration
-                if (currentDistance < accelerationDistance) {
-                    power = maxPower * (currentDistance / accelerationDistance);
-                    power = Range.clip(power, minPowerStart,maxPower);
-                    LinearOp.telemetry.addData("< 0.2: ", power);
-                }
-
-                // Deceleration
-                else if (currentDistance > targetDistance - decelerationDistance) {
-                    power = maxPower * ((targetDistance - currentDistance) / decelerationDistance);
-                    power = Range.clip(power, minPowerStop, maxPower);
-                    LinearOp.telemetry.addData("> 0.2: ", power);
-                }
-
-                // Constant Power
-                else {
-
-                    power = maxPower;
-                    power = Range.clip(power, minPowerStart,maxPower);
-                    LinearOp.telemetry.addData("Main Drive: ", power);
-                }
-                LinearOp.telemetry.update();
-
-                // Incremental Power Assigned to Motors
-                switch (driveDirection) {
-                    case STOP:
-                        stopMotors();
-                        break;
-                    case DRIVE_FORWARD:
-                        frontLeftMotor.setPower(power);
-                        frontRightMotor.setPower(power);
-                        rearLeftMotor.setPower(power);
-                        rearRightMotor.setPower(power);
-                        break;
-                    case DRIVE_BACK:
-                        frontLeftMotor.setPower(-power);
-                        frontRightMotor.setPower(-power);
-                        rearLeftMotor.setPower(-power);
-                        rearRightMotor.setPower(-power);
-                        break;
-                    case STRAFE_LEFT:
-                        frontLeftMotor.setPower(-power);
-                        frontRightMotor.setPower(power);
-                        rearLeftMotor.setPower(-power);
-                        rearRightMotor.setPower(power);
-                        break;
-                    case STRAFE_RIGHT:
-                        frontLeftMotor.setPower(power);
-                        frontRightMotor.setPower(-power);
-                        rearLeftMotor.setPower(power);
-                        rearRightMotor.setPower(-power);
-                        break;
-                    default:
-                        stopMotors();
-                        break;
-                }
-
-
-                try {
-                    Thread.sleep(10);
-                }
-                catch (InterruptedException e)
-                {
-                    Thread.currentThread().interrupt();//re-interrupt the thread
-                }
-
-                currentDistance = getEncoderAvgDistanceY();
-            }
-
-            stopMotors();
-
-        }
 
         // *********  Helper methods for Encoders******************
         // Helper Method to reset encoders
@@ -568,6 +483,96 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
         public double getEncoderAvgDistanceY() {
             return Math.abs(centerEncoder.getCurrentPosition());
         }
+
+
+
+
+        /* USAGE EXAMPLE:
+
+    double GYRO_PATH_SPD = .5;
+    double GYRO_CORRECT_SPD = .21;
+    double MAX_SPD = 1.0;
+    double FAST_SPD = .7;
+    double MED_SPD = .5;
+    double STRAFE_SPD = .8;
+    double LONG_STRAFE_SPD = 1;
+    int SLEEP_GYRO = 150;
+    int SLEEP_TIME = 100;
+
+
+      Bot.speedAcceleration(3, FAST_SPD, MecanumDrive.driveDirections.DRIVE_FORWARD);
+            sleep(SLEEP_TIME);
+            Bot.gyroCorrection(GYRO_PATH_SPD, 45);
+            sleep(SLEEP_GYRO);
+            Bot.leftPixelClawOpen();
+            Bot.speedAcceleration(.5, MED_SPD, MecanumDrive.driveDirections.DRIVE_BACK);
+            sleep(100);
+            Bot.speedAcceleration(.5, STRAFE_SPD, MecanumDrive.driveDirections.STRAFE_RIGHT);
+            sleep(100);
+            Bot.speedAcceleration(.2, MED_SPD, MecanumDrive.driveDirections.DRIVE_FORWARD);
+            sleep(100);
+            Bot.gyroPath(GYRO_CORRECT_SPD, 25);
+            sleep(100);
+            Bot.gyroCorrection(GYRO_CORRECT_SPD, 25);
+            sleep(100);
+            Bot.speedAcceleration(.1, MED_SPD, MecanumDrive.driveDirections.DRIVE_FORWARD);
+            sleep(100);
+            Bot.leftPixelClawClose();
+            sleep(100);
+            Bot.gyroCorrection(GYRO_CORRECT_SPD, 0);
+            sleep(100);
+            Bot.speedAcceleration(0.13 ,    STRAFE_SPD, MecanumDrive.driveDirections.STRAFE_LEFT); //.11
+            sleep(100);
+            Bot.gyroCorrection(GYRO_CORRECT_SPD, 0);
+            sleep(100);
+            Bot.speedAcceleration(4.0, FAST_SPD, MecanumDrive.driveDirections.DRIVE_FORWARD);
+            sleep(100);
+            Bot.gyroPath(GYRO_PATH_SPD, 90);
+            sleep(100);
+            Bot.gyroCorrection(GYRO_CORRECT_SPD, 90);
+            sleep(100);
+            //            DRIVE TO BACKDROP
+            Bot.speedAcceleration(13.1, FAST_SPD, MecanumDrive.driveDirections.DRIVE_BACK);
+            sleep(100);
+            Bot.gyroCorrection(GYRO_CORRECT_SPD, 90);
+            sleep(100);
+            Bot.speedAcceleration(2.5, STRAFE_SPD, MecanumDrive.driveDirections.STRAFE_LEFT);
+            sleep(100);
+            Bot.gyroPath(GYRO_PATH_SPD, -90);
+            sleep(100);
+            Bot.gyroCorrection(GYRO_CORRECT_SPD, -90);
+            sleep(100);
+
+            dropPixelBackdrop();
+
+//            Bot.gyroCorrection(GYRO_CORRECT_SPD, -90);
+            sleep(100);
+
+            Bot.speedAcceleration(1.0, STRAFE_SPD, MecanumDrive.driveDirections.STRAFE_LEFT);
+
+
+
+
+
+            public void dropPixelBackdrop() {
+//        Need full power or motor stalls.
+        Bot.rightWormgearUp(1, 430);
+        sleep(100);
+        Bot.driveForward(.3);
+        sleep(1000);
+        Bot.stopMotors();
+        Bot.linearSlideExtend(.8,390);
+        sleep(500);
+        Bot.rightPixelClawClose();
+        sleep(1500);
+        Bot.linearSlideRetract(.8,200);
+        sleep(500);
+        Bot.speedAcceleration(0.8, MAX_SPD, MecanumDrive.driveDirections.DRIVE_BACK);
+        sleep(1000);
+        Bot.stopMotors();
+    }
+
+    */
 
 
 
