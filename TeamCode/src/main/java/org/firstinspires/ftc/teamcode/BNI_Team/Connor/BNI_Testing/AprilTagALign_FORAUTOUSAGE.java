@@ -24,6 +24,10 @@ public abstract class AprilTagALign_FORAUTOUSAGE extends LinearOpMode {
     public int webCamWidth = 960;
     public int webCamHeight = 720;
 
+    boolean isRobotAlligned = false;
+
+
+
     final double DESIRED_DISTANCE = 12.0;
     //  Drive = Error * Gain    Make these values smaller for smoother control, or larger for a more aggressive response.
     final double SPEED_GAIN  =  0.02  ;   //  Forward Speed Control "Gain". eg: Ramp up to 50% power at a 25 inch error.   (0.50 / 25.0)
@@ -52,7 +56,7 @@ public abstract class AprilTagALign_FORAUTOUSAGE extends LinearOpMode {
         double drive = 0;        // Desired forward power/speed (-1 to +1)
         double strafe = 0;        // Desired strafe power/speed (-1 to +1)
         double turn = 0;        // Desired turning power/speed (-1 to +1)
-        boolean isRobotAlligned = false;
+        isRobotAlligned = false;
 
 
         initAprilTag();

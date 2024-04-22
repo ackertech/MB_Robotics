@@ -54,6 +54,12 @@ public class AprilTagAlign_AutoTest extends AprilTagALign_FORAUTOUSAGE {
             sleep(100);
             telemetry.addLine("APRIL TAG ALIGNMENT");
             sleep(500);
+            if (isRobotAlligned == true) {
+                telemetry.addLine("Robot is Alligned");
+            }
+            else if (isRobotAlligned == false) {
+                telemetry.addLine("RObot is NOT alligned");
+            }
             telemetry.update();
 
             requestOpModeStop();
