@@ -1,12 +1,10 @@
 package org.firstinspires.ftc.teamcode.Base.Drivetrains;
 
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
@@ -251,6 +249,54 @@ public class MecanumDrive {
                 }
 
 
+    // Drive Using to Run To Position
+    public void driveForwardToPosition(double speed, double rotations) {
+
+        int targetPosition = (int) (rotations * TICKS_PER_ROTATION);
+
+        // Set motor run modes to RUN_TO_POSITION
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rearLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rearRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // Set target positions for all motors
+        frontLeftMotor.setTargetPosition(targetPosition);
+        frontRightMotor.setTargetPosition(targetPosition);
+        rearLeftMotor.setTargetPosition(targetPosition);
+        rearRightMotor.setTargetPosition(targetPosition);
+
+        // Set motor power to move forward
+        double power = speed;
+        frontLeftMotor.setPower(power);
+        frontRightMotor.setPower(power);
+        rearLeftMotor.setPower(power);
+        rearRightMotor.setPower(power);
+
+        // Loop until all motors reach their target positions
+        while (linearOp.opModeIsActive() && frontLeftMotor.isBusy() && frontRightMotor.isBusy()
+                && rearLeftMotor.isBusy() && rearRightMotor.isBusy()) {
+            // You can add additional logic here if needed
+            linearOp.telemetry.addData("Status", "Driving to position");
+            linearOp.telemetry.update();
+        }
+
+        // Stop all motors
+        frontLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        rearLeftMotor.setPower(0);
+        rearRightMotor.setPower(0);
+
+        // Set motor run modes back to RUN_USING_ENCODER
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rearLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rearRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Display a message when the movement is complete
+        linearOp.telemetry.addData("Status", "Movement complete");
+        linearOp.telemetry.update();
+    }
 
 
     // Consolidated Method (in Beta Testing) for combining all mecanum movements
