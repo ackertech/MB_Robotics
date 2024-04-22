@@ -8,6 +8,8 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDir
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.ExposureControl;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.GainControl;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.BNI_Testing.RipOffRoadrunner_Adapted.RipOffRoadrunner_Adapted_MecanumDrive;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Robots.ProgramingBot;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -16,6 +18,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AprilTagALign_FORAUTOUSAGE extends LinearOpMode {
+
+
+    public ProgramingBot Bot = new ProgramingBot();
+    public int webCamWidth = 960;
+    public int webCamHeight = 720;
 
     final double DESIRED_DISTANCE = 12.0;
     //  Drive = Error * Gain    Make these values smaller for smoother control, or larger for a more aggressive response.
@@ -33,14 +40,14 @@ public abstract class AprilTagALign_FORAUTOUSAGE extends LinearOpMode {
     private DcMotor rearRightMotor = null;
 
     private static final boolean USE_WEBCAM = true;  // Set true to use a webcam, or false for a phone camera
-    private static final int DESIRED_TAG_ID = 2;     // Choose the tag you want to approach or set to -1 for ANY tag.
+   // private static final int DESIRED_TAG_ID = 2;     // Choose the tag you want to approach or set to -1 for ANY tag.
     private VisionPortal visionPortal;
     private AprilTagProcessor aprilTag;
     private AprilTagDetection desiredTag = null;
 
 
 
-    public void AprilTagAutoAdjust() {
+    public void AprilTagAutoAdjust(int DESIRED_TAG_ID) {
         boolean targetFound = false;    // Set to true when an AprilTag target is detected
         double drive = 0;        // Desired forward power/speed (-1 to +1)
         double strafe = 0;        // Desired strafe power/speed (-1 to +1)
@@ -50,19 +57,20 @@ public abstract class AprilTagALign_FORAUTOUSAGE extends LinearOpMode {
 
         initAprilTag();
 
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "front_left_motor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "front_right_motor");
-        rearLeftMotor = hardwareMap.get(DcMotor.class, "rear_left_motor");
-        rearRightMotor = hardwareMap.get(DcMotor.class, "rear_right_motor");
+//        frontLeftMotor = hardwareMap.get(DcMotor.class, "front_left_motor");
+//        frontRightMotor = hardwareMap.get(DcMotor.class, "front_right_motor");
+//        rearLeftMotor = hardwareMap.get(DcMotor.class, "rear_left_motor");
+//        rearRightMotor = hardwareMap.get(DcMotor.class, "rear_right_motor");
+//
+//
+//        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+//        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+//        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+//        rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
 
-
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
-
-        if (USE_WEBCAM)
+        if (USE_WEBCAM) {
             setManualExposure(6, 250);  // Use low exposure time to reduce motion blur
+        }
 
 
 

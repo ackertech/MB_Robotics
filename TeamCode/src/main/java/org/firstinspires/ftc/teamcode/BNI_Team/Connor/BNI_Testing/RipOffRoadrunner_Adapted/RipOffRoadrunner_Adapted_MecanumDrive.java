@@ -22,6 +22,8 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
 
 
 
+
+
         public LinearOpMode LinearOp = null;
 
         public static final double TICKS_PER_ROTATION = 386.3;
@@ -74,6 +76,7 @@ public class RipOffRoadrunner_Adapted_MecanumDrive {
 
         // Method that corrects the robots original heading.
         // Method assumes the heading to correct to has been set outside of this method
+    //bad/old
         public void gyroTurn(double speed, double targetAngle) {
             currentHeading = getHeading();
             if (currentHeading >= targetAngle + headingTolerance && LinearOp.opModeIsActive()) {

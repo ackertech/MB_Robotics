@@ -11,9 +11,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.teamcode.BNI_Team.Connor.BNI_Testing.RipOffRoadrunner_Adapted.RipOffRoadrunner_Adapted_MecanumDrive;
 import org.firstinspires.ftc.teamcode.BNI_Team.Connor.Drivetrains.MecanumDrive_Connor;
 
-public class ProgramingBot extends MecanumDrive_Connor {
+public class ProgramingBot extends RipOffRoadrunner_Adapted_MecanumDrive {
 
     public HardwareMap hwBot = null;
 
