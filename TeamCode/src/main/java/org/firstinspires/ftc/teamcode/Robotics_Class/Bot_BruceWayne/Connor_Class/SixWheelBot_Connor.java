@@ -1,22 +1,51 @@
 package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_BruceWayne.Connor_Class;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public HardwareMap hwBot = null;
-    public DcMotor lazySusan;
+ //  public DcMotor lazySusan;
+
+    public DcMotor linearSlide;
+
+    boolean isLauncherOn = false;
+
+    public int pullTimer = 350;
+    public int rapidPushTimer = 150; //milliseconds
+    public int rapidPullTimer = 175;
+
+    public DcMotor intake;
+
+//    public VoltageSensor voltageSensor = null;
+//
+//    double flywheelVelocityPerVolt = 42900 / voltageSensor.getVoltage();
+
+    public double launchCoefficient;
     public Servo rackgear = null;
 
-    public DcMotor sidewaysLinearMotor;
+    public ElapsedTime launcherServoTimer;
+
+    DcMotorEx flywheel;
+
+
+
+  //  public DcMotor linearActuator;
 //    public DcMotor candyLauncherLeft;
 //    public DcMotor candyLauncherRight;
 
     public void initRobot(HardwareMap hwMap) {
         hwBot = hwMap;
+
+
+//        voltageSensor = hwBot.voltageSensor.iterator().next();
+//        launchCoefficient = 12 / voltageSensor.getVoltage();
 
                                                             //MAYBE.....:
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor"); //Port 0
@@ -24,7 +53,18 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");// Port 1
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
 
-        lazySusan = hwBot.dcMotor.get("lazy_susan");
+
+        flywheel = hwMap.get(DcMotorEx.class,"candy_launcher_left");
+//
+        flywheel.setDirection(DcMotorSimple.Direction.FORWARD);
+//
+        flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        flywheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        flywheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+       // lazySusan = hwBot.dcMotor.get("lazy_susan");
+
+        intake = hwBot.dcMotor.get("intake");
 
 //        candyLauncherLeft = hwBot.dcMotor.get("candy_launcher_left"); //REVERSE
 //        candyLauncherRight = hwBot.dcMotor.get("candy_launcher_right"); //FORWARD
@@ -35,7 +75,9 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
+       // lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
 //        candyLauncherLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 //        candyLauncherRight.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -54,17 +96,28 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+   //     lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
         rackgear = hwBot.get(Servo.class,"rackgear_servo");
         rackgear.setDirection(Servo.Direction.FORWARD);
+//
+//        linearActuator = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+//        linearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
+//        linearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        linearActuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        sidewaysLinearMotor = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
-        sidewaysLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        sidewaysLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        linearSlide = hwBot.dcMotor.get("linearSlide");
+        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
 
 //        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 //        candyLauncherRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -73,17 +126,17 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     }
 
 
-    public void lazySusanLeft (double power) {
-        lazySusan.setPower(Math.abs(power));
-    }
-
-    public void lazySusanRight (double power) {
-        lazySusan.setPower(-Math.abs(power));
-    }
-
-    public void lazySusanStop(){
-        lazySusan.setPower(0);
-    }
+//    public void lazySusanLeft (double power) {
+//        lazySusan.setPower(Math.abs(power));
+//    }c
+//
+//    public void lazySusanRight (double power) {
+//        lazySusan.setPower(-Math.abs(power));
+//    }
+//
+//    public void lazySusanStop(){
+//        lazySusan.setPower(0);
+//    }
 
 //    public void launcherOn(){
 //        candyLauncherRight.setPower(1);
@@ -95,15 +148,109 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //        candyLauncherRight.setPower(0);
 
 
-    public void sidewaysLinearMotorRetract(){
-        sidewaysLinearMotor.setPower(-100);
+
+    public void linearSlideUp(){
+        linearSlide.setPower(100);
+    }
+    public void linearSlideDown(){
+        linearSlide.setPower(.85);
+    }
+    public void linearSlideStop(){
+        linearSlide.setPower(0);
     }
 
-    public void sidewaysLinearMotorExtend() {
-        sidewaysLinearMotor.setPower(100);
-    }
-    public void stopSidewaysLinearMotor(){
-        sidewaysLinearMotor.setPower(0);
-    }
+//    public void linearActuatorDown(){
+//        linearActuator.setPower(-100);
 //    }
+//
+//    public void linearActuatorUp() {
+//        linearActuator.setPower(100);
+//    }
+//    public void linearActuatorStop(){
+//        linearActuator.setPower(0);
+//    }
+
+    public void linearSlideUp(double power, double ticks) {
+
+        if (Math.abs(linearSlide.getCurrentPosition()) < ticks ){
+            linearSlideUp();
+        }
+        else {
+            linearSlideStop();
+        }
+
+    }
+
+//    public void linearSlideDown(double power, double ticks) {
+//        if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
+//            linearSlideDown();
+//        }
+//        else {
+//            linearSlideStop();
+//        }
+//
+//    }
+//
+//
+////    }
+//public void linearActuatorUp(double power, double ticks) {
+//
+//    if (Math.abs(linearActuator.getCurrentPosition()) < ticks ){
+//        linearActuatorUp();
+//    }
+//    else {
+//        linearActuatorStop();
+//    }
+//
+//}
+//
+//public void linearActuatorDown(double power, double ticks) {
+//    if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
+//        linearActuatorDown();
+//    }
+//    else {
+//        linearActuatorStop();
+//    }
+
+//}
+
+
+public void fireLauncher(){
+
+        if (isLauncherOn==true) {
+            rackgear.setPosition(1);
+            launcherServoTimer.reset();
+
+        }
+    if (launcherServoTimer.milliseconds() > pullTimer && isLauncherOn == true) {
+        rackgear.setPosition(0.1);
+
+    }
+}
+
+
+
+
+
+
+    public void intakeFullSpeed(){
+        intake.setPower(1);
+    }
+    public void intakeHalfPower(){
+        intake.setPower(0.5);
+    }
+    public void intakeSlow(){
+        intake.setPower(0.3);
+    }
+    public void outtakeHalfPower(){
+        intake.setPower(-0.5);
+    }
+
+    public void outtakeFullSpeed(){
+        intake.setPower(-1);
+    }
+
+    public void intakeStop(){
+        intake.setPower(0);
+    }
 }

@@ -6,71 +6,159 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Barbenheimer_Olivia extends DriveTrain_Olivia{
-
-    //Variable for hardware mapping
     public HardwareMap hwBot = null;
 
-    //Constructor
+    // Motors
+    public DcMotor wormGear;
+    public DcMotor linerarMotor;
+
+    // Servos
+    public Servo rackGear = null;
+    public Servo servoOne;
+    public Servo servoTwo;
+
+
     public Barbenheimer_Olivia() {}
 
-    //Method used to init robot
-    public void initRobot (HardwareMap hwMap) {
+    // **** Initialize Drivetrain ****
+    public void initDrive(HardwareMap hwMap) {
         hwBot = hwMap;
 
-        //mapping drivetrain variables to the values in driver hub
-        frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
-        frontRightMotor = hwBot.dcMotor.get("front_right_motor");
-        rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
-        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
+        // Drive Motors
+        frontLeftMotor = hwBot.dcMotor.get("front_left_motor"); //Port 0
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor");// Port 2
+        rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");// Port 1
+        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
 
-
-        //setting direction of the motor
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-
-
-        //motor behavior(w/ or w/o encoders)
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        //how motors act with zero power
-        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
-        penguinSlide = hwBot.dcMotor.get("penguin_slide");
-        penguinSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-        penguinSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        iglooTurn = hwBot.dcMotor.get("igloo_turn");
-        iglooTurn.setDirection(DcMotorSimple.Direction.FORWARD);
-        iglooTurn.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        bearLift = hwBot.servo.get("bear_lift");
-        bearLift.setDirection(Servo.Direction.FORWARD);
+        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
     }
-    public void penguinOut(double power) {
-        penguinSlide.setPower(Math.abs(power));
-    }
-    public void penguinIn(double power){
-        penguinSlide.setPower(-Math.abs(power));
-    }
-    public void stopPenguin(){
-        penguinSlide.setPower(0);
+
+    // **** Initialize Worm Gear Mechanism ****
+    public void initIgloo(HardwareMap hwMap) {
+
+        hwBot = hwMap;
+        wormGear = hwBot.dcMotor.get("worm_gear");
+        wormGear.setDirection(DcMotorSimple.Direction.FORWARD);
+        wormGear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
     }
 
-    public void iglooLeft(double power){iglooTurn.setPower(-Math.abs(power));}
-    public void iglooRight(double power){iglooTurn.setPower(Math.abs(power));}
-    public void stopIgloo(){iglooTurn.setPower(0);}
+    // **** Initialize Linear Actuator  ****
+    public void initPenguin(HardwareMap hwMap) {
 
-    public void bearUp(double position){bearLift.setPosition(1);}
-    public void bearDown(double position){bearLift.setPosition(.5);}
+        hwBot = hwMap;
+
+        linerarMotor = hwBot.dcMotor.get("horizontal_motor");
+        linerarMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        linerarMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linerarMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        linerarMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+    // **** Initialize Servos ****
+    public void initBear(HardwareMap hwMap) {
+
+        hwBot = hwMap;
+
+        rackGear = hwBot.get(Servo.class, "rackgear_servo");
+        rackGear.setDirection(Servo.Direction.FORWARD);
+
+        servoOne = hwBot.get(Servo.class, "servo_1");
+        servoOne.setDirection(Servo.Direction.FORWARD);
+
+        servoTwo = hwBot.get(Servo.class, "servo_2");
+        servoTwo.setDirection(Servo.Direction.FORWARD);
+
+    }
+
+    // **** Movement Methods for Worm Gear ****
+    public void wormGearRotateForward (double power) {
+
+        wormGear.setPower(Math.abs(power));
+    }
+
+    public void wormGearRotateReverse (double power) {
+
+        wormGear.setPower(-Math.abs(power));
+    }
+
+    public void wormGearStop () {
+
+        wormGear.setPower(0);
+    }
+
+    // **** Movement Methods for Linear Actuator ****
+    public void extendLinear (double power) {
+
+        linerarMotor.setPower(Math.abs(power));
+    }
+
+    public void retractLinear (double power) {
+
+        linerarMotor.setPower(-Math.abs(power));
+    }
+
+    public void stopLinear () {
+
+        linerarMotor.setPower(0);
+    }
+
+
+    // **** Movement Methods for Normal Servo One ****
+
+    public void rotateRightOne() {
+        servoOne.setPosition(0.8);
+    }
+
+    public void rotateLeftOne() {
+        servoOne.setPosition(0.1);
+    }
+
+    public void rotateMidOne() {
+        servoOne.setPosition(0.2);
+    }
+
+
+    // **** Movement Methods for Normal Servo Two ****
+
+    public void rotateRightTwo() {
+        servoOne.setPosition(0.8);
+    }
+
+    public void rotateLeftTwo() {
+        servoOne.setPosition(0.2);
+    }
+
+    public void rotateMidTwo() {
+        servoOne.setPosition(0.5);
+    }
+
+
+    // **** Movement Methods for Rack Gear Servo ****
+
+    public void extendFully() {
+        rackGear.setPosition(0.8);
+    }
+
+    public void extendPartially() {
+        rackGear.setPosition(0.5);
+    }
+
+    public void retractFully() {
+        rackGear.setPosition(0.2);
+    }
 
 
 }

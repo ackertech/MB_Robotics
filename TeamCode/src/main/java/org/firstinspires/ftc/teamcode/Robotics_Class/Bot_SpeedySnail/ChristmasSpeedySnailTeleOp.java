@@ -24,9 +24,9 @@ public class ChristmasSpeedySnailTeleOp extends OpMode {
     @Override
     public void init () {
         bot.initDrive(hardwareMap);
-        bot.initWormGear(hardwareMap);
+        bot.initIgloo(hardwareMap);
         //bot.initLinearMotor(hardwareMap);
-        bot.initServos(hardwareMap);
+        bot.initBear(hardwareMap);
     }
 
 
