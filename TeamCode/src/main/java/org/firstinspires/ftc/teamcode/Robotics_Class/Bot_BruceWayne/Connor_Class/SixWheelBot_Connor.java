@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class SixWheelBot_Connor extends SixWheelDrive_Connor {
@@ -13,7 +12,15 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public HardwareMap hwBot = null;
  //  public DcMotor lazySusan;
 
-    public DcMotor linearSlide;
+    public Servo platformRotator = null;
+
+    public Servo ballonPopper = null;
+
+    public Servo discPusherArm = null;
+
+    public Servo platformStopperArm = null;
+    public DcMotorEx linearSlideMotorA;
+    public DcMotorEx linearSLideMotorB;
 
     boolean isLauncherOn = false;
 
@@ -21,7 +28,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public int rapidPushTimer = 150; //milliseconds
     public int rapidPullTimer = 175;
 
-    public DcMotor intake;
+    public DcMotorEx intake;
 
 //    public VoltageSensor voltageSensor = null;
 //
@@ -54,8 +61,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");// Port 3
 
 
-        flywheel = hwMap.get(DcMotorEx.class,"candy_launcher_left");
-//
+        flywheel = hwBot.get(DcMotorEx.class,"candy_launcher_left");
         flywheel.setDirection(DcMotorSimple.Direction.FORWARD);
 //
         flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -64,7 +70,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
        // lazySusan = hwBot.dcMotor.get("lazy_susan");
 
-        intake = hwBot.dcMotor.get("intake");
+        intake = hwBot.get(DcMotorEx.class,"intake");
 
 //        candyLauncherLeft = hwBot.dcMotor.get("candy_launcher_left"); //REVERSE
 //        candyLauncherRight = hwBot.dcMotor.get("candy_launcher_right"); //FORWARD
@@ -77,7 +83,6 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
        // lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
 //        candyLauncherLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 //        candyLauncherRight.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -98,6 +103,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
    //     lazySusan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
@@ -111,12 +117,19 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //        linearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
-        linearSlide = hwBot.dcMotor.get("linearSlide");
-        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        linearSlideMotorA = hwBot.get(DcMotorEx.class,"linearSlide");
+        linearSlideMotorA.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlideMotorA.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        linearSlideMotorA.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideMotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        linearSLideMotorB = hwBot.get(DcMotorEx.class,"linearSlide");
+        linearSLideMotorB.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSLideMotorB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSLideMotorB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSLideMotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 //
 
 //        candyLauncherLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -149,14 +162,17 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
 
 
-    public void linearSlideUp(){
-        linearSlide.setPower(100);
+    public void linearSlideUp(double power){
+        linearSlideMotorA.setPower(power);
+        linearSLideMotorB.setPower(power);
     }
-    public void linearSlideDown(){
-        linearSlide.setPower(.85);
+    public void linearSlideDown(double power){
+        linearSlideMotorA.setPower(power);
+        linearSLideMotorB.setPower(power);
     }
     public void linearSlideStop(){
-        linearSlide.setPower(0);
+        linearSlideMotorA.setPower(0);
+        linearSLideMotorB.setPower(0);
     }
 
 //    public void linearActuatorDown(){
@@ -172,8 +188,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public void linearSlideUp(double power, double ticks) {
 
-        if (Math.abs(linearSlide.getCurrentPosition()) < ticks ){
-            linearSlideUp();
+        if (Math.abs(linearSlideMotorA.getCurrentPosition()) < ticks ){
+            linearSlideUp(power);
         }
         else {
             linearSlideStop();
@@ -181,16 +197,16 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     }
 
-//    public void linearSlideDown(double power, double ticks) {
-//        if (Math.abs(linearActuator.getCurrentPosition()) > ticks ){
-//            linearSlideDown();
-//        }
-//        else {
-//            linearSlideStop();
-//        }
-//
-//    }
-//
+    public void linearSlideDown(double power, double ticks) {
+        if (Math.abs(linearSlideMotorA.getCurrentPosition()) > ticks ){
+            linearSlideDown(power);
+        }
+        else {
+            linearSlideStop();
+        }
+
+    }
+
 //
 ////    }
 //public void linearActuatorUp(double power, double ticks) {
@@ -218,12 +234,12 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 public void fireLauncher(){
 
         if (isLauncherOn==true) {
-            rackgear.setPosition(1);
+            discPusherArm.setPosition(1);
             launcherServoTimer.reset();
 
         }
     if (launcherServoTimer.milliseconds() > pullTimer && isLauncherOn == true) {
-        rackgear.setPosition(0.1);
+        discPusherArm.setPosition(0.1);
 
     }
 }
