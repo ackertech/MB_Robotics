@@ -87,7 +87,7 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
         if(gamepad1.b){
             bot.flipMace();
         }
-        else{
+        else if(gamepad1.left_bumper){
             bot.resetFlipMace();
         }
 
@@ -101,7 +101,7 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
             bot.lowerLauncher(.75, 48);
         }
         else{
-            bot.stopLauncherUp();
+            bot.stopLauncher();
         }
     }
 

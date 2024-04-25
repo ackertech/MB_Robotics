@@ -11,11 +11,12 @@ public class BarbBot extends DriveTrain_Olivia{
     // Motors
     public DcMotor outtakeOne;
     public DcMotor outtakeTwo;
-    public DcMotor launcherUp;
+    public DcMotor launcher;
 
     // Servos
     public Servo catapult;
     public Servo maceFlipper;
+    public Servo discPusher;
 
 
     public BarbBot() {}
@@ -51,14 +52,17 @@ public class BarbBot extends DriveTrain_Olivia{
         outtakeTwo.setDirection(DcMotorSimple.Direction.REVERSE);
         outtakeTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        launcherUp = hwBot.dcMotor.get("launcher_up");
-        launcherUp.setDirection(DcMotor.Direction.REVERSE);
-        launcherUp.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        launcher = hwBot.dcMotor.get("launcher_up");
+        launcher.setDirection(DcMotor.Direction.REVERSE);
+        launcher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        discPusher = hwBot.servo.get("disc_pusher");
+        discPusher.setDirection(Servo.Direction.FORWARD);
 
         catapult = hwBot.servo.get("catapult");
         catapult.setDirection(Servo.Direction.FORWARD);
 
-        maceFlipper = hwBot.servo.get("mace_flipper");
+        maceFlipper = hwBot.servo.get("mace");
         maceFlipper.setDirection(Servo.Direction.FORWARD);
 
     }
@@ -75,28 +79,36 @@ public class BarbBot extends DriveTrain_Olivia{
         outtakeTwo.setPower(0);
     }
 
-    public void stopLauncherUp(){
-        launcherUp.setPower(0);
+    public void stopLauncher(){
+        launcher.setPower(0);
+    }
+
+    public void raiseLauncher(double power){
+        launcher.setPower(Math.abs(power));
+    }
+
+    public void lowerLauncher(double power){
+        launcher.setPower(-Math.abs(power));
     }
 
     public void raiseLauncher(double power, double ticks){
-        launcherUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        launcherUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launcher.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while((Math.abs(launcherUp.getCurrentPosition()) < ticks && linearOp.opModeIsActive())) {
-            launcherUp.setPower(power);
+        while((Math.abs(launcher.getCurrentPosition()) < ticks && linearOp.opModeIsActive())) {
+            raiseLauncher(power););
         }
-        stopLauncherUp();
+        stopLauncher();
     }
 
     public void lowerLauncher(double power, double ticks){
-        launcherUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        launcherUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launcher.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while(Math.abs(launcherUp.getCurrentPosition()) > ticks && linearOp.opModeIsActive()) {
-            launcherUp.setPower(power);
+        while(Math.abs(launcher.getCurrentPosition()) > ticks && linearOp.opModeIsActive()) {
+            lowerLauncher(power);
         }
-        stopLauncherUp();
+        stopLauncher();
     }
 
     // **** Movement Methods for Mace Flipper ****
@@ -109,7 +121,6 @@ public class BarbBot extends DriveTrain_Olivia{
         maceFlipper.setPosition(0.5);
     }
 
-
     // **** Movement Methods for Catapult ****
 
     public void launchCatapult() {catapult.setPosition(0.6);}
@@ -117,6 +128,5 @@ public class BarbBot extends DriveTrain_Olivia{
     public void resetLaunchCatapult() {
         catapult.setPosition(0.2);
     }
-
 
 }
