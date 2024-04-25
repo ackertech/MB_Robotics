@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode.Robotics_Class.Bot_Barbenheimer;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.Base.Robot.ChristmasBot;
 
-
-@TeleOp(name = "Christmas: Barbenheimer", group = "iLab")
+@TeleOp(name = "Carnival Madness: Barbenheimer", group = "iLab")
 public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
     double leftStickYVal;
@@ -16,28 +13,25 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
     double speedMultiply = 1.0;
     public double leftSidePower;
     public double rightSidePower;
+    public double outtakePower = 1;
 
-    public double iglooPower = 0.90;
 
 
-    public ChristmasBot bot = new ChristmasBot();
+    public BarbBot bot = new BarbBot();
 
 
     @Override
     public void init () {
         bot.initDrive(hardwareMap);
-        bot.initIgloo(hardwareMap);
-        bot.initPenguin(hardwareMap);
-        bot.initBear(hardwareMap);
     }
 
 
     public void loop() {
         speedControl();
-        rotateIgloo();
-        movePenguin();
-        moveBear();
-        //moveServos();
+        raiseLaunch();
+        launchDisc();
+        flipMace();
+        launchCatapult();
         drive();
     }
 
@@ -73,61 +67,42 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
     }
 
+    public void launchDisc() {
+        if (gamepad1.right_trigger > 0.1) {bot.launchDisc(outtakePower);}
 
-    public void rotateIgloo()
-    {
-        if (gamepad1.left_trigger > 0.1) {
-            bot.wormGearRotateForward(iglooPower);
-        }
+        else {bot.launcherStop();}
 
-        else if (gamepad1.right_trigger > 0.1) {
-            bot.wormGearRotateReverse(iglooPower);
-        }
-
-        else
-        {
-            bot.wormGearStop();
-        }
     }
 
-    public void movePenguin() {
-        if (gamepad1.left_bumper) {
-            bot.extendLinear(.90);
-        }
 
-        else if (gamepad1.right_bumper) {
-            bot.retractLinear(.90);
+    public void launchCatapult(){
+        if(gamepad1.a){
+            bot.launchCatapult();
         }
-        else
-        {
-            bot.stopLinear();
+        else{
+            bot.resetLaunchCatapult();
+        }
+    }
+    public void flipMace(){
+        if(gamepad1.b){
+            bot.flipMace();
+        }
+        else{
+            bot.resetFlipMace();
         }
 
     }
 
-    public void moveBear() {
-        if (gamepad1.y) {
-            bot.extendFully();
+    public void raiseLaunch(){
+        if(gamepad1.y){
+            bot.raiseLauncher(.75, 50);
         }
-        if (gamepad1.b) {
-            bot.extendPartially();
+        else if(gamepad1.x){
+            bot.lowerLauncher(.75, 48);
         }
-
-        if (gamepad1.a) {
-            bot.retractFully();
+        else{
+            bot.stopLauncherUp();
         }
-
-    }
-
-    public void moveServos() {
-        if (gamepad1.a) {
-            bot.rotateLeftOne();
-        }
-
-        if (gamepad1.b) {
-            bot.rotateLeftTwo();
-        }
-
     }
 
 }

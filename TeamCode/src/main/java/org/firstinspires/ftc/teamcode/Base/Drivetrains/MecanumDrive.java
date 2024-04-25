@@ -16,8 +16,21 @@ public class MecanumDrive {
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
 
+    public DcMotor leftEncoder;
+    public DcMotor rightEncoder;
+    public DcMotor centerEncoder;
+
+
+    //Speed Acceleration stuf
+    public enum driveDirections {
+        STOP,
+        DRIVE_FORWARD, DRIVE_BACK, STRAFE_LEFT, STRAFE_RIGHT
+    }
+    driveDirections driveDirection = driveDirections.STOP;
+
     // These are motor variables from running with encoders (not power)
     public static final double TICKS_PER_ROTATION = 537.7;  //
+    public static final double ODO_TICKS_PER_ROTATION = 2000;
 
     public IMU imu = null;
     public double headingTolerance = 0.5;
@@ -39,11 +52,8 @@ public class MecanumDrive {
     public LinearOpMode linearOp = null;
 
     public void setLinearOp(LinearOpMode linearOp) {
-
         this.linearOp = linearOp;
     }
-
-
 
     // Default Constructors
 
@@ -507,7 +517,251 @@ public class MecanumDrive {
         }
         stopMotors();
     }
+    // Helper Method that averages all the encoder counts using getPosition
+    public double getEncoderAvgDistance() {
+        double average = (Math.abs(frontLeftMotor.getCurrentPosition()) +
+                Math.abs(frontRightMotor.getCurrentPosition()) +
+                Math.abs(rearLeftMotor.getCurrentPosition()) +
+                Math.abs(rearRightMotor.getCurrentPosition()))
+                / 4.0;
+        return Math.abs(average);
+    }
+    // Helper Method to reset encoders
+    public void resetEncoders() {
+        frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rearLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rearRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rearLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rearRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    // Speed Acceleration and Deceleration Method
+    public void speedAcceleration(double rotations, double maxPower, driveDirections driveDirection) {
+        double targetDistance = rotations * TICKS_PER_ROTATION;
+
+        resetEncoders();
+        double accelerationDistance = targetDistance * 0.2;
+        double decelerationDistance = targetDistance * 0.7;
+        double minPowerStart = 0;
+        double minPowerStop = 0;
+        if (driveDirection == driveDirections.DRIVE_FORWARD || driveDirection == driveDirections.DRIVE_BACK) {
+            minPowerStart = 0.2;
+            minPowerStop = 0.2;
+        }
+        else {
+            minPowerStart = 0.4;
+            minPowerStop = 0.4;
+        }
+
+        double power;
+        double currentDistance = frontLeftMotor.getCurrentPosition();
+        currentDistance = getEncoderAvgDistance();
+
+        while(getEncoderAvgDistance() < targetDistance && linearOp.opModeIsActive()){
+
+
+            // Acceleration
+            if (currentDistance < accelerationDistance) {
+                power = maxPower * (currentDistance / accelerationDistance);
+                power = Range.clip(power, minPowerStart,maxPower);
+                linearOp.telemetry.addData("< 0.2: ", power);
+                linearOp.telemetry.addData("Encoder Counts FR: ", frontRightMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts FL: ", frontLeftMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts BL: ", rearLeftMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts BR: ", rearRightMotor.getCurrentPosition());
+            }
+
+            // Deceleration
+            else if (currentDistance > targetDistance - decelerationDistance) {
+                power = maxPower * ((targetDistance - currentDistance) / decelerationDistance);
+                power = Range.clip(power, minPowerStop, maxPower);
+                linearOp.telemetry.addData("> 0.2: ", power);
+                linearOp.telemetry.addData("Encoder Counts FR: ", frontRightMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts FL: ", frontLeftMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts BL: ", rearLeftMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts BR: ", rearRightMotor.getCurrentPosition());
+            }
+
+            // Constant Power
+            else {
+
+                power = maxPower;
+                power = Range.clip(power, minPowerStart,maxPower);
+                linearOp.telemetry.addData("Main Drive: ", power);
+                linearOp.telemetry.addData("Encoder Counts FR: ", frontRightMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts FL: ", frontLeftMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts BL: ", rearLeftMotor.getCurrentPosition());
+                linearOp.telemetry.addData("Encoder Counts BR: ", rearRightMotor.getCurrentPosition());
+            }
+            linearOp.telemetry.update();
+
+            // Incremental Power Assigned to Motors
+            switch (driveDirection) {
+                case STOP:
+                    stopMotors();
+                    break;
+                case DRIVE_FORWARD:
+                    frontLeftMotor.setPower(power);
+                    frontRightMotor.setPower(power);
+                    rearLeftMotor.setPower(power);
+                    rearRightMotor.setPower(power);
+                    break;
+                case DRIVE_BACK:
+                    frontLeftMotor.setPower(-power);
+                    frontRightMotor.setPower(-power);
+                    rearLeftMotor.setPower(-power);
+                    rearRightMotor.setPower(-power);
+                    break;
+                case STRAFE_LEFT:
+                    frontLeftMotor.setPower(-power);
+                    frontRightMotor.setPower(power);
+                    rearLeftMotor.setPower(-power);
+                    rearRightMotor.setPower(power);
+                    break;
+                case STRAFE_RIGHT:
+                    frontLeftMotor.setPower(power);
+                    frontRightMotor.setPower(-power);
+                    rearLeftMotor.setPower(power);
+                    rearRightMotor.setPower(-power);
+                    break;
+                default:
+                    stopMotors();
+                    break;
+            }
+
+            try {
+                Thread.sleep(10);
+            }
+            catch (InterruptedException e)
+            {
+                Thread.currentThread().interrupt();//re-interrupt the thread
+            }
+
+//            currentDistance = frontLeftMotor.getCurrentPosition();
+            currentDistance = getEncoderAvgDistance();
+        }
+
+        stopMotors();
+
+    }
+
+    // Speed Acceleration and Deceleration Method
+    public void speedAccelerationwithOdometry(double rotations, double maxPower, driveDirections driveDirection) {
+        resetEncoders();
+        double targetDistance = rotations * ODO_TICKS_PER_ROTATION;
+        double accelerationDistance = targetDistance * 0.2;
+        double decelerationDistance = targetDistance * 0.7;
+        double minPowerStart = 0;
+        double minPowerStop = 0;
+        if (driveDirection == driveDirections.DRIVE_FORWARD || driveDirection == driveDirections.DRIVE_BACK) {
+            minPowerStart = 0.2;
+            minPowerStop = 0.2;
+        }
+        else {
+            minPowerStart = 0.4;
+            minPowerStop = 0.4;
+        }
+
+        double power;
+        double currentDistance = 0;
+
+        while(currentDistance < targetDistance && linearOp.opModeIsActive()){
+
+
+            // Acceleration
+            if (currentDistance < accelerationDistance) {
+                power = maxPower * (currentDistance / accelerationDistance);
+                power = Range.clip(power, minPowerStart,maxPower);
+                linearOp.telemetry.addData("< 0.2: ", power);
+            }
+
+            // Deceleration
+            else if (currentDistance > targetDistance - decelerationDistance) {
+                power = maxPower * ((targetDistance - currentDistance) / decelerationDistance);
+                power = Range.clip(power, minPowerStop, maxPower);
+                linearOp.telemetry.addData("> 0.2: ", power);
+            }
+
+            // Constant Power
+            else {
+
+                power = maxPower;
+                power = Range.clip(power, minPowerStart,maxPower);
+                linearOp.telemetry.addData("Main Drive: ", power);
+            }
+            linearOp.telemetry.update();
+
+            // Incremental Power Assigned to Motors
+            switch (driveDirection) {
+                case STOP:
+                    stopMotors();
+                    break;
+                case DRIVE_FORWARD:
+                    frontLeftMotor.setPower(-power);
+                    frontRightMotor.setPower(-power);
+                    rearLeftMotor.setPower(-power);
+                    rearRightMotor.setPower(-power);
+                    break;
+                case DRIVE_BACK:
+                    frontLeftMotor.setPower(power);
+                    frontRightMotor.setPower(power);
+                    rearLeftMotor.setPower(power);
+                    rearRightMotor.setPower(power);
+                    break;
+                case STRAFE_LEFT:
+                    frontLeftMotor.setPower(power);
+                    frontRightMotor.setPower(-power);
+                    rearLeftMotor.setPower(-power);
+                    rearRightMotor.setPower(power);
+                    break;
+                case STRAFE_RIGHT:
+                    frontLeftMotor.setPower(-power);
+                    frontRightMotor.setPower(power);
+                    rearLeftMotor.setPower(power);
+                    rearRightMotor.setPower(-power);
+                    break;
+                default:
+                    stopMotors();
+                    break;
+            }
+
+
+            try {
+                Thread.sleep(10);
+            }
+            catch (InterruptedException e)
+            {
+                Thread.currentThread().interrupt();//re-interrupt the thread
+            }
+            if (driveDirection == driveDirections.DRIVE_FORWARD || driveDirection == driveDirections.DRIVE_BACK) {
+                currentDistance = getEncoderAvgDistanceX();
+            }
+            else {
+                currentDistance = getEncoderAvgDistanceY();
+            }
+//            currentDistance = getEncoderAvgDistanceX();
+        }
+
+        stopMotors();
+
+    }
+
+    // Helper Method that averages all the encoder counts using getPosition
+    public double getEncoderAvgDistanceX() {
+        double average = (
+                Math.abs(leftEncoder.getCurrentPosition()) +
+                        Math.abs(rightEncoder.getCurrentPosition())
+        ) / 2.0;
+        return Math.abs(average);
+    }
+
+    public double getEncoderAvgDistanceY() {
+        return Math.abs(centerEncoder.getCurrentPosition());
+    }
 
 
 }

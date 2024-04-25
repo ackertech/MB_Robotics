@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Base.Drivetrains.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 
@@ -26,59 +27,28 @@ public class AutoMechBot extends LinearOpMode {
 
         while (opModeIsActive()){
 
-           // Bot.driveForwardPID(4,0.8,0,0);
-
-//            updateTelemetry("Drive Forwards");
-//            Bot.driveDirection(1, 2,"FWD");
-//            sleep(1000);
             updateTelemetry("Driving Forward");
-            Bot.driveForward(.5);
-            sleep(4000);
+            Bot.speedAccelerationwithOdometry(15, 1, MecanumDrive.driveDirections.DRIVE_FORWARD);
             Bot.stopMotors();
-            telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
-            telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
-            telemetry.addData("Encoder Counts BL: ", Bot.rearLeftMotor.getCurrentPosition());
-            telemetry.addData("Encoder Counts BR: ", Bot.rearRightMotor.getCurrentPosition());
-            telemetry.update();
+//            telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
+//            telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
+//            telemetry.addData("Encoder Counts BL: ", Bot.rearLeftMotor.getCurrentPosition());
+//            telemetry.addData("Encoder Counts BR: ", Bot.rearRightMotor.getCurrentPosition());
+//            telemetry.update();
 //
-//            updateTelemetry("Drive Backwards");
-//            Bot.driveDirection(1, 2,"RWD");
-//            sleep(1000);
-//
-//            updateTelemetry("Strafe Right");
-//            Bot.driveDirection(1, 2,"STR");
-//            sleep(1000);
-//
-//            updateTelemetry("Strafe Left");
-//            Bot.driveDirection(1, 2,"STL");
-//            sleep(1000);
-//
-//            updateTelemetry("Rotate Left");
-//            Bot.driveDirection(1, 1,"RL");
-//            sleep(1000);
-//
-//            updateTelemetry("Rotate Right");
-//            Bot.driveDirection(1, 1,"RR");
-//            sleep(1000);
-//
-//            updateTelemetry("Drive Backwards");
-//            Bot.driveDirection(1, 2,"RWD");
-//            sleep(5000);
-
-
             requestOpModeStop();
-
         }
-
         idle();
-
     }
 
     public void updateTelemetry(String comment) {
         telemetry.addLine(comment);
         telemetry.addData("Front Lef Motor: ", Bot.frontLeftMotor.getPower());
-        telemetry.addData("Encoder Counts: ", Bot.frontLeftMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts BL: ", Bot.rearLeftMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts BR: ", Bot.rearRightMotor.getCurrentPosition());
         telemetry.update();
-    }
 
+    }
 }
