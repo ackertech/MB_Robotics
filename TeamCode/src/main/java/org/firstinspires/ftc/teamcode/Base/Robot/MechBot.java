@@ -55,6 +55,19 @@ public class MechBot extends MecanumDrive {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        // Encoders
+        leftEncoder = hwBot.dcMotor.get("left_encoder");  // Port 1
+        rightEncoder = hwBot.dcMotor.get("right_encoder");  // Port 3
+        centerEncoder = hwBot.dcMotor.get("center_encoder");  // Port 2
+
+        leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        centerEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        centerEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         //Timer Reset
         currentTime.reset();
 

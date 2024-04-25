@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.MechBot;
 public class MechBotTeleOp extends OpMode {
 
     // Variables & Constants specific to TelLabBot
-    double leftStickYVal,leftStickXVal, rightStickXVal,rightStickYVal;
+    double leftStickYVal, leftStickXVal, rightStickXVal, rightStickYVal;
     double frontLeftSpeed, frontRightSpeed, rearLeftSpeed, rearRightSpeed;
 
     double powerThreshold = 0;
@@ -42,11 +42,13 @@ public class MechBotTeleOp extends OpMode {
 
     // Runs Repeatedly when driver presses INIT but before pressing PLAY
     @Override
-    public void init_loop() { }
+    public void init_loop() {
+    }
 
     // Runs ONCE when driver presses PLAY
     @Override
-    public void start() { }
+    public void start() {
+    }
 
 
     // RUNS Repeatedly after driver presses PLAY
@@ -55,17 +57,18 @@ public class MechBotTeleOp extends OpMode {
         drive();
         driveMode();
         telemetryOutput();
-        encoderTelemetryOutput();
+        //encoderTelemetryOutput();
     }
 
     // Code to run ONCE after the driver presses STOP
     @Override
-    public void stop() {}
+    public void stop() {
+    }
 
 
     // TeleOp Functions
 
-    public void drive () {
+    public void drive() {
 
         // Joystick values
         double leftStickYVal = -gamepad1.left_stick_y;
@@ -128,37 +131,41 @@ public class MechBotTeleOp extends OpMode {
         }
     }
 
-    public void driveMode () {
+    public void driveMode() {
         if (gamepad1.dpad_up) {
             speedMultiply = 1.0;
-        }
-        else if (gamepad1.dpad_down) {
+        } else if (gamepad1.dpad_down) {
             speedMultiply = 0.5;
         }
 
         if (gamepad1.dpad_right) {
             currentProfile = PROFILE_1;
-        }
-        else if (gamepad1.dpad_left) {
+        } else if (gamepad1.dpad_left) {
             currentProfile = PROFILE_2;
         }
     }
 
-        public void telemetryOutput() {
+    public void telemetryOutput() {
+//
+//        telemetry.addData("pwr", "FL mtr: " + frontLeftSpeed);
+//        telemetry.addData("pwr", "FR mtr: " + frontRightSpeed);
+//        telemetry.addData("pwr", "RL mtr: " + rearLeftSpeed);
+//        telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
 
-            telemetry.addData("pwr", "FL mtr: " + frontLeftSpeed);
-            telemetry.addData("pwr", "FR mtr: " + frontRightSpeed);
-            telemetry.addData("pwr", "RL mtr: " + rearLeftSpeed);
-            telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
-            telemetry.update();
-    }
-
-    public void encoderTelemetryOutput(){
         telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
         telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
-        telemetry.addData("Encoder Counts RL: ", Bot.rearLeftMotor.getCurrentPosition());
-        telemetry.addData("Encoder Counts RR: ", Bot.rearRightMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts BL: ", Bot.rearLeftMotor.getCurrentPosition());
+        telemetry.addData("Encoder Counts BR: ", Bot.rearRightMotor.getCurrentPosition());
+
         telemetry.update();
     }
+
+//    public void encoderTelemetryOutput(){
+//        telemetry.addData("Encoder Counts FR: ", Bot.frontRightMotor.getCurrentPosition());
+//        telemetry.addData("Encoder Counts FL: ", Bot.frontLeftMotor.getCurrentPosition());
+//        telemetry.addData("Encoder Counts RL: ", Bot.rearLeftMotor.getCurrentPosition());
+//        telemetry.addData("Encoder Counts RR: ", Bot.rearRightMotor.getCurrentPosition());
+//        telemetry.update();
+//    }
 
 }
