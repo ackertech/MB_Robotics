@@ -96,7 +96,7 @@ public class BarbBot extends DriveTrain_Olivia{
         launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         while((Math.abs(launcher.getCurrentPosition()) < ticks && linearOp.opModeIsActive())) {
-            raiseLauncher(power););
+            raiseLauncher(power);
         }
         stopLauncher();
     }
