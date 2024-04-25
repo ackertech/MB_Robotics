@@ -16,7 +16,6 @@ public class SixWheelTeleOp_Connor extends OpMode {
     double rightStickYVal;
 
 
-
     double frontLeftSpeed;
     double frontRightSpeed;
     double rearLeftSpeed;
@@ -36,11 +35,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
     public DrivingMode drivingMode = DrivingMode.TANK;
 
 
-  //  DcMotorEx spinnerIntakeR;
-
-
-
-
+    //  DcMotorEx spinnerIntakeR;
 
 
     public SixWheelBot_Connor sixWheelBot = new SixWheelBot_Connor();
@@ -50,15 +45,14 @@ public class SixWheelTeleOp_Connor extends OpMode {
     public void init() {
 
 
-
         sixWheelBot.initRobot(hardwareMap);
 
         speedMultiply = 1;
 
 
-       sixWheelBot. isLauncherOn = false;
+        sixWheelBot.isLauncherOn = false;
 
-       sixWheelBot.flywheel.setVelocityPIDFCoefficients(0,0,0,0);
+        sixWheelBot.flywheel.setVelocityPIDFCoefficients(0, 0, 0, 0);
 
 
 //
@@ -95,8 +89,7 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
         if (gamepad1.left_bumper) {
             speedMultiply = 0.3;
-        }
-        else if (gamepad2.right_bumper) {
+        } else if (gamepad2.right_bumper) {
             speedMultiply = 1;
         }
 //        else if (gamepad1.a == true){
@@ -162,18 +155,46 @@ public class SixWheelTeleOp_Connor extends OpMode {
 //     }
 
     public void intakeControl() {
-        if (gamepad2.right_trigger > 0.2 && gamepad2.right_trigger < 0.55) {
-            sixWheelBot.intakeHalfPower();
-        } else if (gamepad2.right_trigger >= 0.6) {
-            sixWheelBot.intakeFullSpeed();
-        } else if (gamepad2.left_trigger > 0.2 && gamepad2.left_trigger < 0.55) {
-            sixWheelBot.outtakeHalfPower();
-        } else if (gamepad2.left_trigger >= 0.6) {
-            sixWheelBot.outtakeFullSpeed();
+        leftStickYVal = gamepad2.left_stick_y;
+        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+        if (leftStickYVal > 0.1) {
+            sixWheelBot.linearSlideUp(1);
+        } else if (leftStickYVal < -0.1) {
+            sixWheelBot.linearSlideDown(1);
         } else {
-            sixWheelBot.intakeStop();
+            sixWheelBot.linearSlideStop();
         }
+
+
+
+
+
+
+        if(gamepad2.right_trigger >0.2&&gamepad2.right_trigger< 0.55)
+
+    {
+        sixWheelBot.intakeHalfPower();
+    } else if(gamepad2.right_trigger >=0.6)
+
+    {
+        sixWheelBot.intakeFullSpeed();
+    } else if(gamepad2.left_trigger >0.2&&gamepad2.left_trigger< 0.55)
+
+    {
+        sixWheelBot.outtakeHalfPower();
+    } else if(gamepad2.left_trigger >=0.6)
+
+    {
+        sixWheelBot.outtakeFullSpeed();
+    } else
+
+    {
+        sixWheelBot.intakeStop();
     }
+
+}
+
 
     //   public void candyLauncher(){
 //        if (gamepad1.a) {
@@ -273,12 +294,14 @@ public class SixWheelTeleOp_Connor extends OpMode {
             sixWheelBot.flywheel.setPower(1);
            // sixWheelBot.linearActuatorUp(0.85,200);
             //  flywheel.setVelocity(2800);
+         //   sixWheelBot.platformRotator.setPosition(1);
             sixWheelBot.linearSlideUp(0.95,1950);
         }
 
         else if  (sixWheelBot.isLauncherOn == false) {
             sixWheelBot.flywheel.setPower(0);
           //  sixWheelBot.linearSlideDown(0.8,1);
+            //sixWheelBot.platformRotator.setPosition(0.35);
             gamepad1.rumble(1500);
         }
 
