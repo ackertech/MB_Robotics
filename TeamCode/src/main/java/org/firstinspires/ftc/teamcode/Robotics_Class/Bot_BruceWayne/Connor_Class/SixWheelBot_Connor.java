@@ -118,7 +118,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
 
         linearSlideMotorA = hwBot.get(DcMotorEx.class,"linearSlide");
-        linearSlideMotorA.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlideMotorA.setDirection(DcMotorSimple.Direction.FORWARD);
         linearSlideMotorA.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         linearSlideMotorA.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
