@@ -36,10 +36,7 @@ public class AprilTagAlign_AutoTest extends TestingAutoMain {
     final double MAX_AUTO_STRAFE= 0.5;   //  Clip the approach speed to this max value (adjust for your robot)
     final double MAX_AUTO_TURN  = 0.3;   //  Clip the turn speed to this max value (adjust for your robot)
 
-    private DcMotor frontLeftMotor = null;  //  Used to control the left front drive wheel
-    private DcMotor frontRightMotor = null;  //  Used to control the right front drive wheel
-    private DcMotor rearLeftMotor = null;  //  Used to control the left back drive wheel
-    private DcMotor rearRightMotor = null;  //  Used to control the right back drive wheel
+
 
     private static final boolean USE_WEBCAM = true;  // Set true to use a webcam, or false for a phone camera
     private static final int DESIRED_TAG_ID = 2;     // Choose the tag you want to approach or set to -1 for ANY tag.
