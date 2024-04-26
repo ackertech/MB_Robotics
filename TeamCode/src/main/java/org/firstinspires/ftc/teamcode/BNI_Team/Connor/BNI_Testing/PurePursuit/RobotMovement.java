@@ -151,7 +151,19 @@ public abstract class RobotMovement extends LinearOpMode{
         telemetry.update();
 
         // Apply desired axes motions to the drivetrain.
-        moveRobot(-drive, -strafe, -turn);
+
+        if (drive > 12 || strafe > 12) {
+            Bot.frontLeftMotor.setPower(0);
+            Bot.frontRightMotor.setPower(0);
+            Bot.rearLeftMotor.setPower(0);
+            Bot.rearRightMotor.setPower(0);
+        }
+
+        else {
+            moveRobot(-drive, -strafe, -turn);
+        }
+
+
 
         sleep(50);
 
