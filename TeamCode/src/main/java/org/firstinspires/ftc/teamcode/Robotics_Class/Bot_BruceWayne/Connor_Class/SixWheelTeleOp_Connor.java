@@ -66,6 +66,8 @@ public class SixWheelTeleOp_Connor extends OpMode {
         drivingMode();
         intakeControl();
         launcher();
+        servoControl();
+        linearSLideControl();
         //  candyLauncher();
         // lazySusan();
         //linearActuator();
