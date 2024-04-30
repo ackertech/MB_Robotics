@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+
 @TeleOp (name = "Bruce Wayne", group = "iLab")
 public class SixWheelTeleOp_Connor extends OpMode {
     double leftStickYVal;
@@ -290,6 +292,9 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
       //  telemetry.addData("Platform Lift Encoder",sixWheelBot.linearActuator.getCurrentPosition());
         telemetry.addData("Flywheel Velo",sixWheelBot.flywheel.getVelocity());
+        telemetry.addData("Linear SLide Motor A Position:",sixWheelBot.linearSlideMotorA.getCurrentPosition());
+        telemetry.addData("LinearSlide Motor A Current:",sixWheelBot.linearSlideMotorA.getCurrent(CurrentUnit.MILLIAMPS));
+
       //  telemetry.addLine(String.format("Voltage: %.1f", sixWheelBot.voltageSensor.getVoltage()));
 
 
