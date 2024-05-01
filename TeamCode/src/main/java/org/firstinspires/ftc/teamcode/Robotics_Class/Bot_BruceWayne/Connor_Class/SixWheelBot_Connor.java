@@ -12,7 +12,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public HardwareMap hwBot = null;
  //  public DcMotor lazySusan;
 
-    public Servo platformRotator = null;
+    public Servo platformRotatorLeft = null;
+    public Servo platformRotatorRight = null;
 
     public Servo ballonPopper = null;
 
@@ -36,6 +37,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
     public double launchCoefficient;
     public Servo rackgear = null;
+
+    public Servo catapult = null;
 
     public ElapsedTime launcherServoTimer;
 
@@ -62,7 +65,7 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 
 
         flywheel = hwBot.get(DcMotorEx.class,"candy_launcher_left");
-        flywheel.setDirection(DcMotorSimple.Direction.FORWARD);
+        flywheel.setDirection(DcMotorSimple.Direction.REVERSE);
 //
         flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         flywheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -107,8 +110,24 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        rackgear = hwBot.get(Servo.class,"rackgear_servo");
-        rackgear.setDirection(Servo.Direction.FORWARD);
+        ballonPopper = hwBot.get(Servo.class,"rackgear_servo");
+        ballonPopper.setDirection(Servo.Direction.FORWARD);
+
+       catapult = hwBot.get(Servo.class,"catapult");
+        catapult.setDirection(Servo.Direction.FORWARD);
+
+
+        discPusherArm = hwBot.get(Servo.class,"discPusher");
+       discPusherArm.setDirection(Servo.Direction.FORWARD);
+
+        platformRotatorLeft = hwBot.get(Servo.class,"platformRotator");
+        platformRotatorLeft.setDirection(Servo.Direction.FORWARD);
+        platformRotatorRight = hwBot.get(Servo.class, "platformRotatorRight");
+        platformRotatorRight.setDirection(Servo.Direction.REVERSE);
+
+
+
+
 //
 //        linearActuator = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
 //        linearActuator.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -117,14 +136,14 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //        linearActuator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
-        linearSlideMotorA = hwBot.get(DcMotorEx.class,"linearSlide");
+        linearSlideMotorA = hwBot.get(DcMotorEx.class,"linearSlideA");
         linearSlideMotorA.setDirection(DcMotorSimple.Direction.FORWARD);
         linearSlideMotorA.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         linearSlideMotorA.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         linearSlideMotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        linearSLideMotorB = hwBot.get(DcMotorEx.class,"linearSlide");
+        linearSLideMotorB = hwBot.get(DcMotorEx.class,"linearSlideB");
         linearSLideMotorB.setDirection(DcMotorSimple.Direction.REVERSE);
         linearSLideMotorB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -173,6 +192,16 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     public void linearSlideStop(){
         linearSlideMotorA.setPower(0);
         linearSLideMotorB.setPower(0);
+    }
+
+    public void platformLaunchPosition(){
+        platformRotatorLeft.setPosition(0.35);
+        platformRotatorRight.setPosition(0.35);
+    }
+
+    public void platformIntakePosition(){
+        platformRotatorLeft.setPosition(0);
+        platformRotatorRight.setPosition(0);
     }
 
 //    public void linearActuatorDown(){
