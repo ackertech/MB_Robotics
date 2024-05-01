@@ -65,13 +65,14 @@ public class BarbBot extends DriveTrain_Olivia{
         maceFlipper = hwBot.servo.get("mace");
         maceFlipper.setDirection(Servo.Direction.FORWARD);
 
+
     }
 
 
     // **** Movement Methods for Motors ****
     public void launchDisc(double power) {
-        outtakeOne.setPower(Math.abs(power));
-        outtakeTwo.setPower(Math.abs(power));
+        outtakeOne.setPower(-Math.abs(power));
+        outtakeTwo.setPower(-Math.abs(power));
     }
 
     public void launcherStop() {
@@ -91,42 +92,48 @@ public class BarbBot extends DriveTrain_Olivia{
         launcher.setPower(-Math.abs(power));
     }
 
-    public void raiseLauncher(double power, double ticks){
-        launcher.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        while((Math.abs(launcher.getCurrentPosition()) < ticks && linearOp.opModeIsActive())) {
-            raiseLauncher(power);
-        }
-        stopLauncher();
-    }
-
-    public void lowerLauncher(double power, double ticks){
-        launcher.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        while(Math.abs(launcher.getCurrentPosition()) > ticks && linearOp.opModeIsActive()) {
-            lowerLauncher(power);
-        }
-        stopLauncher();
-    }
+//    public void raiseLauncher(double power, double ticks){
+//        launcher.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        while((Math.abs(launcher.getCurrentPosition()) < ticks && linearOp.opModeIsActive())) {
+//            raiseLauncher(power);
+//        }
+//        stopLauncher();
+//    }
+//
+//    public void lowerLauncher(double power, double ticks){
+//        launcher.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        while(Math.abs(launcher.getCurrentPosition()) > ticks && linearOp.opModeIsActive()) {
+//            lowerLauncher(power);
+//        }
+//        stopLauncher();
+//    }
 
     // **** Movement Methods for Mace Flipper ****
 
     public void flipMace() {
-        maceFlipper.setPosition(0.1);
+        maceFlipper.setPosition(0.8);
     }
 
     public void resetFlipMace() {
         maceFlipper.setPosition(0.5);
     }
 
+    // **** Movement Methods for Disc Pusher ****
+
+    public void resetPushDisc(){discPusher.setPosition(0.35);}
+
+    public void pushDisc(){discPusher.setPosition(0.15);}
+
     // **** Movement Methods for Catapult ****
 
-    public void launchCatapult() {catapult.setPosition(0.6);}
+    public void launchCatapult() {catapult.setPosition(0.25);}
 
     public void resetLaunchCatapult() {
-        catapult.setPosition(0.2);
+        catapult.setPosition(0.4);
     }
 
 }

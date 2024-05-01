@@ -28,24 +28,19 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
     public void loop() {
         speedControl();
-        raiseLaunch();
+        raiseLauncher();
         launchDisc();
-        flipMace();
+        //flipMace();
         launchCatapult();
         drive();
+        pushDisc();
     }
 
 
     public void speedControl ()
     {
-        if (gamepad1.dpad_up) {
-            speedMultiply = 1.0;
-        }
-        else if (gamepad1.dpad_right) {
+        if (gamepad1.dpad_right) {
             speedMultiply = 0.75;
-        }
-        else if (gamepad1.dpad_down) {
-            speedMultiply = 0.50;
         }
         else if (gamepad1.dpad_left){
             speedMultiply = .25;
@@ -68,39 +63,48 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
     }
 
     public void launchDisc() {
-        if (gamepad1.right_trigger > 0.1) {bot.launchDisc(outtakePower);}
+        if (gamepad1.dpad_up) {bot.launchDisc(outtakePower);}
 
         else {bot.launcherStop();}
 
     }
 
+    public void pushDisc(){
+        if(gamepad1.left_bumper){
+            bot.pushDisc();
+        }
+        else{
+            bot.resetPushDisc();
+        }
+    }
+
 
     public void launchCatapult(){
-        if(gamepad1.a){
+        if(gamepad1.right_bumper){
             bot.launchCatapult();
         }
         else{
             bot.resetLaunchCatapult();
         }
     }
-    public void flipMace(){
-        if(gamepad1.b){
-            bot.flipMace();
-        }
-        else if(gamepad1.left_bumper){
-            bot.resetFlipMace();
-        }
+//    public void flipMace(){
+//        if(gamepad1.b){
+//            bot.flipMace();
+//        }
+//        else if(gamepad1.x){
+//            bot.resetFlipMace();
+//        }
+//
+//    }
 
-    }
-
-    public void raiseLaunch(){
-        if(gamepad1.y){
-            bot.raiseLauncher(.75, 50);
+    public void raiseLauncher(){
+        if(gamepad1.right_trigger > 0.1){
+            bot.raiseLauncher(.5);
         }
-        else if(gamepad1.x){
-            bot.lowerLauncher(.75, 48);
+        else if(gamepad1.left_trigger > 0.1){
+            bot.lowerLauncher(.5);
         }
-        else{
+        else   {
             bot.stopLauncher();
         }
     }
