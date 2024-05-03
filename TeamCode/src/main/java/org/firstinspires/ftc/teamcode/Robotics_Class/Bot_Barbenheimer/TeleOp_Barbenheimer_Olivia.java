@@ -63,14 +63,14 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
     }
 
     public void launchDisc() {
-        if (gamepad1.dpad_up) {bot.launchDisc(outtakePower);}
+        if (gamepad2.dpad_up) {bot.launchDisc(outtakePower);}
 
         else {bot.launcherStop();}
 
     }
 
     public void pushDisc(){
-        if(gamepad1.left_bumper){
+        if(gamepad2.left_bumper){
             bot.pushDisc();
         }
         else{
@@ -80,7 +80,7 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
 
 
     public void launchCatapult(){
-        if(gamepad1.right_bumper){
+        if(gamepad2.right_bumper){
             bot.launchCatapult();
         }
         else{
@@ -98,10 +98,10 @@ public class TeleOp_Barbenheimer_Olivia extends OpMode {
 //    }
 
     public void raiseLauncher(){
-        if(gamepad1.right_trigger > 0.1){
+        if(gamepad2.right_trigger > 0.1){
             bot.raiseLauncher(.5);
         }
-        else if(gamepad1.left_trigger > 0.1){
+        else if(gamepad2.left_trigger > 0.1){
             bot.lowerLauncher(.5);
         }
         else   {
