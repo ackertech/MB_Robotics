@@ -15,6 +15,8 @@ public class SixWheelTeleOp_Connor extends OpMode {
     double rightStickYVal;
 
 
+
+
     double frontLeftSpeed;
     double frontRightSpeed;
     double rearLeftSpeed;
@@ -169,7 +171,8 @@ public class SixWheelTeleOp_Connor extends OpMode {
         }
 
     }
-    public void servoControl(){
+
+    public void servoControl() {
         if (gamepad2.dpad_up) {
             sixWheelBot.platformLaunchPosition();
         } else if (gamepad2.dpad_down) {
@@ -178,20 +181,18 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
         if (gamepad2.right_bumper) {
             sixWheelBot.catapult.setPosition(0.5);
-        }
-        else if (gamepad2.left_bumper) {
+        } else if (gamepad2.left_bumper) {
             sixWheelBot.catapult.setPosition(0);
         }
 
         if (gamepad2.dpad_left) {
-            sixWheelBot.ballonPopper.setPosition(0.65);
-        }
-        else if (gamepad2.dpad_right) {
+            sixWheelBot.ballonPopper.setPosition(0.45);
+        } else if (gamepad2.dpad_right) {
             sixWheelBot.ballonPopper.setPosition(0);
         }
     }
 
-    public void linearSLideControl(){
+    public void linearSLideControl() {
         leftStickYVal = gamepad2.left_stick_y;
         leftStickYVal = Range.clip(leftStickYVal, -1, 1);
 
@@ -205,43 +206,32 @@ public class SixWheelTeleOp_Connor extends OpMode {
     }
 
 
-     public void launcher(){
+    public void launcher() {
         if (gamepad2.y) {
-            sixWheelBot.isLauncherOn = true;
-        }
-        else if (gamepad2.a) {
-            sixWheelBot. isLauncherOn = false;
-        }
 
-
-
-        if (  sixWheelBot.isLauncherOn == true) {
             sixWheelBot.flywheel.setPower(1);
-           // sixWheelBot.linearActuatorUp(0.85,200);
-            //  flywheel.setVelocity(2800);
-         //   sixWheelBot.platformRotator.setPosition(1);
-            //sixWheelBot.linearSlideUp(0.95,1950);
-        }
+        } else if (gamepad2.a) {
 
-        else if  (sixWheelBot.isLauncherOn == false) {
             sixWheelBot.flywheel.setPower(0);
-          //  sixWheelBot.linearSlideDown(0.8,1);
-            //sixWheelBot.platformRotator.setPosition(0.35);
-            gamepad1.rumble(1500);
-            gamepad1.stopRumble();
+//            gamepad1.rumble(1500);
+//            gamepad1.stopRumble();
         }
 
 
-        if (gamepad2.b &&   sixWheelBot.isLauncherOn == true) {
-           sixWheelBot.fireLauncher();
+
+
+
+        if (gamepad2.left_bumper) {
+            sixWheelBot.discPusherArm.setPosition(1);
+
         }
 
-        if (gamepad2.x &&   sixWheelBot.isLauncherOn==true){
-           sixWheelBot.fireLauncher();
-           sixWheelBot.fireLauncher();
-           sixWheelBot.fireLauncher();
+        if (gamepad2.right_bumper) {
+            sixWheelBot.discPusherArm.setPosition(0);
         }
-     }
+    }
+
+
 
 
 
@@ -258,13 +248,13 @@ public class SixWheelTeleOp_Connor extends OpMode {
             drivingMode= DrivingMode.TANK;
         }
 
-//        else if (gamepad1.x) {
-//            drivingMode = DrivingMode.REVERSETANK;
-//        }
-//
-//        else if (gamepad1.y) {
-//            drivingMode = DrivingMode.REVERSEONESTICK;
-//        }
+        else if (gamepad1.x) {
+            drivingMode = DrivingMode.REVERSETANK;
+        }
+
+        else if (gamepad1.y) {
+            drivingMode = DrivingMode.REVERSEONESTICK;
+        }
     }
 
     public void telemetry(){
