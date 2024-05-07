@@ -180,29 +180,37 @@ public class SixWheelTeleOp_Connor extends OpMode {
         }
 
         if (gamepad2.right_bumper) {
-            sixWheelBot.catapult.setPosition(0.5);
+            sixWheelBot.catapult.setPosition(0.3);
         } else if (gamepad2.left_bumper) {
             sixWheelBot.catapult.setPosition(0);
         }
 
-        if (gamepad2.dpad_left) {
+        if (gamepad2.x) {
             sixWheelBot.ballonPopper.setPosition(0.45);
-        } else if (gamepad2.dpad_right) {
-            sixWheelBot.ballonPopper.setPosition(0);
+        } else if (gamepad2.b) {
+            sixWheelBot.ballonPopper.setPosition(0.25);
         }
     }
 
     public void linearSLideControl() {
-        leftStickYVal = gamepad2.left_stick_y;
-        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-
-        if (leftStickYVal > 0.1) {
-            sixWheelBot.linearSlideUp(1);
-        } else if (leftStickYVal < -0.1) {
-            sixWheelBot.linearSlideDown(1);
-        } else {
-            sixWheelBot.linearSlideStop();
-        }
+//        leftStickYVal = gamepad2.left_stick_y;
+//        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+//
+//        if (leftStickYVal > 0.1) {
+//            sixWheelBot.linearSlideUp(1);
+//        } else if (leftStickYVal < -0.1) {
+//            sixWheelBot.linearSlideDown(1);
+//        } else {
+//            sixWheelBot.linearSlideStop();
+//        }
+//
+//        if (gamepad2.back) {
+//            sixWheelBot.linearSlideUp(1);
+//        } else if (gamepad2.start) {
+//            sixWheelBot.linearSlideDown(1);
+//        } else {
+//            sixWheelBot.linearSlideStop();
+//        }
     }
 
 
@@ -239,22 +247,24 @@ public class SixWheelTeleOp_Connor extends OpMode {
 
 
     public void drivingMode() {
-
-        if (gamepad1.x) {
-            drivingMode = DrivingMode.ONESTICK;
-        }
-
-        else if (gamepad1.b) {
-            drivingMode= DrivingMode.TANK;
-        }
-
-        else if (gamepad1.x) {
-            drivingMode = DrivingMode.REVERSETANK;
-        }
-
-        else if (gamepad1.y) {
-            drivingMode = DrivingMode.REVERSEONESTICK;
-        }
+    drivingMode = DrivingMode.TANK;
+//
+//
+//        if (gamepad1.x) {
+//            drivingMode = DrivingMode.ONESTICK;
+//        }
+//
+//        else if (gamepad1.b) {
+//            drivingMode= DrivingMode.TANK;
+//        }
+//
+//        else if (gamepad1.x) {
+//            drivingMode = DrivingMode.REVERSETANK;
+//        }
+//
+//        else if (gamepad1.y) {
+//            drivingMode = DrivingMode.REVERSEONESTICK;
+//        }
     }
 
     public void telemetry(){

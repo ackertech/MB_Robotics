@@ -181,8 +181,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     }
 
     public void linearSlideDown(double power) {
-        linearSlideMotorA.setPower(power);
-        linearSLideMotorB.setPower(power);
+        linearSlideMotorA.setPower(-power);
+        linearSLideMotorB.setPower(-power);
     }
 
     public void linearSlideStop() {

@@ -171,13 +171,6 @@ public abstract class RobotMovement extends LinearOpMode{
     }
 
 
-    /**
-     * Initialize the AprilTag processor.
-     */
-
-
-
-    //This can only be called AFTER calling initAprilTag()
 
 
 
