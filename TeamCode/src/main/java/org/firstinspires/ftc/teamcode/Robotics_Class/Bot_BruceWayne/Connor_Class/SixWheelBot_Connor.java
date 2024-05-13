@@ -80,10 +80,10 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 //        candyLauncherRight = hwBot.dcMotor.get("candy_launcher_right"); //FORWARD
 
 
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rearLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE );
 
         // lazySusan.setDirection(DcMotorSimple.Direction.FORWARD);
 
@@ -196,8 +196,8 @@ public class SixWheelBot_Connor extends SixWheelDrive_Connor {
     }
 
     public void platformIntakePosition() {
-        platformRotatorLeft.setPosition(0.25);
-        platformRotatorRight.setPosition(0.25);
+        platformRotatorLeft.setPosition(0.30);
+        platformRotatorRight.setPosition(0.30);
     }
 
 //    public void linearActuatorDown(){

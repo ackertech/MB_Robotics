@@ -179,17 +179,21 @@ public class SixWheelTeleOp_Connor extends OpMode {
             sixWheelBot.platformIntakePosition();
         }
 
-        if (gamepad2.right_bumper) {
+        if (gamepad2.back) {
             sixWheelBot.catapult.setPosition(0.3);
-        } else if (gamepad2.left_bumper) {
+        } else if (gamepad2.start) {
             sixWheelBot.catapult.setPosition(0);
         }
 
         if (gamepad2.x) {
-            sixWheelBot.ballonPopper.setPosition(0.45);
+            sixWheelBot.ballonPopper.setPosition(0.75);
         } else if (gamepad2.b) {
-            sixWheelBot.ballonPopper.setPosition(0.25);
+            sixWheelBot.ballonPopper.setPosition(0.15);
+        } else if (gamepad2.left_stick_button) {
+
+            sixWheelBot.ballonPopper.setPosition(0.35);
         }
+
     }
 
     public void linearSLideControl() {
